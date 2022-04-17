@@ -1,0 +1,130 @@
+﻿using Mybarber.Helpers.ToRead;
+using System;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
+
+namespace Mybarber.Helpers
+{
+    public static class Email
+    {
+        public static void Send(string email, string body)
+        {
+            try
+            {
+                MailMessage mailMessage = new MailMessage();
+                var smtpCliente = new SmtpClient("smtp.gmail.com", 587);
+                smtpCliente.EnableSsl = true;
+                smtpCliente.Timeout = 400 * 400;
+                smtpCliente.UseDefaultCredentials = true;
+                smtpCliente.Credentials = new NetworkCredential("schiavi0303@gmail.com", "MyBarber55");
+
+
+                mailMessage.From = new MailAddress("schiavi0303@gmail.com", "Minha Barbearia");
+
+
+
+
+
+
+
+
+                mailMessage.Body = body;
+
+
+                mailMessage.Subject = "Agendamento Realizado";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Priority = MailPriority.Normal;
+                mailMessage.To.Add(email);
+                smtpCliente.Send(mailMessage);
+
+            } catch (Exception ex)
+            { throw new Exception(ex.Message); }
+
+        }
+
+        public static string CreateBody(string name, string servico, string barbeiro, DateTime horario, string nomeBarbearia)
+        {
+
+
+            string html = ReadEmailAgendamento.GetHTMLAgendamento();
+
+
+            return html.Replace("{name}", name)
+                .Replace("{nameBarbeiro}", barbeiro)
+                .Replace("{horas}", horario.ToString("t"))
+                .Replace("{dia}", horario.ToString("dd"))
+                .Replace("{nomeBarbearia}", nomeBarbearia)
+                .Replace("{mes}", horario.ToString("Y"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //string body = String.Empty;
+
+            //using (var client = new WebClient())
+            //{
+            //    body = client.DownloadString("https://resultadosdigitais.com.br/especiais/landing-page/");
+
+            //}
+            //return body;
+
+            //try
+            //{
+            //    string body = string.Empty;
+            //    using (StreamReader reader = new StreamReader("EmailTemplate.razor"))
+            //    {
+            //        body = reader.ReadToEnd();
+            //    }
+
+
+
+
+            //    return body;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
+
+        }
+
+
+    }
+}

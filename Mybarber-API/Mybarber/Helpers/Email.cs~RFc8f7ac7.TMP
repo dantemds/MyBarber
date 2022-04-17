@@ -1,0 +1,167 @@
+﻿using System;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
+
+namespace Mybarber.Helpers
+{
+    public static class Email
+    {
+        public static void Send(string email, string body)
+        {
+            try
+            {
+                MailMessage mailMessage = new MailMessage();
+                var smtpCliente = new SmtpClient("smtp.gmail.com", 587);
+                smtpCliente.EnableSsl = true;
+                smtpCliente.Timeout = 400 * 400;
+                smtpCliente.UseDefaultCredentials = true;
+                smtpCliente.Credentials = new NetworkCredential("schiavi0303@gmail.com", "MyBarber55");
+
+
+                mailMessage.From = new MailAddress("schiavi0303@gmail.com", "Minha Barbearia");
+
+
+
+
+
+
+
+
+                mailMessage.Body = body;
+
+
+                mailMessage.Subject = "Agendamento Realizado";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Priority = MailPriority.Normal;
+                mailMessage.To.Add(email);
+                smtpCliente.Send(mailMessage);
+
+            } catch (Exception ex)
+            { throw new Exception(ex.Message); }
+
+        }
+
+        public static string CreateBody(string name, string servico, string barbeiro, DateTime horario, string nomeBarbearia)
+        {
+
+
+         string html = " <style> span " +
+                  "{font-weight: bold;}" +
+                  ".header {background-color: #202020;" +
+                  "background-image: linear-gradient(to top left, rgb(0, 0, 0), #444444);" +
+                  "border-radius: 10px 10px 0 0;" +
+                  "padding: .5rem;" +
+                  "display: flex;" +
+                  "justify-content: center;" +
+                  "text-align: center;" +
+                  "width: 15.4rem;}" +
+                  ".header h1 { width: 15.4rem;" +
+                  "color: #fff;" +
+                  "font-family: 'Quicksand', sans-serif;" +
+                  "font-weight: 20;" +
+                  "font-size: 1rem;" +
+                  "text-align: center;" +
+                  "border-bottom: 1px solid #B78865;}" +
+                  ".content {width: 15.4rem;" +
+                  "font-family: 'Roboto', sans-serif;" +
+                  "font-weight: 20;" +
+                  "font-size: .7rem;" +
+                  "padding: .5rem;" +
+                  "text-align: center;}" +
+                  ".footer {background-color: #B78865;" +
+                  "background-image: linear-gradient(to top left, #d1996e, #B78865);" +
+                  "font- family: 'Roboto', sans-serif;" +
+                  "font-size: .6rem;" +
+                  "text-align: center;" +
+                  "padding: .5rem; " +
+                  "width: 15.4rem;" +
+                  "border-radius: 0 0 10px 10px;}" +
+                  "</style>" +
+                  "<div class='header'>" +
+                  "<h1>Agendamento Realizado com Sucesso</h1>" +
+                  "</div>" +
+                  "<div class='content'>" +
+                  "<p>Olá, <span>{name}!</span></p>" +
+                  "<p>Seu agendamento com o barbeiro<span>{nameBarbeiro}</span> às<span>{horas}h </span> do dia<span>{dia}</span>" +
+                  " foi realizado com sucesso.</p></div>" +
+                  "<div class= 'footer'>" +
+                  "<p> Obrigado por agendar na <span>{nomeBarbearia}.</span></p></div>";
+
+
+
+            return  html.Replace("{name}", name).Replace("{nameBarbeiro}",
+                   barbeiro).Replace("{horas}", horario.ToString("t")).Replace("{dia}",
+                   horario.ToString("M")).Replace("{nomeBarbearia}", nomeBarbearia);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //string body = String.Empty;
+
+            //using (var client = new WebClient())
+            //{
+            //    body = client.DownloadString("https://resultadosdigitais.com.br/especiais/landing-page/");
+
+            //}
+            //return body;
+
+            //try
+            //{
+            //    string body = string.Empty;
+            //    using (StreamReader reader = new StreamReader("EmailTemplate.razor"))
+            //    {
+            //        body = reader.ReadToEnd();
+            //    }
+
+
+
+
+            //    return body;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
+
+        }
+
+
+    }
+}

@@ -1,0 +1,49 @@
+﻿using System.IO;
+using System.Net;
+using System.Net.Mail;
+
+namespace Mybarber.Helpers
+{
+    public static class Email
+    {
+        public static void Send(string email, string name, string servico, string barbeiro, string horario)
+        {
+
+            MailMessage mailMessage = new MailMessage();
+           
+                var smtpCliente = new SmtpClient("smtp.gmail.com", 587);
+                smtpCliente.EnableSsl = true;
+                smtpCliente.Timeout = 1400 * 400;
+                smtpCliente.UseDefaultCredentials = true;
+                smtpCliente.Credentials = new NetworkCredential("schiavi0303@gmail.com", "MyBarber55");
+            
+
+                mailMessage.From = new MailAddress("schiavi0303@gmail.com", "Minha Barbearia");
+
+
+                mailMessage.Body = CreateBody();
+                //mailMessage.Body = string.Format("Olá Sr(a) {0} Agendamento realizado com sucesso para o serviço {1}. O Barbeiro {2} está te aguardando as {3} ",name,servico,barbeiro, horario);
+                mailMessage.Subject = "Agendamento Realizado";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Priority=MailPriority.Normal;
+                mailMessage.To.Add(email);
+                smtpCliente.Send(mailMessage);
+
+            
+          
+        }
+
+        private static string CreateBody()
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader("EmailTemplate.razor"))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            return body;
+        }
+       
+        
+    }
+}

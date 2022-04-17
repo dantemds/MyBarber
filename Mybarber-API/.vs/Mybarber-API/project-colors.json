@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fbbdc599-9d6f-498f-a705-14f8ea4bf6c6": {
+      "ProjectGuid": "fbbdc599-9d6f-498f-a705-14f8ea4bf6c6",
+      "DisplayName": "Mybarber",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
+    },
+    "0ace2afb-1aa9-4050-b22c-4a8fb9cb8eff": {
+      "ProjectGuid": "0ace2afb-1aa9-4050-b22c-4a8fb9cb8eff",
+      "DisplayName": "MyBarberTest",
+      "ColorIndex": 1
+    },
+    "fb5fbe34-8765-41a5-aca1-eb5ddd30ea38": {
+      "ProjectGuid": "fb5fbe34-8765-41a5-aca1-eb5ddd30ea38",
+      "DisplayName": "MyBarber-Test",
+      "ColorIndex": 2
+    },
+    "88f93c0d-bfa1-4dd3-a449-f693c9860137": {
+      "ProjectGuid": "88f93c0d-bfa1-4dd3-a449-f693c9860137",
+      "DisplayName": "Mybarber_Test",
+      "ColorIndex": 3
+    },
+    "fb29ffdc-1e1c-4002-9adc-6f96c67f8008": {
+      "ProjectGuid": "fb29ffdc-1e1c-4002-9adc-6f96c67f8008",
+      "DisplayName": "Mybarber_Test",
+      "ColorIndex": 4
+    },
+    "5eb6b942-caf8-422f-9a91-d6769d09c750": {
+      "ProjectGuid": "5eb6b942-caf8-422f-9a91-d6769d09c750",
+      "DisplayName": "TDD",
+      "ColorIndex": 5
+    },
+    "dbbda877-7405-4b13-8726-a14d3753ec67": {
+      "ProjectGuid": "dbbda877-7405-4b13-8726-a14d3753ec67",
+      "DisplayName": "TDD",
+      "ColorIndex": 6
+    }
+  },
+  "NextColorIndex": 7
+}

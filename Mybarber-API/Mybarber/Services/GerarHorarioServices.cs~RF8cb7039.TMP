@@ -1,0 +1,48 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Mybarber.Services
+{
+    public static class GerarHorarioServices
+    {
+        public static IEnumerable<float> FloatRange(float min, float max, float step)
+        {
+            for (float value = min; value <= max; value += step)
+            {
+                yield return value;
+            }
+        }
+
+
+        public static IEnumerable<float> RetornaHorario()
+        {
+
+            var agendados = new List<float>  {8.00f, 17.50f};
+
+           IEnumerable<float> Ienumerable = FloatRange(8.00f, 18.00f, 0.5f);
+
+            var Lista = Ienumerable.ToList();
+;
+            foreach(float item in Lista)
+            {
+                if (agendados.Contains(item))
+                {
+                   
+                    Lista.RemoveAt(Lista.FindIndex(x => x == item));
+                   
+                }
+                
+
+
+            }
+
+            
+            return Lista;
+        }
+        
+       
+
+
+
+    }
+}

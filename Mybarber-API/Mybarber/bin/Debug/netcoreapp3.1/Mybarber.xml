@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mybarber</name>
+    </assembly>
+    <members>
+        <member name="T:Mybarber.Controllers.BarbeariasControllers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeariasControllers.#ctor(Mybarber.Presenter.IBarbeariasPresenter)">
+            <summary>
+            
+            </summary>
+            <param name="presenter"></param>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeariasControllers.GetBarbeariaAsyncById(System.Int32)">
+            <summary>
+            Método responsável por obter as barbearias utilizando o parametro IdBarbearia
+            </summary>
+            <param name="idBarbearia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeariasControllers.PostBarbeariaAsync(Mybarber.DataTransferObject.Barbearia.BarbeariasRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="barbeariaDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mybarber.Controllers.BarbeirosControllers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeirosControllers.#ctor(Mybarber.Presenter.IBarbeirosPresenter)">
+            <summary>
+            
+            </summary>
+            <param name="presenter"></param>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeirosControllers.GetBarbeiroAsyncById(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idBarbeiro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeirosControllers.GetBarbeiroAsyncByTenant(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idBarbearia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mybarber.Controllers.BarbeirosControllers.PostBarbeiroAsync(Mybarber.DataTransferObject.Barbeiro.BarbeirosRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="barbeiroDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mybarber.Controllers.ServicoImagemControllers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicoImagemControllers.#ctor(Mybarber.Presenters.IServicoImagemPresenter)">
+            <summary>
+            
+            </summary>
+            <param name="presenter"></param>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicoImagemControllers.PostServicoImagemAsync(Mybarber.DataTransferObject.Images.ServicoImagemRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="imagemDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mybarber.Controllers.ServicosBarbeirosControllers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicosBarbeirosControllers.#ctor(Mybarber.Presenters.IServicosBarbeirosPresenter)">
+            <summary>
+            
+            </summary>
+            <param name="presenter"></param>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicosBarbeirosControllers.PostRelacionamentoAsync(Mybarber.DataTransferObject.Relacionamento.ServicosBarbeirosRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="relacionamentoDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mybarber.Controllers.ServicosControllers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicosControllers.#ctor(Mybarber.Presenter.IServicosPresenter)">
+            <summary>
+            
+            </summary>
+            <param name="presenter"></param>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicosControllers.GetServicoAsyncById(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idServico"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicosControllers.GetBarbeariaAsyncByTenant(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="idBarbearia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mybarber.Controllers.ServicosControllers.PostServicoAsync(Mybarber.DataTransferObject.Servico.ServicosRequestDto)">
+            <summary>
+            
+            </summary>
+            <param name="servicoDto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mybarber.DataTransferObject.Barbearia.BarbeariasResponseDto">
+            <summary>
+            Este é um Data Transfer Object (DTO)
+            </summary>
+        </member>
+    </members>
+</doc>
