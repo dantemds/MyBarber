@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Mybarber.DAO;
 using Mybarber.Helpers;
 using Mybarber.Models;
 using Mybarber.Persistencia;
@@ -14,9 +15,12 @@ namespace Mybarber.Repositories
     {
         private readonly Context _context;
 
+      
+
         public AgendamentosRepository(Context context)
         {
             _context = context;
+            
         }
 
         //-----------------------------------------------------------------------------------------------------//
@@ -99,7 +103,17 @@ namespace Mybarber.Repositories
              return await query.FirstOrDefaultAsync();
 
         }
+        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenantDAO(int tenant, PageParams pageParams)
+        {
+            using (var conexao = _context.ConexaoPostGreSQL())
+            {
+                AgendamentosDAO _DAO = new AgendamentosDAO(conexao);
+                return await _DAO.GetAgendamentosAsyncByTenant(tenant, pageParams);
+            }
+            
+         
 
+        }
 
     }
 }

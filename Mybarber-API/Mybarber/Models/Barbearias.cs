@@ -17,15 +17,15 @@ namespace Mybarber.Models
         public string CNPJ { get; set; }
 
         
-        public  virtual ICollection<Agendamentos> Agendamentos { get; set; }
+        public   ICollection<Agendamentos> Agendamentos { get; set; }
 
-        public virtual ICollection<Servicos> Servicos { get; set; }
+        public ICollection<Servicos> Servicos { get; set; }
 
-        public virtual ICollection<Barbeiros> Barbeiros { get; set; }
+        public  ICollection<Barbeiros> Barbeiros { get; set; }
 
-        public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
+        public  ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
 
-        public virtual ICollection<Users> Users { get; set; }
+        public  ICollection<Users> Users { get; set; }
 
        
 

@@ -45,7 +45,7 @@ namespace Mybarber.Services
             {
 
 
-                var barbearia = await _repo.GetBarbeariasAsyncById(idBarbearia);
+                var barbearia = await _repo.GetBarbeariasAsyncByIdDAO(idBarbearia);
 
                 
 

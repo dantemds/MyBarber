@@ -85,36 +85,41 @@ namespace Mybarber.Controllers
         [HttpGet("tenant/{tenant:int}")]
         public async Task<IActionResult> GetAgendamentosAsyncByTenant(int tenant, [FromQuery] PageParams pageParams)
         {
-            
-            var key = tenant.ToString() + pageParams.Date.ToString() + pageParams.NomeBarbeiro + pageParams.PageNumber.ToString() + pageParams.NomeServico + pageParams.PageSize.ToString();
-         
-            
-           
-            if (_memoryCache.TryGetValue(key, out List<Agendamentos> listaCache))
-               return Ok(listaCache);
-           
-       
-           
-          
-
-            var result = await _repo.GetAgendamentosAsyncByTenant(tenant, pageParams);
-
-            var memoryCacheEntryOptions = new MemoryCacheEntryOptions
+            try
             {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(1),
-               SlidingExpiration = TimeSpan.FromSeconds(1)
-            };
-            
-            
-          
-           
-            _memoryCache.Set(key, result, memoryCacheEntryOptions);
+                var key = tenant.ToString() + pageParams.Date.ToString() + pageParams.NomeBarbeiro + pageParams.PageNumber.ToString() + pageParams.NomeServico + pageParams.PageSize.ToString();
+
+
+
+                if (_memoryCache.TryGetValue(key, out List<Agendamentos> listaCache))
+                    return Ok(listaCache);
+
+
+
+
+
+                var result = await _repo.GetAgendamentosAsyncByTenantDAO(tenant, pageParams);
+
+                var memoryCacheEntryOptions = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(1),
+                    SlidingExpiration = TimeSpan.FromSeconds(1)
+                };
+
+
+
+
+                _memoryCache.Set(key, result, memoryCacheEntryOptions);
 
                 Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
-         
 
-            return Ok(result);
-           
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return NoContent();
+            }
 
         }
         [HttpDelete("{idAgendamento:int}")]

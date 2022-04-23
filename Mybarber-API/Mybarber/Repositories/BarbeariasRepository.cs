@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Mybarber.DAO;
 
 namespace Mybarber.Repositories
 {
@@ -33,11 +34,11 @@ namespace Mybarber.Repositories
 
                 return await query.ToArrayAsync();
             }
-            catch (Exception) 
+            catch (Exception)
             {
                 throw new Exception();
             }
-            
+
         }
 
         public async Task<Barbearias> GetBarbeariasAsyncById(int idBarbearia)
@@ -45,7 +46,7 @@ namespace Mybarber.Repositories
             try
             {
 
-                IQueryable<Barbearias> query = _context.Barbearias.Include(p => p.Barbeiros).ThenInclude(it => it.BarbeiroImagem).Include(it => it.Barbeiros).ThenInclude(it=>it.Agendas)
+                IQueryable<Barbearias> query = _context.Barbearias.Include(p => p.Barbeiros).ThenInclude(it => it.BarbeiroImagem).Include(it => it.Barbeiros).ThenInclude(it => it.Agendas)
                     .Include(p => p.Servicos).ThenInclude(it => it.ServicoImagem)
                     .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
                     .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
@@ -54,16 +55,27 @@ namespace Mybarber.Repositories
 
 
                 query = query.AsNoTracking()
-                    
+
                     .OrderBy(barbearias => barbearias.IdBarbearia)
                     .Where(barbearias => barbearias.IdBarbearia == idBarbearia);
 
                 return await query.FirstOrDefaultAsync();
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 throw new Exception();
 
             }
+        }
+        public async Task<Barbearias> GetBarbeariasAsyncByIdDAO(int idBarbearia)
+        { 
+        using(var conexao = _context.ConexaoPostGreSQL())
+            {
+                BarbeariasDAO DAO = new BarbeariasDAO(conexao);
+                return await DAO.GetBarbeariasAsyncById(idBarbearia);
+            }
+        
+        
         }
     }
 }

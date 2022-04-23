@@ -13,5 +13,6 @@ namespace Mybarber.Repository
         Task<Agendamentos> GetAgendamentosAsyncById(int idAgendamento);
         Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(int tenant, PageParams pageParams);
         Task<Agendamentos> GetAgendamentosAsyncByHorario(Agendamentos horario);
+        Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenantDAO(int tenant, PageParams pageParams);
     }
 }

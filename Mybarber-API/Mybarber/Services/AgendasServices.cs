@@ -3,6 +3,7 @@ using Mybarber.Exceptions.Tradutor;
 using Mybarber.Models;
 using Mybarber.Repository;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 using static Mybarber.Exceptions.ViewException;
@@ -19,6 +20,7 @@ namespace Mybarber.Services
             
             this._generally = generally;
             this._repo = repo;
+            
 
         }
 
@@ -46,7 +48,20 @@ namespace Mybarber.Services
                 throw new ViewException("Operation.Failed", ex.Message);
             }
         }
+        public async Task<Agendas> PopularHorario(int idServico, int idBarbeiro)
+        {
+           var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
 
+            var HorarioMin = barbeiro.Agendas.Terca[0];
+            var HorarioMax = barbeiro.Agendas.Terca[1];
+            barbeiro.Agendas.Terca.Clear();
+            for (float i = HorarioMin; i < HorarioMax; i += 0.5f)
+            {
+                barbeiro.Agendas.Terca.Add(i);
+            }
+            return barbeiro.Agendas;
+            
+        }
 
 
        

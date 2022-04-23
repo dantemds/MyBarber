@@ -1,15 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Mybarber.Models;
 using Mybarber.Persistences;
+using Npgsql;
 
 namespace Mybarber.Persistencia
 {
     public class Context : DbContext
     {
+        
 
-        public Context(DbContextOptions<Context> options) : base(options) { }
-
+      
+        public Context(DbContextOptions<Context> options, IConfiguration config) : base(options) { this._config = config; }
+      
+        
         public DbSet<BarbeiroImagens> BarbeiroImagens { get; set; }
         public DbSet<Barbearias> Barbearias { get; set; }
         public DbSet<Users> Users { get; set; }
@@ -19,11 +24,7 @@ namespace Mybarber.Persistencia
         public DbSet<ServicosBarbeiros> ServicosBarbeiros { get; set; }
         public DbSet<ServicoImagens> ServicoImagens { get; set; }
         public DbSet<Agendas> Agendas { get; set;}
-    
-       
-      
-       
-
+        public IConfiguration _config { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,8 +43,18 @@ namespace Mybarber.Persistencia
 
 
 
+        public string ObterCaminhoConexaoPostGreSQL()
+        {
+            
+            return _config.GetConnectionString("ConnectionDatabase");
+        }
 
+        public NpgsqlConnection ConexaoPostGreSQL()
+        {
+            NpgsqlConnection conexaoContext = new NpgsqlConnection(ObterCaminhoConexaoPostGreSQL());
+            return conexaoContext;
 
+        }
 
     }
 }
