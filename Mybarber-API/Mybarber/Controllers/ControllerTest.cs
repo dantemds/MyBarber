@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Mybarber.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace Mybarber.Controllers
@@ -20,10 +21,11 @@ namespace Mybarber.Controllers
         }
 
         [HttpGet]
-        [Route("/teste")]
-        public async Task<IActionResult> testeData(int idServico, int idBarbeiro)
+        [Route("/teste/{tenant:int}")]
+        public async Task<IActionResult> testeData( int idBarbeiro, DateTime data,string dia,int idServico,int tenant )
         {
-            var result = agenda.PopularHorario(idServico, idBarbeiro);
+            var result =await agenda.PopularHorario(idBarbeiro,dia,data, tenant, idServico);
+           
             return Ok(result);
         }
         

@@ -98,7 +98,7 @@ namespace Mybarber.Controllers
 
 
 
-                var result = await _repo.GetAgendamentosAsyncByTenantDAO(tenant, pageParams);
+                var result = await _repo.GetAgendamentosAsyncByTenant(tenant, pageParams);
 
                 var memoryCacheEntryOptions = new MemoryCacheEntryOptions
                 {

@@ -6,6 +6,7 @@ using Mybarber.Models;
 using Mybarber.Presenters.Interfaces;
 using Mybarber.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Mybarber.Presenters
@@ -45,5 +46,20 @@ namespace Mybarber.Presenters
                 throw new ViewException("Operation.Failed", ex.Message);
             }
         }
+
+
+        public async Task<List<float>> GerarHorariosAgedamentos(int idBarbeiro, DateTime data, string dia, int idServico, int tenant)
+        {
+
+            var result = await _service.PopularHorario( idBarbeiro,  dia,data,  idServico,  tenant);
+
+
+            return result;
+
+
+        }
+       
+
+
     }
 }
