@@ -57,6 +57,22 @@ namespace Mybarber.Presenter
             }
         }
 
+        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route)
+        {
+            try
+            {
+                var barbearia = await _service.GetBarbeariaAsyncByRoute(route);
+
+                var barbeariaDto = _mapper.Map<BarbeariasResponseDto>(barbearia);
+
+                return barbeariaDto;
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
         public async Task<BarbeariasCompleteResponseDto> PostBarbeariaAsync(BarbeariasRequestDto barbeariaDto)
         {
             try { 

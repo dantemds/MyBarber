@@ -1,4 +1,6 @@
-﻿namespace Mybarber.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Mybarber.Models
 {
     public class ServicosBarbeiros
     {
@@ -12,6 +14,7 @@
 
         public virtual Barbeiros Barbeiros { get; set; }
 
+        
         public int BarbeariasId { get; set; }
 
         public virtual Barbearias Barbearias { get; set; }
@@ -22,7 +25,7 @@
             this.ServicosId = servicosId;
             this.BarbeirosId = barbeirosId;
             this.BarbeariasId = barbeariasId;
-                
+
         }
         public ServicosBarbeiros()
         {

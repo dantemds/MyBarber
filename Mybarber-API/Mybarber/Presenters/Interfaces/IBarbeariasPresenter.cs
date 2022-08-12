@@ -13,7 +13,7 @@ namespace Mybarber.Presenter
         //Task<IEnumerable<BarbeariasResponseDto>> GetAllBarbeariasAsync();
 
         //Task<BarbeariasResponseDto> GetBarbeariaAsyncById(int idBarbearia);
-
+        Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route);
         Task<BarbeariasCompleteResponseDto> PostBarbeariaAsync(BarbeariasRequestDto barbeariaDto);
 
         Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncById(int idBarbearia);

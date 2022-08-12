@@ -951,6 +951,18 @@
           "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "NodaTime/3.0.9": {
+        "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.7.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/NodaTime.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NodaTime.dll": {}
+        }
+      },
       "Npgsql/4.1.3": {
         "type": "package",
         "dependencies": {
@@ -1673,7 +1685,7 @@
           "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.6.0": {
+      "System.Runtime.CompilerServices.Unsafe/4.7.1": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -2051,6 +2063,28 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "TimeZoneConverter/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/TimeZoneConverter.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TimeZoneConverter.dll": {}
+        }
+      },
+      "TimeZoneConverter.Posix/3.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NodaTime": "3.0.9",
+          "TimeZoneConverter": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/TimeZoneConverter.Posix.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TimeZoneConverter.Posix.dll": {}
+        }
+      },
       "Mybarber/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -2070,7 +2104,9 @@
           "Serilog.Settings.Configuration": "3.3.0",
           "Serilog.Sinks.Async": "1.5.0",
           "Swashbuckle.AspNetCore": "5.4.1",
-          "System.Configuration.ConfigurationManager": "6.0.0"
+          "System.Configuration.ConfigurationManager": "6.0.0",
+          "TimeZoneConverter": "5.0.0",
+          "TimeZoneConverter.Posix": "3.0.1"
         },
         "compile": {
           "bin/placeholder/Mybarber.dll": {}
@@ -3622,6 +3658,20 @@
         "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.2.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "NodaTime/3.0.9": {
+      "sha512": "7KzJBkgSzLLyBXNYafDlnzlji3aB/8myvt5RJu5aaTFq6puVCq2WDJY9v9yDMg22+5or5IaKNItQ1jNA8nzQNA==",
+      "type": "package",
+      "path": "nodatime/3.0.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NodaTime.dll",
+        "lib/netstandard2.0/NodaTime.pdb",
+        "lib/netstandard2.0/NodaTime.xml",
+        "nodatime.3.0.9.nupkg.sha512",
+        "nodatime.nuspec"
       ]
     },
     "Npgsql/4.1.3": {
@@ -5640,26 +5690,31 @@
         "system.runtime.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.6.0": {
-      "sha512": "HxozeSlipUK7dAroTYwIcGwKDeOVpQnJlpVaOkBz7CM4TsE5b/tKlQBZecTjh6FzcSbxndYaxxpsBMz+wMJeyw==",
+    "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+      "sha512": "zOHkQmzPCn5zm/BH+cxC1XbUS3P4Yoi3xzW7eRgVpDR2tPGSzyMZ17Ig1iRkfJuY0nhxkQQde8pgePNiA7z7TQ==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.6.0",
+      "path": "system.runtime.compilerservices.unsafe/4.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -6811,6 +6866,36 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
+    "TimeZoneConverter/5.0.0": {
+      "sha512": "U7Oilf3Ya6Rmu6gOaBfWyT3q0kwy2av6a5PfTn05CF54C+7DvuLsE3ljASvYmCpsSQeJvpnqU5Uzag6+ysWUeA==",
+      "type": "package",
+      "path": "timezoneconverter/5.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/TimeZoneConverter.dll",
+        "lib/net461/TimeZoneConverter.xml",
+        "lib/netstandard2.0/TimeZoneConverter.dll",
+        "lib/netstandard2.0/TimeZoneConverter.xml",
+        "timezoneconverter.5.0.0.nupkg.sha512",
+        "timezoneconverter.nuspec"
+      ]
+    },
+    "TimeZoneConverter.Posix/3.0.1": {
+      "sha512": "7shiwD7OeDgl+BL3zxvH0O+zqzob2tplZqxgAf9+khieQBQn346vQ1usmsG/shKh1IvdNNfIjoqPUqT7sf/dZQ==",
+      "type": "package",
+      "path": "timezoneconverter.posix/3.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/TimeZoneConverter.Posix.dll",
+        "lib/net461/TimeZoneConverter.Posix.xml",
+        "lib/netstandard2.0/TimeZoneConverter.Posix.dll",
+        "lib/netstandard2.0/TimeZoneConverter.Posix.xml",
+        "timezoneconverter.posix.3.0.1.nupkg.sha512",
+        "timezoneconverter.posix.nuspec"
+      ]
+    },
     "Mybarber/1.0.0": {
       "type": "project",
       "path": "../Mybarber/Mybarber.csproj",
@@ -6854,6 +6939,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "V:\\Paths e Dicas\\DOTNET\\NuGet": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

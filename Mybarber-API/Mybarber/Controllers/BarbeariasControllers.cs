@@ -62,11 +62,32 @@ namespace Mybarber.Controllers
             
                 var result = await _presenter.GetAllAtributesBarbeariaAsyncById(idBarbearia);
                
-
-                return  Ok(result);
+            if(result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+                
 
             
          
+
+        }
+        [HttpGet("{route}")]
+
+        public async Task<IActionResult> GetBarbeariaAsyncByRoute(string route)
+
+        {
+            var result = await _presenter.GetAllAtributesBarbeariaAsyncByRoute(route);
+
+            return Ok(result);
+            
+
+
+
 
         }
         /// <summary>

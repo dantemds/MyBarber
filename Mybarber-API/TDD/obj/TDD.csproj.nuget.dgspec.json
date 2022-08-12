@@ -28,6 +28,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "V:\\Paths e Dicas\\DOTNET\\NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -121,6 +122,14 @@
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "TimeZoneConverter": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "TimeZoneConverter.Posix": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [
@@ -169,6 +178,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "V:\\Paths e Dicas\\DOTNET\\NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

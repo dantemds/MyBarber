@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mybarber.Models
 {
@@ -25,7 +26,9 @@ namespace Mybarber.Models
 
         public Barbeiros Barbeiros { get; set; }
 
-
+        [ForeignKey("Barbearias")]
+        public int BarbeariasId { get; set; }
+        public virtual Barbearias Barbearias { get; set; }
 
     }
 }

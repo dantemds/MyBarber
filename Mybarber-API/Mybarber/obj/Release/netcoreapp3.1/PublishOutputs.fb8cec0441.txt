@@ -43,6 +43,7 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docke
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Microsoft.Win32.SystemEvents.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Newtonsoft.Json.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Newtonsoft.Json.Bson.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\NodaTime.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Npgsql.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.dll
@@ -61,11 +62,14 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docke
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Configuration.ConfigurationManager.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Drawing.Common.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Security.AccessControl.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Security.Cryptography.ProtectedData.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Security.Permissions.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Security.Principal.Windows.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\System.Windows.Extensions.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\TimeZoneConverter.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\TimeZoneConverter.Posix.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll

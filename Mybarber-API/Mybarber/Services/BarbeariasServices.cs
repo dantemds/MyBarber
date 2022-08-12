@@ -56,6 +56,26 @@ namespace Mybarber.Services
                 throw new Exception();
             }
         }
+        public async Task<Barbearias> GetBarbeariaAsyncByRoute(string route)
+        {
+            try
+            {
+
+                var barbearia = await _repo.GetBarbeariasAsyncByRoute(route);
+
+                return barbearia;
+                
+
+
+
+               
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
 
         public async Task<bool> PutBarbeariaAsyncById(int idBarbearia, Barbearias barbearias)

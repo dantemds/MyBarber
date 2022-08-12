@@ -12,6 +12,7 @@ namespace Mybarber.Services
         Task<Barbearias> PostBarbeariaAsync(Barbearias barbearias);
         Task<string> DeleteBarbeariaAsyncById(int idBarbearia);
         Task<bool> PutBarbeariaAsyncById(int idBarbearia, Barbearias barbearias);
+        Task<Barbearias> GetBarbeariaAsyncByRoute(string route);
 
     }
 }

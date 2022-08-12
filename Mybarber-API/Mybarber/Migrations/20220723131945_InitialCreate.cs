@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Mybarber.Migrations
 {
-    public partial class initialdatabase : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace Mybarber.Migrations
                     IdBarbearia = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     NomeBarbearia = table.Column<string>(nullable: false),
-                    CNPJ = table.Column<string>(nullable: false)
+                    CNPJ = table.Column<string>(nullable: false),
+                    Route = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,6 +50,98 @@ namespace Mybarber.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServicoImagens", x => x.IdImagemServico);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contatos",
+                columns: table => new
+                {
+                    IdContato = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Celulares = table.Column<List<string>>(nullable: true),
+                    Telefones = table.Column<List<string>>(nullable: true),
+                    Emails = table.Column<List<string>>(nullable: true),
+                    Instagrams = table.Column<List<string>>(nullable: true),
+                    Outros = table.Column<List<string>>(nullable: true),
+                    BarbeariasId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contatos", x => x.IdContato);
+                    table.ForeignKey(
+                        name: "FK_Contatos_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Enderecos",
+                columns: table => new
+                {
+                    IdEndereco = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Logradouro = table.Column<string>(nullable: true),
+                    Numero = table.Column<string>(nullable: true),
+                    Bairro = table.Column<string>(nullable: true),
+                    Cidade = table.Column<string>(nullable: true),
+                    Estado = table.Column<string>(nullable: true),
+                    CEP = table.Column<string>(nullable: true),
+                    BarbeariasId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enderecos", x => x.IdEndereco);
+                    table.ForeignKey(
+                        name: "FK_Enderecos_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HorarioFuncionamento",
+                columns: table => new
+                {
+                    IdHorarioFuncionamento = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Funcionamento = table.Column<List<string>>(nullable: true),
+                    BarbeariasId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HorarioFuncionamento", x => x.IdHorarioFuncionamento);
+                    table.ForeignKey(
+                        name: "FK_HorarioFuncionamento_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Temas",
+                columns: table => new
+                {
+                    IdTema = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CorPrimaria = table.Column<string>(nullable: true),
+                    CorSecundaria = table.Column<string>(nullable: true),
+                    CorTernaria = table.Column<string>(nullable: true),
+                    CorQuartenaria = table.Column<string>(nullable: true),
+                    BarbeariasId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Temas", x => x.IdTema);
+                    table.ForeignKey(
+                        name: "FK_Temas_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,11 +237,18 @@ namespace Mybarber.Migrations
                     Sexta = table.Column<List<float>>(nullable: true),
                     Sabado = table.Column<List<float>>(nullable: true),
                     Domingo = table.Column<List<float>>(nullable: true),
-                    BarbeirosId = table.Column<int>(nullable: false)
+                    BarbeirosId = table.Column<int>(nullable: false),
+                    BarbeariasId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agendas", x => x.IdAgendas);
+                    table.ForeignKey(
+                        name: "FK_Agendas_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Agendas_Barbeiros_BarbeirosId",
                         column: x => x.BarbeirosId,
@@ -241,6 +341,11 @@ namespace Mybarber.Migrations
                 column: "ServicosId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Agendas_BarbeariasId",
+                table: "Agendas",
+                column: "BarbeariasId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Agendas_BarbeirosId",
                 table: "Agendas",
                 column: "BarbeirosId",
@@ -255,6 +360,24 @@ namespace Mybarber.Migrations
                 name: "IX_Barbeiros_BarbeiroImagemId",
                 table: "Barbeiros",
                 column: "BarbeiroImagemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contatos_BarbeariasId",
+                table: "Contatos",
+                column: "BarbeariasId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enderecos_BarbeariasId",
+                table: "Enderecos",
+                column: "BarbeariasId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HorarioFuncionamento_BarbeariasId",
+                table: "HorarioFuncionamento",
+                column: "BarbeariasId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Servicos_BarbeariasId",
@@ -277,6 +400,12 @@ namespace Mybarber.Migrations
                 column: "BarbeirosId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Temas_BarbeariasId",
+                table: "Temas",
+                column: "BarbeariasId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_BarbeariasId",
                 table: "Users",
                 column: "BarbeariasId");
@@ -291,7 +420,19 @@ namespace Mybarber.Migrations
                 name: "Agendas");
 
             migrationBuilder.DropTable(
+                name: "Contatos");
+
+            migrationBuilder.DropTable(
+                name: "Enderecos");
+
+            migrationBuilder.DropTable(
+                name: "HorarioFuncionamento");
+
+            migrationBuilder.DropTable(
                 name: "ServicosBarbeiros");
+
+            migrationBuilder.DropTable(
+                name: "Temas");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using TimeZoneConverter;
 using static Mybarber.Exceptions.ViewException;
 
 namespace Mybarber.Services
@@ -59,10 +60,12 @@ namespace Mybarber.Services
             var HorarioMin=0.0f;
             var HorarioMax=0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
-            var brasilia = TimeZoneInfo.FindSystemTimeZoneById("Brazil/East");
-            var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.Now, brasilia);
+            
+            string tz = TZConvert.WindowsToIana("E. South America Standard Time");
+            var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
+            var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
             var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
-            if (DateTime.Now.Day == data.Day)
+            if (horaBrasilia.Day == data.Day)
             {
                 
 
@@ -121,7 +124,7 @@ namespace Mybarber.Services
 
            for (float i = HorarioMin; i < HorarioMax; i += 0.5f)
             {
-                if (DateTime.Now.Day == data.Day)
+                if (horaBrasilia.Day == data.Day)
                 {
                     if (horaAtualFloat < i)
                     {
@@ -167,7 +170,7 @@ namespace Mybarber.Services
                     {
 
                         var hora = agendamento.Horario.Hour.ToString() + '.' + agendamento.Horario.Minute.ToString();
-                        hora.Replace("30", "5");
+                        hora = hora.Replace("30", "5");
                         var horaFloat = Convert.ToSingle(hora);
                         if (item == horaFloat)
                         {
@@ -197,7 +200,6 @@ namespace Mybarber.Services
             var valoresDaAgenda = agenda.Count();
             var duracaoServicoCalculado = (int)(duracaoServico / 0.5f);
             var indexMax = valoresDaAgenda - duracaoServicoCalculado;
-            var listaArrancaveis = new List<float>();
             foreach(var item in agenda.ToArray())
             {
                 if (agenda.IndexOf(item) <= indexMax)

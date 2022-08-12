@@ -19,6 +19,7 @@ namespace Mybarber.Models
 
         [ForeignKey("Barbearias")]
         public int BarbeariasId { get; set; }
+
         public virtual Barbearias Barbearias { get; set; }
 
 

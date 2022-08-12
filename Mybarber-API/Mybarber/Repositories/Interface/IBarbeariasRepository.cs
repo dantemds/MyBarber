@@ -9,7 +9,7 @@ namespace Mybarber.Repository
         Task<Barbearias[]> GetAllBarbeariasAsync();
         Task<Barbearias> GetBarbeariasAsyncById(int idBarbearia);
         Task<Barbearias> GetBarbeariasAsyncByIdDAO(int idBarbearia);
-
+        Task<Barbearias> GetBarbeariasAsyncByRoute(string route);
 
     }
 }

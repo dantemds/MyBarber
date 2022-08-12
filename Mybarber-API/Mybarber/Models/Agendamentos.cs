@@ -23,12 +23,12 @@ namespace Mybarber.Models
         [Required(ErrorMessage = "Um Horário deve ser informado")]
         public DateTime Horario { get; set; }
 
-        [ForeignKey("Servicos")]
+        //[ForeignKey("Servicos")]
         public int ServicosId { get; set; }
 
         public virtual Servicos Servicos { get; set; }
 
-        [ForeignKey("Barbeiros")]
+        //[ForeignKey("Barbeiros")]
         public int BarbeirosId { get; set; }
 
         public  virtual Barbeiros Barbeiros { get; set; }

@@ -70,6 +70,9 @@ namespace Mybarber.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("BarbeariasId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("BarbeirosId")
                         .HasColumnType("integer");
 
@@ -96,6 +99,8 @@ namespace Mybarber.Migrations
 
                     b.HasKey("IdAgendas");
 
+                    b.HasIndex("BarbeariasId");
+
                     b.HasIndex("BarbeirosId")
                         .IsUnique();
 
@@ -115,6 +120,9 @@ namespace Mybarber.Migrations
 
                     b.Property<string>("NomeBarbearia")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Route")
                         .HasColumnType("text");
 
                     b.HasKey("IdBarbearia");
@@ -170,6 +178,96 @@ namespace Mybarber.Migrations
                     b.HasIndex("BarbeiroImagemId");
 
                     b.ToTable("Barbeiros");
+                });
+
+            modelBuilder.Entity("Mybarber.Models.Contatos", b =>
+                {
+                    b.Property<int>("IdContato")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("BarbeariasId")
+                        .HasColumnType("integer");
+
+                    b.Property<List<string>>("Celulares")
+                        .HasColumnType("text[]");
+
+                    b.Property<List<string>>("Emails")
+                        .HasColumnType("text[]");
+
+                    b.Property<List<string>>("Instagrams")
+                        .HasColumnType("text[]");
+
+                    b.Property<List<string>>("Outros")
+                        .HasColumnType("text[]");
+
+                    b.Property<List<string>>("Telefones")
+                        .HasColumnType("text[]");
+
+                    b.HasKey("IdContato");
+
+                    b.HasIndex("BarbeariasId")
+                        .IsUnique();
+
+                    b.ToTable("Contatos");
+                });
+
+            modelBuilder.Entity("Mybarber.Models.Enderecos", b =>
+                {
+                    b.Property<int>("IdEndereco")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Bairro")
+                        .HasColumnType("text");
+
+                    b.Property<int>("BarbeariasId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CEP")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Cidade")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Logradouro")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Numero")
+                        .HasColumnType("text");
+
+                    b.HasKey("IdEndereco");
+
+                    b.HasIndex("BarbeariasId")
+                        .IsUnique();
+
+                    b.ToTable("Enderecos");
+                });
+
+            modelBuilder.Entity("Mybarber.Models.HorarioFuncionamento", b =>
+                {
+                    b.Property<int>("IdHorarioFuncionamento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("BarbeariasId")
+                        .HasColumnType("integer");
+
+                    b.Property<List<string>>("Funcionamento")
+                        .HasColumnType("text[]");
+
+                    b.HasKey("IdHorarioFuncionamento");
+
+                    b.HasIndex("BarbeariasId")
+                        .IsUnique();
+
+                    b.ToTable("HorarioFuncionamento");
                 });
 
             modelBuilder.Entity("Mybarber.Models.ServicoImagens", b =>
@@ -242,6 +340,36 @@ namespace Mybarber.Migrations
                     b.ToTable("ServicosBarbeiros");
                 });
 
+            modelBuilder.Entity("Mybarber.Models.Temas", b =>
+                {
+                    b.Property<int>("IdTema")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("BarbeariasId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CorPrimaria")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CorQuartenaria")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CorSecundaria")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CorTernaria")
+                        .HasColumnType("text");
+
+                    b.HasKey("IdTema");
+
+                    b.HasIndex("BarbeariasId")
+                        .IsUnique();
+
+                    b.ToTable("Temas");
+                });
+
             modelBuilder.Entity("Mybarber.Models.Users", b =>
                 {
                     b.Property<int>("IdUser")
@@ -291,6 +419,12 @@ namespace Mybarber.Migrations
 
             modelBuilder.Entity("Mybarber.Models.Agendas", b =>
                 {
+                    b.HasOne("Mybarber.Models.Barbearias", "Barbearias")
+                        .WithMany()
+                        .HasForeignKey("BarbeariasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Mybarber.Models.Barbeiros", "Barbeiros")
                         .WithOne("Agendas")
                         .HasForeignKey("Mybarber.Models.Agendas", "BarbeirosId")
@@ -309,6 +443,33 @@ namespace Mybarber.Migrations
                     b.HasOne("Mybarber.Models.BarbeiroImagens", "BarbeiroImagem")
                         .WithMany("Barbeiros")
                         .HasForeignKey("BarbeiroImagemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Mybarber.Models.Contatos", b =>
+                {
+                    b.HasOne("Mybarber.Models.Barbearias", "Barbearias")
+                        .WithOne("Contatos")
+                        .HasForeignKey("Mybarber.Models.Contatos", "BarbeariasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Mybarber.Models.Enderecos", b =>
+                {
+                    b.HasOne("Mybarber.Models.Barbearias", "Barbearias")
+                        .WithOne("Enderecos")
+                        .HasForeignKey("Mybarber.Models.Enderecos", "BarbeariasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Mybarber.Models.HorarioFuncionamento", b =>
+                {
+                    b.HasOne("Mybarber.Models.Barbearias", "Barbearias")
+                        .WithOne("HorarioFuncionamento")
+                        .HasForeignKey("Mybarber.Models.HorarioFuncionamento", "BarbeariasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -345,6 +506,15 @@ namespace Mybarber.Migrations
                     b.HasOne("Mybarber.Models.Servicos", "Servicos")
                         .WithMany("ServicosBarbeiros")
                         .HasForeignKey("ServicosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Mybarber.Models.Temas", b =>
+                {
+                    b.HasOne("Mybarber.Models.Barbearias", "Barbearias")
+                        .WithOne("Temas")
+                        .HasForeignKey("Mybarber.Models.Temas", "BarbeariasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

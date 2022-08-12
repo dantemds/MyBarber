@@ -61,6 +61,34 @@ namespace Mybarber.Repositories
 
                 return await query.FirstOrDefaultAsync();
             }
+            catch (Exception ex)
+            {
+                throw new Exception();
+
+            }
+        }
+
+
+        public async Task<Barbearias> GetBarbeariasAsyncByRoute(string route)
+        {
+            try
+            {
+
+                IQueryable<Barbearias> query = _context.Barbearias./*Include(p=>p.Tema).Include(p=>p.Contatos).Include(p=>p.Endereco).*/Include(p => p.Barbeiros).ThenInclude(it => it.BarbeiroImagem).Include(it => it.Barbeiros).ThenInclude(it => it.Agendas)
+                    .Include(p => p.Servicos).ThenInclude(it => it.ServicoImagem)
+                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
+                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
+                .Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
+                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros);
+
+
+                query = query.AsNoTracking()
+
+                    .OrderBy(barbearias => barbearias.IdBarbearia)
+                    .Where(barbearias => barbearias.Route == route);
+
+                return await query.FirstOrDefaultAsync();
+            }
             catch (Exception)
             {
                 throw new Exception();

@@ -16,7 +16,7 @@ namespace Mybarber.DataTransferObject.Barbearia
         public string NomeBarbearia { get; set; }
         public virtual ICollection<ServicosResponseDto> Servicos { get; set; }
         public virtual ICollection<AgendamentosResponseDto> Agendamentos { get; set; }
-        public virtual ICollection<BarbeirosResponseDto> Barbeiros { get; set; }
+        //public virtual ICollection<BarbeirosResponseDto> Barbeiros { get; set; }
 
 
         

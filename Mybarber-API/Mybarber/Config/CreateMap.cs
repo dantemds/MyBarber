@@ -38,7 +38,8 @@ namespace Mybarber.Helpers
             CreateMap<Barbeiros, BarbeirosForAgendamentosDto>();
             CreateMap<Agendas, AgendasRequestDto>().ReverseMap();
             CreateMap<Agendas, AgendasResponseDto>();
-          
+            CreateMap<Agendas, AgendasResponseDto>().ReverseMap();
+
 
         }
     }

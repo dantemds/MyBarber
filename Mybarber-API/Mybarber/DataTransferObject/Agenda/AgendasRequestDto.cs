@@ -21,7 +21,8 @@ namespace Mybarber.DataTransferObject.Agenda
 
         public int BarbeirosId { get; set; }
 
-
+        public int BarbeariasId { get; set; }
+       
 
     }
 }
