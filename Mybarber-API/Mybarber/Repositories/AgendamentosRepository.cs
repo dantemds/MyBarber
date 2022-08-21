@@ -73,7 +73,7 @@ namespace Mybarber.Repositories
         }
         public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(int tenant, PageParams pageParams)
         {
-            IQueryable<Agendamentos> query = _context.Agendamentos;
+            IQueryable<Agendamentos> query = _context.Agendamentos.Include(it=>it.Servicos);
 
             // var lisa = from a in _context.Agendamentos where a.IdAgendamento > 1 select a; Sintaxe alternativa
 

@@ -57,6 +57,7 @@ namespace Mybarber.Controllers
         public async Task<IActionResult> GetAgendamentoAsyncById(int idAgendamento)
         {
 
+
             var result = await _presenter.GetAgendamentoAsyncById(idAgendamento);
 
             return Ok(result);

@@ -1,40 +1,38 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Mybarber.DataTransferObject.Temas;
+using Mybarber.DataTransferObject.Contatos;
 using Mybarber.Models;
 using Mybarber.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Mybarber.Controllers
 {
     [EnableCors]
     [ApiController]
-    [Route("api/v1/temas")]
-    public class TemasControllers : ControllerBase
+    [Route("api/v1/contatos")]
+    public class ContatosControllers : ControllerBase
     {
+
         private readonly IMapper _mapper;
         private readonly IGenerallyRepository _generally;
-        public TemasControllers( IGenerallyRepository generally, IMapper mapper)
+        public ContatosControllers(IGenerallyRepository generally, IMapper mapper)
         {
             this._generally = generally;
             this._mapper = mapper;
         }
 
         [HttpPost()]
-        public async Task<IActionResult> PostTemaAsync([FromBody] TemasRequestDto tema)
+        public async Task<IActionResult> PostContatosAsync([FromBody] ContatosRequestDto contato)
         {
 
 
 
-            _generally.Add(_mapper.Map<Temas>(tema));
+            _generally.Add(_mapper.Map<Contatos>(contato));
 
-            if(await _generally.SaveChangesAsync())
+            if (await _generally.SaveChangesAsync())
             {
-                return Ok(tema);
+                return Ok(contato);
             }
             else
             {
