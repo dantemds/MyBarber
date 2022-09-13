@@ -46,7 +46,7 @@ namespace Mybarber.Controllers
             }
         }
 
-        [HttpPut("{idBarbearia:int}")]
+        [HttpPut("{idBarbearia}")]
 
         public async Task<IActionResult> PutTemaAsync(Guid idBarbearia, [FromBody] TemasRequestDto temaDto)
         {

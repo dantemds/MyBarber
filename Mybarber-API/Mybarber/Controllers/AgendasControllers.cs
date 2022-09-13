@@ -41,7 +41,7 @@ namespace Mybarber.Controllers
         }
 
         [HttpGet]
-        [Route("tenant/{tenant:int}")]
+        [Route("tenant/{tenant}")]
         public async Task<IActionResult> GetHorariosAgendamento(Guid idBarbeiro, DateTime data, string dia, Guid idServico, Guid tenant)
         {
             var result = await _presenter.GerarHorariosAgedamentos( idBarbeiro,  data,  dia,  idServico,  tenant);

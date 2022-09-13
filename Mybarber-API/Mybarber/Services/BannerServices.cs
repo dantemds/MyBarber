@@ -69,7 +69,7 @@ namespace Mybarber.Services
 
                 imagemBanner.Name = banner.NomeImagem;
                 imagemBanner.BarbeariasId = banner.BarbeariaId;
-                imagemBanner.URL = _config.GetSection("S3Config:ImagesServico").Value + banner.Route + "/" + banner.BarbeariaId;
+                imagemBanner.URL = _config.GetSection("S3Config:ImagesBanner").Value + banner.Route + "/" + banner.BarbeariaId;
 
                 _generally.Add(imagemBanner);
 

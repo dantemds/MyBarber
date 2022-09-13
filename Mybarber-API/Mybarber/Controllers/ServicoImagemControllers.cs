@@ -67,7 +67,7 @@ namespace Mybarber.Controllers
             }
         }
 
-        [HttpPut("s3/{idServico:int}")]
+        [HttpPut("s3/{idServico}")]
         public async Task<IActionResult> UpdateServicoImagemS3Async([FromForm(Name = "image")] IFormFile file, [FromForm(Name = "route")] string route, [FromForm(Name = "servico")] Guid idServico, [FromForm(Name = "nome")] string nomeImagem)
         {
             try
@@ -83,7 +83,7 @@ namespace Mybarber.Controllers
             }
         }
 
-        [HttpDelete("s3/{idServico:int}")]
+        [HttpDelete("s3/{idServico}")]
         public async Task<IActionResult> DeleteServicoImagemS3Async(string route, Guid idServico)
         {
             try

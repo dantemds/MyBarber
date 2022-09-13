@@ -105,7 +105,7 @@ namespace Mybarber.Controllers
                 return Created($"/api/v1/Barbearias/{result.IdBarbearia}", result);
             
         }
-        [HttpPut("{idBarbearia:int}")]
+        [HttpPut("{idBarbearia}")]
 
         public async Task<IActionResult> PutBarbeariaAsync(Guid idBarbearia, [FromBody] BarbeariasRequestDto dto)
         {
@@ -119,7 +119,7 @@ namespace Mybarber.Controllers
 
         }
 
-        [HttpDelete("{idBarbearia:int}")]
+        [HttpDelete("{idBarbearia}")]
         public async Task<IActionResult> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
 

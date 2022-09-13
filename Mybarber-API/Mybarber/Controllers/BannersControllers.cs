@@ -34,5 +34,8 @@ namespace Mybarber.Controllers
             }
         }
 
+        //[HttpDelete()]
+        //public async Task<IActionResult> DeleteBannerS3Async()
+
     }
 }

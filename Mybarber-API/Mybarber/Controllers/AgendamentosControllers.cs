@@ -53,7 +53,7 @@ namespace Mybarber.Controllers
 
 
 
-        [HttpGet("{idAgendamento:int}")]
+        [HttpGet("{idAgendamento}")]
         public async Task<IActionResult> GetAgendamentoAsyncById(Guid idAgendamento)
         {
 
@@ -85,7 +85,7 @@ namespace Mybarber.Controllers
 
 
 
-        [HttpGet("barbeiro/{tenant:int}")]
+        [HttpGet("barbeiro/{tenant}")]
         
         public async Task<IActionResult> GetAgendamentoAsyncByBarbeiro(DateTime data, Guid idBarbeiro, Guid tenant)
         {
@@ -104,7 +104,7 @@ namespace Mybarber.Controllers
 
 
 
-        [HttpGet("tenant/{tenant:int}")]
+        [HttpGet("tenant/{tenant}")]
         public async Task<IActionResult> GetAgendamentosAsyncByTenant(Guid tenant, [FromQuery] PageParams pageParams)
         {
             try
@@ -160,7 +160,7 @@ namespace Mybarber.Controllers
             }
 
         }
-        [HttpDelete("{idAgendamento:int}")]
+        [HttpDelete("{idAgendamento}")]
         public async Task<IActionResult> DeleteAgendamentoById(Guid idAgendamento)
         {
 

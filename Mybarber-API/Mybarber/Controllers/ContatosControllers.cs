@@ -42,7 +42,7 @@ namespace Mybarber.Controllers
             }
         }
 
-        [HttpPut("{idBarbearia:int}")]
+        [HttpPut("{idBarbearia}")]
 
         public async Task<IActionResult> PutBarbeariaAsync(Guid idBarbearia, [FromBody] ContatosRequestDto dto)
         {

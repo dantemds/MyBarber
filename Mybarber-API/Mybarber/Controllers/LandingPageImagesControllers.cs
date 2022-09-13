@@ -13,9 +13,9 @@ namespace Mybarber.Controllers
         {
 
         }
-        public async Task<IActionResult> PostLadingPageImageS3Async()
-        {
+        //public async Task<IActionResult> PostLadingPageImageS3Async()
+        //{
 
-        }
+        //}
     }
 }
