@@ -54,7 +54,7 @@ namespace Mybarber.Controllers
 
 
         [HttpGet("{idAgendamento:int}")]
-        public async Task<IActionResult> GetAgendamentoAsyncById(int idAgendamento)
+        public async Task<IActionResult> GetAgendamentoAsyncById(Guid idAgendamento)
         {
 
 
@@ -87,7 +87,7 @@ namespace Mybarber.Controllers
 
         [HttpGet("barbeiro/{tenant:int}")]
         
-        public async Task<IActionResult> GetAgendamentoAsyncByBarbeiro(DateTime data, int idBarbeiro, int tenant)
+        public async Task<IActionResult> GetAgendamentoAsyncByBarbeiro(DateTime data, Guid idBarbeiro, Guid tenant)
         {
             var result = await _repo.GetAgendamentosAsyncByIdBarbeiro(data, idBarbeiro,tenant);
             return Ok(result);
@@ -105,7 +105,7 @@ namespace Mybarber.Controllers
 
 
         [HttpGet("tenant/{tenant:int}")]
-        public async Task<IActionResult> GetAgendamentosAsyncByTenant(int tenant, [FromQuery] PageParams pageParams)
+        public async Task<IActionResult> GetAgendamentosAsyncByTenant(Guid tenant, [FromQuery] PageParams pageParams)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace Mybarber.Controllers
 
         }
         [HttpDelete("{idAgendamento:int}")]
-        public async Task<IActionResult> DeleteAgendamentoById(int idAgendamento)
+        public async Task<IActionResult> DeleteAgendamentoById(Guid idAgendamento)
         {
 
 

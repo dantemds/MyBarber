@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "GnY9/OHdeIEWGNxAOQBRoHXSWQmbSDadCxCUFRy6JuKB5ZTF7V3M7PluBo7h7sXfYHLO1wJm+BcgExYeJ6uKHg==",
+  "dgSpecHash": "fen9K3u7yR23HgkArxgScf/bgqxjVaHyTPXCq/qTmbocosHQH9qTMiQNZtSc2CGHWHvtU7b6ESv5lK82vJzn0g==",
   "success": true,
   "projectFilePath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\TDD\\TDD.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soumu\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\soumu\\.nuget\\packages\\awssdk.core\\3.7.12.25\\awssdk.core.3.7.12.25.nupkg.sha512",
+    "C:\\Users\\soumu\\.nuget\\packages\\awssdk.s3\\3.7.9.43\\awssdk.s3.3.7.9.43.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.0\\microsoft.aspnetcore.authentication.jwtbearer.3.1.0.nupkg.sha512",

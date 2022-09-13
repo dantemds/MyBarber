@@ -39,7 +39,7 @@ namespace Mybarber.Services
         //    }
         //}
 
-        public async Task<Barbearias> GetBarbeariaAsyncById(int idBarbearia)
+        public async Task<Barbearias> GetBarbeariaAsyncById(Guid idBarbearia)
         {
             try 
             {
@@ -78,7 +78,7 @@ namespace Mybarber.Services
         }
 
 
-        public async Task<bool> PutBarbeariaAsyncById(int idBarbearia, Barbearias barbearias)
+        public async Task<bool> PutBarbeariaAsyncById(Guid idBarbearia, Barbearias barbearias)
         {
             try
             {
@@ -88,10 +88,16 @@ namespace Mybarber.Services
                 barbeariaFinded.NomeBarbearia = barbearias.NomeBarbearia;
                 barbeariaFinded.CNPJ = barbearias.CNPJ;
                 _generally.Update(barbeariaFinded);
+                if(await _generally.SaveChangesAsync())
+                {
+                    return true;
+                }
 
-
-
-                return true;
+                else
+                {
+                    return false;
+                }
+                
 
             }
             catch (Exception)
@@ -128,7 +134,8 @@ namespace Mybarber.Services
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)
+
+        public async Task<string> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
             try
             {

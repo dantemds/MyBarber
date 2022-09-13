@@ -21,7 +21,7 @@ namespace Mybarber.Services
 
         }
 
-        public async Task<Servicos> GetServicoForEmail(int idServico)
+        public async Task<Servicos> GetServicoForEmail(Guid idServico)
         {
             var Servico = await  _repoServico.GetServicoAsyncById(idServico);
 
@@ -30,7 +30,7 @@ namespace Mybarber.Services
 
         }
 
-        public async Task<Barbeiros> GetBarbeiroForEmail(int idBarbeiro)
+        public async Task<Barbeiros> GetBarbeiroForEmail(Guid idBarbeiro)
         {
             var Barbeiro = await _repoBarbeiro.GetBarbeiroAsyncById(idBarbeiro);
 

@@ -1,13 +1,18 @@
 ﻿
 
+using System;
+
 namespace Mybarber.DataTransferObject.Barbearia
 {
     public class BarbeariasCompleteResponseDto
     {
-        public int IdBarbearia { get; set; }
+        public Guid IdBarbearia { get; set; }
 
         public string NomeBarbearia { get; set; }
 
         public string CNPJ { get; set; }
+        public string Route { get; set; }
+        public bool LandingPage { get; set; }
+        public bool Ativa { get; set; }
     }
 }

@@ -54,9 +54,9 @@ namespace Mybarber.Controllers
         /// </summary>
         /// <param name="idBarbearia"></param>
         /// <returns></returns>
-        [HttpGet("{idBarbearia:int}")]
+        [HttpGet("id/{idBarbearia}")]
         
-        public async Task<IActionResult> GetBarbeariaAsyncById(int idBarbearia)
+        public async Task<IActionResult> GetBarbeariaAsyncById(Guid idBarbearia)
         
         {
             
@@ -107,17 +107,20 @@ namespace Mybarber.Controllers
         }
         [HttpPut("{idBarbearia:int}")]
 
-        public async Task<IActionResult> PutBarbeariaAsync(int idBarbearia, [FromBody] BarbeariasRequestDto dto)
+        public async Task<IActionResult> PutBarbeariaAsync(Guid idBarbearia, [FromBody] BarbeariasRequestDto dto)
         {
 
             var result = await _presenter.PutBarbeariaAsyncById( idBarbearia,  dto);
+
+
+
 
             return Ok();
 
         }
 
         [HttpDelete("{idBarbearia:int}")]
-        public async Task<IActionResult> DeleteBarbeariaAsyncById(int idBarbearia)
+        public async Task<IActionResult> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
 
           

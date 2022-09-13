@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mybarber.DataTransferObject.Contatos
 {
@@ -9,6 +10,6 @@ namespace Mybarber.DataTransferObject.Contatos
         public List<string> Emails { get; set; }
         public List<string> Instagrams { get; set; }
         public List<string> Outros { get; set; }
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
     }
 }

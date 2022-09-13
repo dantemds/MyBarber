@@ -10,7 +10,7 @@ namespace Mybarber.Models
     public class Contatos
     {
         [Key()]
-        public int IdContato { get; set; }
+        public Guid IdContato { get; set; } = Guid.NewGuid();
 
         public List<string> Celulares { get; set; }
         public List<string> Telefones { get; set; }
@@ -18,8 +18,8 @@ namespace Mybarber.Models
         public List<string> Instagrams { get; set; }
         public List<string> Outros { get; set; }
 
-        //[ForeignKey("Barbearias")]
-        public int BarbeariasId { get; set; }
+        [ForeignKey("Barbearias")]
+        public Guid BarbeariasId { get; set; }
         public virtual Barbearias Barbearias  { get; set; }
         
 

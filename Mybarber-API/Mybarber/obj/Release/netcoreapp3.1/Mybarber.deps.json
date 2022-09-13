@@ -31,6 +31,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Mybarber/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "3.7.9.43",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Dapper": "2.0.123",
           "Dapper.Contrib": "2.0.78",
@@ -352,6 +353,31 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.12.25": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.12.25"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.7.9.43": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.12.25"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.9.43"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
         }
       },
       "Dapper/2.0.123": {
@@ -2971,6 +2997,20 @@
       "sha512": "sha512-xSWoVzOipuDU4PeZcUfaZQ+xqXU8QmGv5jrdlxt3MYm9xaOmrefqcfzGQ3SQ+D+8wfBa/ZwSuL0qKOVj080inA==",
       "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512"
+    },
+    "AWSSDK.Core/3.7.12.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zvGGsVChO2TILuXNACS3Ji7wKA7ARYTC81cAiVa0Q6REetCoWAkUN8AXutSvzpOFNcW5kf8nisPvWtwmq3Lsnw==",
+      "path": "awssdk.core/3.7.12.25",
+      "hashPath": "awssdk.core.3.7.12.25.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.9.43": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Jc7cp9w4+igrKJlIgNsEHo0XSiJV7hpFlY07RjRr0qcXuzLHVf8W+sbPm3rQk//8+de4CBny+KEp79y1Iv39oA==",
+      "path": "awssdk.s3/3.7.9.43",
+      "hashPath": "awssdk.s3.3.7.9.43.nupkg.sha512"
     },
     "Dapper/2.0.123": {
       "type": "package",

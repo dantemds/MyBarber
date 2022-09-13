@@ -54,7 +54,7 @@ namespace Mybarber.Services
                 throw new ViewException("Operation.Failed", ex.Message);
             }
         }
-        public async Task<List<float>> PopularHorario(int idBarbeiro, string dia, DateTime data, int tenant, int idServico)
+        public async Task<List<float>> PopularHorario(Guid idBarbeiro, string dia, DateTime data, Guid tenant, Guid idServico)
         {
             List<float> agenda = new List<float>();
             var HorarioMin=0.0f;
@@ -65,7 +65,7 @@ namespace Mybarber.Services
             //var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
             //var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
             var horaBrasilia = DateTime.Now;
-            var horaAtual = (horaBrasilia.Hour.ToString() + ',' + horaBrasilia.Minute.ToString());
+            var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
             if(horaAtual.Count() < 5)
             {
                 horaAtual = "0" + horaAtual;
@@ -77,7 +77,7 @@ namespace Mybarber.Services
                 if (horaAtual[3] == '3' || horaAtual[3] == '4' || horaAtual[3] == '5')
                 {
 
-                    horaAtual = horaAtual.Substring(0, 2) + ',' + "51";
+                    horaAtual = horaAtual.Substring(0, 2) + '.' + "51";
                 }
             }
            
@@ -151,13 +151,13 @@ namespace Mybarber.Services
 
        
 
-        private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, int idServico, int tenant,int idBarbeiro)
+        private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, Guid idServico, Guid tenant,Guid idBarbeiro)
         {
             var servico = await _servicoRepo.GetServicosAsyncById(idServico);
             PageParams pageParams = new PageParams();
             pageParams.Date = data;
             Console.WriteLine("--------------duracaoServico  EM STRING---------------");
-            var durancaoServico = servico.TempoServico.Hour.ToString() + ',' + servico.TempoServico.Minute.ToString();
+            var durancaoServico = servico.TempoServico.Hour.ToString() + '.' + servico.TempoServico.Minute.ToString();
             Console.WriteLine(durancaoServico);
             durancaoServico = durancaoServico.Replace("30", "5");
 
@@ -174,12 +174,12 @@ namespace Mybarber.Services
                     if (agendamento.BarbeirosId == idBarbeiro)
                     {
 
-                        var hora = agendamento.Horario.Hour.ToString() + ',' + agendamento.Horario.Minute.ToString();
+                        var hora = agendamento.Horario.Hour.ToString() + '.' + agendamento.Horario.Minute.ToString();
                         hora = hora.Replace("30", "5");
                         var horaFloat = Convert.ToSingle(hora);
                         if (item == horaFloat)
                         {
-                            var durancaoServicoAgendado = agendamento.Servicos.TempoServico.Hour.ToString() + ',' + agendamento.Servicos.TempoServico.Minute.ToString();
+                            var durancaoServicoAgendado = agendamento.Servicos.TempoServico.Hour.ToString() + '.' + agendamento.Servicos.TempoServico.Minute.ToString();
                             durancaoServicoAgendado = durancaoServicoAgendado.Replace("30", "5");
                             var duracaoServicoAgendadoFloat = Convert.ToSingle(durancaoServicoAgendado);
                             var itensExcluidos = (int)(duracaoServicoAgendadoFloat / 0.5);

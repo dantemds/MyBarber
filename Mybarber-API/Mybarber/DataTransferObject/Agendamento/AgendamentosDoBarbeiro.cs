@@ -7,7 +7,7 @@ namespace Mybarber.DataTransferObject.Agendamento
 {
     public class AgendamentosDoBarbeiro
     {
-        public int IdAgendamento { get; set; }
+        public Guid IdAgendamento { get; set; }
         public DateTime HorarioAgendamento { get; set; }
         public string Contato { get; set; }
         public string Email { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mybarber.DataTransferObject.Agenda
 {
@@ -19,9 +20,9 @@ namespace Mybarber.DataTransferObject.Agenda
 
         public List<float> Domingo { get; set; }
 
-        public int BarbeirosId { get; set; }
+        public Guid BarbeirosId { get; set; }
 
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
        
 
     }

@@ -8,6 +8,7 @@ using Mybarber.DataTransferObject.Servico;
 using Mybarber.DataTransferObject.Temas;
 using Mybarber.Models;
 using Mybarber.Validations;
+using System;
 using System.Collections.Generic;
 
 namespace Mybarber.DataTransferObject.Barbearia
@@ -17,10 +18,12 @@ namespace Mybarber.DataTransferObject.Barbearia
 /// </summary>
     public class BarbeariasResponseDto 
     {
-        public int IdBarbearia { get; set; }
+        public Guid IdBarbearia { get; set; }
         public string NomeBarbearia { get; set; }
+        public bool Ativa { get; set; }
+        public bool LandingPage { get; set; }
         public virtual ICollection<ServicosResponseDto> Servicos { get; set; }
-        public virtual ICollection<AgendamentosResponseDto> Agendamentos { get; set; }
+        //public virtual ICollection<AgendamentosResponseDto> Agendamentos { get; set; }
         public TemasResponseDto Temas { get; set; }
         public EnderecosResponseDto Enderecos { get; set; }
         public ContatosResponseDto Contatos { get; set; }

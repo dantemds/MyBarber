@@ -41,6 +41,26 @@ namespace Mybarber.Presenters
                 throw new Exception();
             }
         }
+        //public async Task<BarbeiroImagemRequestDto> PostBarbeiroImagemS3Async(BarbeiroImagemRequestDto imagemDto)
+        //{
+        //    try
+        //    {
+        //        var imagem = _mapper.Map<BarbeiroImagens>(imagemDto);
+
+        //        await _service.PostBarbeiroImagemS3Async(imagem);
+
+
+
+
+
+        //        return imagemDto;
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new Exception();
+        //    }
+        //}
 
 
 

@@ -21,7 +21,7 @@ namespace Mybarber.DAO
         }
 
 
-        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(int tenant, PageParams pageParams)
+        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(Guid tenant, PageParams pageParams)
         {
            
             var query = (await _npg.QueryAsync<Agendamentos>(

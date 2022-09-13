@@ -41,7 +41,7 @@ namespace Mybarber.Repositories
 
         }
 
-        public async Task<Barbearias> GetBarbeariasAsyncById(int idBarbearia)
+        public async Task<Barbearias> GetBarbeariasAsyncById(Guid idBarbearia)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace Mybarber.Repositories
                     .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
                     .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
                 .Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
-                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros);
+                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros).Include(it=>it.Temas).Include(it=>it.Contatos).Include(it=>it.HorarioFuncionamento);
 
 
                 query = query.AsNoTracking()
@@ -95,7 +95,7 @@ namespace Mybarber.Repositories
 
             }
         }
-        public async Task<Barbearias> GetBarbeariasAsyncByIdDAO(int idBarbearia)
+        public async Task<Barbearias> GetBarbeariasAsyncByIdDAO(Guid idBarbearia)
         { 
         using(var conexao = _context.ConexaoPostGreSQL())
             {

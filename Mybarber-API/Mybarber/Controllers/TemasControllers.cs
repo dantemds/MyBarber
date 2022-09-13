@@ -18,10 +18,14 @@ namespace Mybarber.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenerallyRepository _generally;
-        public TemasControllers( IGenerallyRepository generally, IMapper mapper)
+        private readonly IBarbeariasRepository _repo;
+
+        public TemasControllers( IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo)
         {
             this._generally = generally;
             this._mapper = mapper;
+            this._repo = repo;
+
         }
 
         [HttpPost()]
@@ -40,6 +44,33 @@ namespace Mybarber.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        [HttpPut("{idBarbearia:int}")]
+
+        public async Task<IActionResult> PutTemaAsync(Guid idBarbearia, [FromBody] TemasRequestDto temaDto)
+        {
+            var tema = _mapper.Map<Temas>(temaDto);
+
+            var barbeariaFinded = await _repo.GetBarbeariasAsyncById(idBarbearia);
+
+
+
+            tema.BarbeariasId = barbeariaFinded.Temas.BarbeariasId;
+            tema.IdTema = barbeariaFinded.Temas.IdTema;
+            _generally.Update(tema);
+
+            if(await _generally.SaveChangesAsync())
+            {
+                return Ok(tema);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+            
+
         }
     }
 }

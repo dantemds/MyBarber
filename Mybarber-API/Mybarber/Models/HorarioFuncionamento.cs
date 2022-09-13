@@ -10,10 +10,10 @@ namespace Mybarber.Models
     public class HorarioFuncionamento
     {
         [Key()]
-        public int IdHorarioFuncionamento { get; set; }
+        public Guid IdHorarioFuncionamento { get; set; } = Guid.NewGuid();
         public List<string> Funcionamento { get; set; }
         //[ForeignKey("Barbearias")]
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
         public virtual Barbearias Barbearias { get; set; }
     }
 }

@@ -10,12 +10,12 @@ namespace Mybarber.DataTransferObject.Agendamento
     public class AgendamentosResponseGetAgendamentoByTenantDTO
     {
 
-        public int IdAgendamento { get; set; }
+        public Guid IdAgendamento { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Contato { get; set; }
         public DateTime Horario { get; set; }
-        public int ServicosId { get; set; }
-        public int BarbeirosId { get; set; }
+        public Guid ServicosId { get; set; }
+        public Guid BarbeirosId { get; set; }
     }
 }

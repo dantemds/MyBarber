@@ -35,7 +35,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<AgendamentosResponseDto> GetAgendamentoAsyncById(int idAgendamento)
+        public async Task<AgendamentosResponseDto> GetAgendamentoAsyncById(Guid idAgendamento)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<bool> DeleteAgendamentoAsyncById(int idAgendamento)
+        public async Task<bool> DeleteAgendamentoAsyncById(Guid idAgendamento)
         {
 
 

@@ -26,7 +26,7 @@ namespace Mybarber.Controllers
 
         [HttpGet]
         [Route("/teste/{tenant:int}")]
-        public async Task<IActionResult> testeData( int idBarbeiro, DateTime data,string dia,int idServico,int tenant )
+        public async Task<IActionResult> testeData( Guid idBarbeiro, DateTime data,string dia,Guid idServico,Guid tenant )
         {
             var result =await agenda.PopularHorario(idBarbeiro,dia,data, tenant, idServico);
            

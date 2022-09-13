@@ -29,7 +29,7 @@ namespace Mybarber.Presenters
         {
             try
             {
-               
+
 
                 var agenda = _mapper.Map<Agendas>(agendasDto);
 
@@ -48,17 +48,17 @@ namespace Mybarber.Presenters
         }
 
 
-        public async Task<List<float>> GerarHorariosAgedamentos(int idBarbeiro, DateTime data, string dia, int idServico, int tenant)
+        public async Task<List<float>> GerarHorariosAgedamentos(Guid idBarbeiro, DateTime data, string dia, Guid idServico, Guid tenant)
         {
 
-            var result = await _service.PopularHorario( idBarbeiro,  dia,data,  idServico,  tenant);
+            var result = await _service.PopularHorario(idBarbeiro, dia, data, tenant, idServico);
 
 
             return result;
 
 
         }
-       
+
 
 
     }

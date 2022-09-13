@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Mybarber.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class BarbeariaStatus : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
+
             migrationBuilder.CreateTable(
                 name: "Barbearias",
                 columns: table => new
                 {
-                    IdBarbearia = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdBarbearia = table.Column<Guid>(nullable: false),
                     NomeBarbearia = table.Column<string>(nullable: false),
                     CNPJ = table.Column<string>(nullable: false),
-                    Route = table.Column<string>(nullable: true)
+                    Route = table.Column<string>(nullable: true),
+                    LandingPage = table.Column<bool>(nullable: false),
+                    Ativa = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,8 +31,7 @@ namespace Mybarber.Migrations
                 name: "BarbeiroImagens",
                 columns: table => new
                 {
-                    IdBarbeiroImagem = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdBarbeiroImagem = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     URL = table.Column<string>(nullable: true)
                 },
@@ -42,8 +44,7 @@ namespace Mybarber.Migrations
                 name: "ServicoImagens",
                 columns: table => new
                 {
-                    IdImagemServico = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdImagemServico = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     URL = table.Column<string>(nullable: true)
                 },
@@ -56,14 +57,13 @@ namespace Mybarber.Migrations
                 name: "Contatos",
                 columns: table => new
                 {
-                    IdContato = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdContato = table.Column<Guid>(nullable: false),
                     Celulares = table.Column<List<string>>(nullable: true),
                     Telefones = table.Column<List<string>>(nullable: true),
                     Emails = table.Column<List<string>>(nullable: true),
                     Instagrams = table.Column<List<string>>(nullable: true),
                     Outros = table.Column<List<string>>(nullable: true),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,15 +80,14 @@ namespace Mybarber.Migrations
                 name: "Enderecos",
                 columns: table => new
                 {
-                    IdEndereco = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdEndereco = table.Column<Guid>(nullable: false),
                     Logradouro = table.Column<string>(nullable: true),
                     Numero = table.Column<string>(nullable: true),
                     Bairro = table.Column<string>(nullable: true),
                     Cidade = table.Column<string>(nullable: true),
                     Estado = table.Column<string>(nullable: true),
                     CEP = table.Column<string>(nullable: true),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -105,10 +104,9 @@ namespace Mybarber.Migrations
                 name: "HorarioFuncionamento",
                 columns: table => new
                 {
-                    IdHorarioFuncionamento = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdHorarioFuncionamento = table.Column<Guid>(nullable: false),
                     Funcionamento = table.Column<List<string>>(nullable: true),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,13 +123,12 @@ namespace Mybarber.Migrations
                 name: "Temas",
                 columns: table => new
                 {
-                    IdTema = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdTema = table.Column<Guid>(nullable: false),
                     CorPrimaria = table.Column<string>(nullable: true),
                     CorSecundaria = table.Column<string>(nullable: true),
                     CorTernaria = table.Column<string>(nullable: true),
                     CorQuartenaria = table.Column<string>(nullable: true),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,12 +145,11 @@ namespace Mybarber.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdUser = table.Column<Guid>(nullable: false),
                     UserName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,13 +166,12 @@ namespace Mybarber.Migrations
                 name: "Barbeiros",
                 columns: table => new
                 {
-                    IdBarbeiro = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdBarbeiro = table.Column<Guid>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     NameBarbeiro = table.Column<string>(nullable: false),
-                    BarbeariasId = table.Column<int>(nullable: false),
-                    BarbeiroImagemId = table.Column<int>(nullable: false)
+                    BarbeariasId = table.Column<Guid>(nullable: false),
+                    BarbeiroImagemId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,13 +194,12 @@ namespace Mybarber.Migrations
                 name: "Servicos",
                 columns: table => new
                 {
-                    IdServico = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdServico = table.Column<Guid>(nullable: false),
                     NomeServico = table.Column<string>(nullable: false),
                     TempoServico = table.Column<DateTime>(nullable: false),
                     PrecoServico = table.Column<float>(nullable: false),
-                    ServicoImagemId = table.Column<int>(nullable: false),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    ServicoImagemId = table.Column<Guid>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -228,8 +222,7 @@ namespace Mybarber.Migrations
                 name: "Agendas",
                 columns: table => new
                 {
-                    IdAgendas = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdAgendas = table.Column<Guid>(nullable: false),
                     Segunda = table.Column<List<float>>(nullable: true),
                     Terca = table.Column<List<float>>(nullable: true),
                     Quarta = table.Column<List<float>>(nullable: true),
@@ -237,8 +230,8 @@ namespace Mybarber.Migrations
                     Sexta = table.Column<List<float>>(nullable: true),
                     Sabado = table.Column<List<float>>(nullable: true),
                     Domingo = table.Column<List<float>>(nullable: true),
-                    BarbeirosId = table.Column<int>(nullable: false),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    BarbeirosId = table.Column<Guid>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -261,15 +254,14 @@ namespace Mybarber.Migrations
                 name: "Agendamentos",
                 columns: table => new
                 {
-                    IdAgendamento = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IdAgendamento = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     Email = table.Column<string>(nullable: false),
                     Contato = table.Column<string>(nullable: false),
                     Horario = table.Column<DateTime>(nullable: false),
-                    ServicosId = table.Column<int>(nullable: false),
-                    BarbeirosId = table.Column<int>(nullable: false),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    ServicosId = table.Column<Guid>(nullable: false),
+                    BarbeirosId = table.Column<Guid>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -298,9 +290,9 @@ namespace Mybarber.Migrations
                 name: "ServicosBarbeiros",
                 columns: table => new
                 {
-                    ServicosId = table.Column<int>(nullable: false),
-                    BarbeirosId = table.Column<int>(nullable: false),
-                    BarbeariasId = table.Column<int>(nullable: false)
+                    ServicosId = table.Column<Guid>(nullable: false),
+                    BarbeirosId = table.Column<Guid>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {

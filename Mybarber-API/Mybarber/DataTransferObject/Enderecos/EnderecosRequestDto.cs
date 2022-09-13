@@ -1,4 +1,6 @@
-﻿namespace Mybarber.DataTransferObject.Enderecos
+﻿using System;
+
+namespace Mybarber.DataTransferObject.Enderecos
 {
     public class EnderecosRequestDto
     {
@@ -8,6 +10,6 @@
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string CEP { get; set; }
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
     }
 }

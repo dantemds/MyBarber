@@ -10,7 +10,7 @@ namespace Mybarber.Models
     public class Enderecos
     {
         [Key()]
-        public int IdEndereco { get; set; }
+        public Guid IdEndereco { get; set; } = Guid.NewGuid();
         public string Logradouro { get; set; }
         public string Numero { get; set; }
         public string Bairro { get; set; }
@@ -18,7 +18,7 @@ namespace Mybarber.Models
         public string Estado { get; set; }
         public string CEP { get; set; }
         //[ForeignKey("Barbearias")]
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
         public virtual Barbearias Barbearias  { get; set; }
     }
 }

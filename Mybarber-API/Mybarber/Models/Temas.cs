@@ -10,14 +10,14 @@ namespace Mybarber.Models
     public class Temas
     {
         [Key()]
-        public int IdTema { get; set; }
+        public Guid IdTema { get; set; } = Guid.NewGuid();
         public string CorPrimaria { get; set; }
         public string CorSecundaria { get; set; }
         public string CorTernaria { get; set; }
         public string CorQuartenaria { get; set; }
 
-        //[ForeignKey("Barbearias")]
-        public int BarbeariasId { get; set; }
+        [ForeignKey("Barbearias")]
+        public Guid BarbeariasId { get; set; }
         public virtual Barbearias Barbearias { get; set; }
     }
 }

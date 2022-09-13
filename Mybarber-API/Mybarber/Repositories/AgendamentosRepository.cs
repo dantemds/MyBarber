@@ -27,7 +27,7 @@ namespace Mybarber.Repositories
 
         //-----------------------------------------------------------------------------------------------------//
 
-        public async Task<Agendamentos> GetAgendamentosAsyncById(int idAgendamento)
+        public async Task<Agendamentos> GetAgendamentosAsyncById(Guid idAgendamento)
         {
             IQueryable<Agendamentos> query = _context.Agendamentos.Include(it => it.Servicos).Include(it => it.Barbeiros);
 
@@ -40,7 +40,7 @@ namespace Mybarber.Repositories
 
 
 
-        public async Task<IEnumerable<AgendamentosDoBarbeiro>> GetAgendamentosAsyncByIdBarbeiro(DateTime data, int idBarbeiro, int tenant)
+        public async Task<IEnumerable<AgendamentosDoBarbeiro>> GetAgendamentosAsyncByIdBarbeiro(DateTime data, Guid idBarbeiro, Guid tenant)
         {
             var agendamentosDTO = await (from agendamentos in _context.Agendamentos
                                          join servico in _context.Servicos
@@ -71,7 +71,7 @@ namespace Mybarber.Repositories
 
             return await query.ToArrayAsync();
         }
-        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(int tenant, PageParams pageParams)
+        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(Guid tenant, PageParams pageParams)
         {
             IQueryable<Agendamentos> query = _context.Agendamentos.Include(it=>it.Servicos);
 
@@ -129,7 +129,7 @@ namespace Mybarber.Repositories
             return await query.FirstOrDefaultAsync();
 
         }
-        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenantDAO(int tenant, PageParams pageParams)
+        public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenantDAO(Guid tenant, PageParams pageParams)
         {
             using (var conexao = _context.ConexaoPostGreSQL())
             {
