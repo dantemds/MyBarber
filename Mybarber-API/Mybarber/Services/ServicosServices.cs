@@ -33,7 +33,7 @@ namespace Mybarber.Services
         //    }
         //}
 
-        public async Task<Servicos> GetServicoAsyncById(int idServico)
+        public async Task<Servicos> GetServicoAsyncById(Guid idServico)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Mybarber.Services
                 throw new Exception();
             }
         }
-        public async Task<IEnumerable<Servicos>> GetServicoAsyncByTenant(int idBarbearia)
+        public async Task<IEnumerable<Servicos>> GetServicoAsyncByTenant(Guid idBarbearia)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Mybarber.Services
                 throw new Exception();
             }
         }
-        public async Task<string> DeleteServicoAsyncById(int idServico)
+        public async Task<string> DeleteServicoAsyncById(Guid idServico)
         {
             try
             {

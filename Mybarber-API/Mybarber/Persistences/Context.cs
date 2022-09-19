@@ -24,16 +24,25 @@ namespace Mybarber.Persistencia
         public DbSet<ServicosBarbeiros> ServicosBarbeiros { get; set; }
         public DbSet<ServicoImagens> ServicoImagens { get; set; }
         public DbSet<Agendas> Agendas { get; set;}
+        public DbSet<Temas> Temas { get; set; }
+        public DbSet<Contatos> Contatos { get; set; }
+        public DbSet<Enderecos> Enderecos { get; set; }
+        public DbSet<HorarioFuncionamento> HorarioFuncionamento { get; set; }
+        public DbSet<Banner> Banner { get; set; }
+        public DbSet<LandingPageImages> LandingPageImages { get; set; } 
+
         public IConfiguration _config { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.HasPostgresExtension("uuid-ossp");
+
             modelBuilder.ApplyConfiguration(new ServicosBarbeirosConfiguration());
             modelBuilder.ApplyConfiguration(new BarbeirosConfiguration());
-            
-          
+         
+
 
 
 

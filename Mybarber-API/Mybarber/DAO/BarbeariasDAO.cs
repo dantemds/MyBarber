@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Mybarber.Models;
 using Npgsql;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace Mybarber.DAO
         {
             this._npg = npg;
         }
-        public async Task<Barbearias> GetBarbeariasAsyncById(int idBarbearia)
+        public async Task<Barbearias> GetBarbeariasAsyncById(Guid idBarbearia)
         {
             var query = (await _npg.QueryAsync<Barbearias>(
                 $@"Select  * From public.""Barbearias""

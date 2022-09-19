@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Mybarber.Models
@@ -6,7 +7,7 @@ namespace Mybarber.Models
     public class ServicoImagens
     {
         [Key()]
-        public int IdImagemServico { get; set; }
+        public Guid IdImagemServico { get; set; } = Guid.NewGuid();
 
         public string Name { get; set; }
 

@@ -1,9 +1,11 @@
-﻿namespace Mybarber.DataTransferObject.Roles
+﻿using System;
+
+namespace Mybarber.DataTransferObject.Roles
 {
     public class RolesRequestDto
     {
-        public int IdRole { get; set; }
+        public Guid IdRole { get; set; }
         public string RoleName { get; set; }
-        public int RoleStrength { get; set; }
+        public Guid RoleStrength { get; set; }
     }
 }

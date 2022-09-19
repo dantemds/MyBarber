@@ -41,7 +41,7 @@ namespace Mybarber.Presenter
         //    }
         //}
         
-        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncById(int idBarbearia)
+        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncById(Guid idBarbearia)
         {
             try
             {
@@ -52,6 +52,22 @@ namespace Mybarber.Presenter
                 return barbeariaDto;
             }
             catch (Exception) 
+            {
+                throw new Exception();
+            }
+        }
+
+        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route)
+        {
+            try
+            {
+                var barbearia = await _service.GetBarbeariaAsyncByRoute(route);
+
+                var barbeariaDto = _mapper.Map<BarbeariasResponseDto>(barbearia);
+
+                return barbeariaDto;
+            }
+            catch (Exception)
             {
                 throw new Exception();
             }
@@ -94,7 +110,7 @@ namespace Mybarber.Presenter
            
         }
 
-        public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)
+        public async Task<string> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
             try
             {
@@ -112,7 +128,7 @@ namespace Mybarber.Presenter
 
 
         }
-        public async Task<bool> PutBarbeariaAsyncById(int idBarbearia, BarbeariasRequestDto dto)
+        public async Task<bool> PutBarbeariaAsyncById(Guid idBarbearia, BarbeariasRequestDto dto)
         {
             try
             {

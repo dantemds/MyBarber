@@ -1,5 +1,6 @@
 ﻿
 
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -16,74 +17,95 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Mybarber.Controllers
-{ 
+{
 
 
     [EnableCors]
     [ApiController]
     [Route("api/v1/agendamentos")]
-   
+
     public class AgendamentosControllers : ControllerBase
     {
         private readonly IAgendamentosPresenter _presenter;
         private readonly IMemoryCache _memoryCache;
         private readonly ILogger<AgendamentosControllers> _logger;
+        private readonly IMapper _mapper;
 
-
-        public AgendamentosControllers(IAgendamentosPresenter presenter, IAgendamentosRepository repo, IMemoryCache memoryCache,ILogger<AgendamentosControllers> logger)
+        public AgendamentosControllers(IAgendamentosPresenter presenter, IAgendamentosRepository repo, IMemoryCache memoryCache, ILogger<AgendamentosControllers> logger, IMapper mapper)
         {
             this._memoryCache = memoryCache;
-           this._logger = logger;
+            this._logger = logger;
             this._presenter = presenter;
             this._repo = repo;
+            this._mapper = mapper;
         }
-      
+
         [HttpGet]
         public async Task<IActionResult> GetAllAgendamentosAsync()
-        { 
-            
-                var result = await _presenter.GetAllAgendamentosAsync();
-
-                return Ok(result);
-            }
-           
-                
-            
-        
-        
-        [HttpGet("{idAgendamento:int}")]
-        public async Task<IActionResult> GetAgendamentoAsyncById(int idAgendamento)
         {
-          
-                var result = await _presenter.GetAgendamentoAsyncById(idAgendamento);
 
-                return Ok(result);
+            var result = await _presenter.GetAllAgendamentosAsync();
 
-           
+            return Ok(result);
         }
-        
+
+
+
+
+
+        [HttpGet("{idAgendamento}")]
+        public async Task<IActionResult> GetAgendamentoAsyncById(Guid idAgendamento)
+        {
+
+
+            var result = await _presenter.GetAgendamentoAsyncById(idAgendamento);
+
+            return Ok(result);
+
+
+        }
+
         [HttpPost]
-       
+
         public async Task<IActionResult> PostAgendamentoAsync(AgendamentosRequestDto agendamentoDto)
         {
             try
             {
-              
+
                 var result = await _presenter.PostAgendamentoAsync(agendamentoDto);
 
                 return Created($"/api/v1/agendamentos/{result.IdAgendamento}", result);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             { throw new Exception(ex.Message); }
-           
+
         }
+
+
+
+
+
+        [HttpGet("barbeiro/{tenant}")]
+        
+        public async Task<IActionResult> GetAgendamentoAsyncByBarbeiro(DateTime data, Guid idBarbeiro, Guid tenant)
+        {
+            var result = await _repo.GetAgendamentosAsyncByIdBarbeiro(data, idBarbeiro,tenant);
+            return Ok(result);
+        }
+
+
+
+
+
+
 
 
         private readonly IAgendamentosRepository _repo;
 
-        
 
-        [HttpGet("tenant/{tenant:int}")]
-        public async Task<IActionResult> GetAgendamentosAsyncByTenant(int tenant, [FromQuery] PageParams pageParams)
+
+        [HttpGet("tenant/{tenant}")]
+        public async Task<IActionResult> GetAgendamentosAsyncByTenant(Guid tenant, [FromQuery] PageParams pageParams)
         {
             try
             {
@@ -98,7 +120,23 @@ namespace Mybarber.Controllers
 
 
 
-                var result = await _repo.GetAgendamentosAsyncByTenantDAO(tenant, pageParams);
+                var result = await _repo.GetAgendamentosAsyncByTenant(tenant, pageParams);
+                List<AgendamentosResponseGetAgendamentoByTenantDTO> resultDTO = new List<AgendamentosResponseGetAgendamentoByTenantDTO>();
+                foreach(var item in result)
+                {
+                    AgendamentosResponseGetAgendamentoByTenantDTO dto = new AgendamentosResponseGetAgendamentoByTenantDTO()
+                    {
+                        Contato = item.Contato,
+                        BarbeirosId = item.BarbeirosId,
+                        Email = item.Email,
+                        Horario = item.Horario,
+                        IdAgendamento = item.IdAgendamento,
+                        ServicosId = item.ServicosId
+
+                    };
+                    resultDTO.Add(dto);
+                }
+
 
                 var memoryCacheEntryOptions = new MemoryCacheEntryOptions
                 {
@@ -114,7 +152,7 @@ namespace Mybarber.Controllers
                 Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
 
 
-                return Ok(result);
+                return Ok(resultDTO);
             }
             catch (Exception ex)
             {
@@ -122,8 +160,8 @@ namespace Mybarber.Controllers
             }
 
         }
-        [HttpDelete("{idAgendamento:int}")]
-        public async Task<IActionResult> DeleteAgendamentoById(int idAgendamento)
+        [HttpDelete("{idAgendamento}")]
+        public async Task<IActionResult> DeleteAgendamentoById(Guid idAgendamento)
         {
 
 
