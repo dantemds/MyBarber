@@ -1,4 +1,5 @@
 ﻿using Mybarber.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,10 +8,10 @@ namespace Mybarber.Services
     public interface IServicosServices
     {
         //Task<IEnumerable<Servicos>> GetAllServicosAsync();
-        Task<Servicos> GetServicoAsyncById(int idServico);
+        Task<Servicos> GetServicoAsyncById(Guid idServico);
 
-        Task<IEnumerable<Servicos>> GetServicoAsyncByTenant(int idBarbearia);
+        Task<IEnumerable<Servicos>> GetServicoAsyncByTenant(Guid idBarbearia);
         Task<Servicos> PostServicoAsync(Servicos servicos);
-        Task<string> DeleteServicoAsyncById(int idServico);
+        Task<string> DeleteServicoAsyncById(Guid idServico);
     }
 }

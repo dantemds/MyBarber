@@ -1,4 +1,5 @@
 ﻿using Mybarber.DataTransferObject.Agendamento;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,11 +9,11 @@ namespace Mybarber.Presenter
     {
         Task<IEnumerable<AgendamentosResponseDto>> GetAllAgendamentosAsync();
 
-        Task<AgendamentosResponseDto> GetAgendamentoAsyncById(int idAgendamento);
+        Task<AgendamentosResponseDto> GetAgendamentoAsyncById(Guid idAgendamento);
 
         Task<AgendamentosCompleteResponseDto> PostAgendamentoAsync(AgendamentosRequestDto agendamentoDto);
 
-        Task<bool> DeleteAgendamentoAsyncById(int idAgendamento);
+        Task<bool> DeleteAgendamentoAsyncById(Guid idAgendamento);
       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Mybarber.DataTransferObject.Servico;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,11 +9,12 @@ namespace Mybarber.Presenter
     {
         //Task<IEnumerable<ServicosResponseDto>> GetAllServicosAsync();
 
-        Task<ServicosResponseDto> GetServicoAsyncById(int idServico);
+        Task<ServicosResponseDto> GetServicoAsyncById(Guid idServico);
 
-        Task<ServicosResponseDto> GetServicoAsyncByTenant(int idBarbearia);
+        Task<ServicosResponseDto> GetServicoAsyncByTenant(Guid idBarbearia);
 
         Task<ServicosCompleteResponseDto> PostServicoAsync(ServicosRequestDto servicoDto);
-        Task<string> DeleteServicoAsyncById(int idServico);
+       Task<bool> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto);
+        Task<string> DeleteServicoAsyncById(Guid idServico);
     }
 }

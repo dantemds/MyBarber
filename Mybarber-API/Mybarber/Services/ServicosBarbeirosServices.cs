@@ -38,11 +38,11 @@ namespace Mybarber.Services
 
         }
 
-        public async Task<ServicosBarbeiros> PostServicoBarbeirosAsyncFromBarbeiro(ICollection<int> servicosId, Barbeiros barbeiro)
+        public async Task<ServicosBarbeiros> PostServicoBarbeirosAsyncFromBarbeiro(ICollection<Guid> servicosId, Barbeiros barbeiro)
         {
             try
             {
-                foreach (int i in servicosId)
+                foreach (Guid i in servicosId)
                 {
                      ServicosBarbeiros servicosBarbeiros = new ServicosBarbeiros(i, barbeiro.IdBarbeiro, barbeiro.BarbeariasId);
 

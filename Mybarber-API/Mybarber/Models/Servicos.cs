@@ -10,7 +10,7 @@ namespace Mybarber.Models
 
        
         [Key()]
-        public int IdServico{ get; set; }
+        public Guid IdServico{ get; set; } = Guid.NewGuid();
 
         [Required(ErrorMessage = "O nome deve ser informado")]
         public string NomeServico { get; set; }
@@ -21,13 +21,12 @@ namespace Mybarber.Models
         [Required(ErrorMessage = "O preço deve ser informado")]
         public float PrecoServico { get; set; }
         [ForeignKey("ServicoImagemId")]
-        public int ServicoImagemId { get; set; }
+        public Guid ServicoImagemId { get; set; }
         public virtual ServicoImagens ServicoImagem { get; set; } 
 
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
-
         [ForeignKey("Barbearias")]
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
 
         public virtual Barbearias Barbearias { get; set; }
 

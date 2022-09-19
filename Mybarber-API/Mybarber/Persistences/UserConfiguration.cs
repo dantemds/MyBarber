@@ -25,4 +25,10 @@ namespace Mybarber.Persistences
 
         }
     }
+
+    
+ 
+
+
+
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj": {}
+    "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj": {}
   },
   "projects": {
-    "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
+    "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj",
+        "projectUniqueName": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj",
         "projectName": "Mybarber",
-        "projectPath": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj",
+        "projectPath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj",
         "packagesPath": "C:\\Users\\soumu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\obj\\",
+        "outputPath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -28,6 +28,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "V:\\Paths e Dicas\\DOTNET\\NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -46,9 +47,21 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.9.43, )"
+            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.1, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "Dapper.Contrib": {
+              "target": "Package",
+              "version": "[2.0.78, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -86,6 +99,10 @@
               "target": "Package",
               "version": "[1.14.0, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[4.1.3, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[3.1.2, )"
@@ -105,6 +122,18 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.4.1, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "TimeZoneConverter": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "TimeZoneConverter.Posix": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [

@@ -12,15 +12,17 @@ namespace Mybarber.Presenter
     {
         private readonly IMapper _mapper;
         private readonly IServicosServices _service;
-        public ServicosPresenter(IServicosServices service, IMapper mapper)
+        private readonly IServicoImagemServices _serviceImagem;
+        public ServicosPresenter(IServicosServices service, IMapper mapper, IServicoImagemServices serviceImagem)
         {
             this._service = service;
             this._mapper = mapper;
+            this._serviceImagem = serviceImagem;
         }
 
 
 
-        public async Task<ServicosResponseDto> GetServicoAsyncById(int idServico)
+        public async Task<ServicosResponseDto> GetServicoAsyncById(Guid idServico)
         {
             try
             {
@@ -34,7 +36,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<ServicosResponseDto> GetServicoAsyncByTenant(int idBarbearia)
+        public async Task<ServicosResponseDto> GetServicoAsyncByTenant(Guid idBarbearia)
         {
             try
             {
@@ -69,7 +71,39 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<string> DeleteServicoAsyncById(int idServico)
+
+        public async Task<bool> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto)
+        {
+            
+                
+            ServicosRequestDto dto = new ServicosRequestDto()
+            {
+                BarbeariasId = servicoDto.BarbeariasId,
+                NomeServico = servicoDto.NomeServico,
+                PrecoServico = servicoDto.PrecoServico,
+                TempoServico = servicoDto.TempoServico,
+                
+            };
+            var servico = _mapper.Map<Servicos>(dto);
+
+            
+
+            var imagem =  await _serviceImagem.PostServicoImagemS3Async(servicoDto.File, servicoDto.Route, servico.IdServico, servicoDto.NomeServico);
+
+            servico.ServicoImagemId = imagem.IdImagemServico;
+
+            var servicoSalvo = await _service.PostServicoAsync(servico);
+
+            if (servicoSalvo != null)
+            {
+                return true;
+            }
+            else { return false;  }
+
+           
+        }
+
+        public async Task<string> DeleteServicoAsyncById(Guid idServico)
         {
             try
             {

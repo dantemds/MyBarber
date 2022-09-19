@@ -6,6 +6,7 @@ using Mybarber.Models;
 using Mybarber.Presenters.Interfaces;
 using Mybarber.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Mybarber.Presenters
@@ -28,7 +29,7 @@ namespace Mybarber.Presenters
         {
             try
             {
-               
+
 
                 var agenda = _mapper.Map<Agendas>(agendasDto);
 
@@ -45,5 +46,20 @@ namespace Mybarber.Presenters
                 throw new ViewException("Operation.Failed", ex.Message);
             }
         }
+
+
+        public async Task<List<float>> GerarHorariosAgedamentos(Guid idBarbeiro, DateTime data, string dia, Guid idServico, Guid tenant)
+        {
+
+            var result = await _service.PopularHorario(idBarbeiro, dia, data, tenant, idServico);
+
+
+            return result;
+
+
+        }
+
+
+
     }
 }

@@ -48,8 +48,8 @@ namespace Mybarber.Controllers
         /// <param name="idServico"></param>
         /// <returns></returns>
 
-        [HttpGet("{idServico:int}")]
-        public async Task<IActionResult> GetServicoAsyncById(int idServico)
+        [HttpGet("{idServico}")]
+        public async Task<IActionResult> GetServicoAsyncById(Guid idServico)
         {
             try
             {
@@ -69,8 +69,8 @@ namespace Mybarber.Controllers
         /// </summary>
         /// <param name="idBarbearia"></param>
         /// <returns></returns>
-        [HttpGet("barbearia/{idBarbearia:int}")]
-        public async Task<IActionResult> GetBarbeariaAsyncByTenant(int idBarbearia)
+        [HttpGet("barbearia/{idBarbearia}")]
+        public async Task<IActionResult> GetBarbeariaAsyncByTenant(Guid idBarbearia)
         {
             try
             {
@@ -106,10 +106,25 @@ namespace Mybarber.Controllers
                 return BadRequest($"Erro:{ex.Message}");
             }
         }
+        [HttpPost("servicoCompleto")]
+        public async Task<IActionResult> PostServicoCompletoAsync(ServicosCompleteRequestDto servicoDto)
+        {
+            try
+            {
+
+                var result = await _presenter.PostServiceCompleteAsync(servicoDto);
+
+                return Created($"/api/v1/servico/", result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro:{ex.Message}");
+            }
+        }
 
 
-        [HttpDelete("{idServico:int}")]
-        public async Task<IActionResult> DeleteServicoAsyncById(int idServico)
+        [HttpDelete("{idServico}")]
+        public async Task<IActionResult> DeleteServicoAsyncById(Guid idServico)
         {
 
             try

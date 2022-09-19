@@ -2,6 +2,7 @@
 using Mybarber.Models;
 using Mybarber.Persistencia;
 using Mybarber.Repository;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,7 +30,7 @@ namespace Mybarber.Repositories
         //    return await query.ToArrayAsync();
         //}
 
-        public async Task<Servicos> GetServicosAsyncById(int idServico)
+        public async Task<Servicos> GetServicosAsyncById(Guid idServico)
         {
             IQueryable<Servicos> query = _context.Servicos.Include(p => p.ServicosBarbeiros).Include(p => p.ServicoImagem);
 
@@ -40,7 +41,7 @@ namespace Mybarber.Repositories
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Servicos[]> GetServicosAsyncByTenant(int idBarbearia)
+        public async Task<Servicos[]> GetServicosAsyncByTenant(Guid idBarbearia)
         {
             IQueryable<Servicos> query = _context.Servicos;
 

@@ -35,7 +35,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<AgendamentosResponseDto> GetAgendamentoAsyncById(int idAgendamento)
+        public async Task<AgendamentosResponseDto> GetAgendamentoAsyncById(Guid idAgendamento)
         {
             try
             {
@@ -63,6 +63,8 @@ namespace Mybarber.Presenter
                     throw new ViewException("Name.Missing.Info");
                 if (agendamentoDto.Horario.Equals(null))
                     throw new ViewException("Horario.Missing.Info");
+                if (agendamentoDto.Horario.Hour.ToString().Equals("00") && agendamentoDto.Horario.Minute.ToString().Equals("00"))
+                    throw new ViewException("Horario.Missing.Info");
                 if (agendamentoDto.BarbeariasId.Equals(null))
                     throw new ViewException("Barbearia.Missing.Info");
                 if (agendamentoDto.BarbeirosId.Equals(null))
@@ -89,7 +91,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<bool> DeleteAgendamentoAsyncById(int idAgendamento)
+        public async Task<bool> DeleteAgendamentoAsyncById(Guid idAgendamento)
         {
 
 

@@ -20,6 +20,7 @@ namespace Mybarber.Controllers
         private readonly IAgendasPresenter _presenter;
         public AgendasControllers(IAgendasPresenter presenter)
         {
+
             this._presenter = presenter;
 
         }
@@ -38,5 +39,15 @@ namespace Mybarber.Controllers
                 return BadRequest($"Erro:{ex.Message}");
             }
         }
+
+        [HttpGet]
+        [Route("tenant/{tenant}")]
+        public async Task<IActionResult> GetHorariosAgendamento(Guid idBarbeiro, DateTime data, string dia, Guid idServico, Guid tenant)
+        {
+            var result = await _presenter.GerarHorariosAgedamentos( idBarbeiro,  data,  dia,  idServico,  tenant);
+
+            return Ok(result);
+        }
+      
     }
 }

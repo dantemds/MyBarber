@@ -45,7 +45,7 @@ namespace Mybarber.Presenter
         //    }
         //}
 
-        public async Task<BarbeirosResponseDto> GetBarbeiroAsyncById(int idBarbeiro)
+        public async Task<BarbeirosResponseDto> GetBarbeiroAsyncById(Guid idBarbeiro)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<BarbeirosResponseDto> GetBarbeiroAsyncByTenant(int idBarbearia)
+        public async Task<BarbeirosResponseDto> GetBarbeiroAsyncByTenant(Guid idBarbearia)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace Mybarber.Presenter
                 throw new Exception();
             }
         }
-        public async Task<string> DeleteBarbeiroAsyncById(int idBarbeiro)
+        public async Task<string> DeleteBarbeiroAsyncById(Guid idBarbeiro)
         {
             try
             {

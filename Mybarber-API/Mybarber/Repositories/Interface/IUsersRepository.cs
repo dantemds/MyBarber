@@ -1,4 +1,5 @@
 ﻿using Mybarber.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Mybarber.Repositories
@@ -8,7 +9,7 @@ namespace Mybarber.Repositories
     {
         Task<Users> GetUserAsync(string username, string password);
         Task<Users> GetUserAsyncByEmail(string email);
-        Task<Users> GetUserAsyncById(int id);
+        Task<Users> GetUserAsyncById(Guid id);
     }
 
 }

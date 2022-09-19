@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mybarber.Models;
 using Mybarber.Persistencia;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace Mybarber.Repositories
             _context = context;
         }
 
-        public async Task<ServicosBarbeiros> GetServicosBarbeirosAsyncByTenant(int idTenant)
+        public async Task<ServicosBarbeiros> GetServicosBarbeirosAsyncByTenant(Guid idTenant)
         {
             IQueryable<ServicosBarbeiros> query = _context.ServicosBarbeiros.Include(p => p.Barbeiros).Include(p => p.Servicos);
 
