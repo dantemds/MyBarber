@@ -119,6 +119,13 @@ namespace Mybarber.Controllers
 
         }
 
+        [HttpPost("complete")]
+        public async Task<IActionResult> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
+        {
+
+        }
+
+
         [HttpDelete("{idBarbearia}")]
         public async Task<IActionResult> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {

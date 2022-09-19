@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Mybarber.DAO;
+using Mybarber.DataTransferObject.Barbearia;
 
 namespace Mybarber.Repositories
 {
@@ -67,6 +68,9 @@ namespace Mybarber.Repositories
 
             }
         }
+
+
+       
 
 
         public async Task<Barbearias> GetBarbeariasAsyncByRoute(string route)

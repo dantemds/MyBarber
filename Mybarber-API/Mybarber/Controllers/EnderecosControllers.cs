@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.Enderecos;
 using Mybarber.Models;
 using Mybarber.Repository;
+using Mybarber.Services.Interfaces;
 using System.Threading.Tasks;
 
 namespace Mybarber.Controllers
@@ -15,10 +16,12 @@ namespace Mybarber.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IGenerallyRepository _generally;
-        public EnderecosControllers(IGenerallyRepository generally, IMapper mapper)
+        private readonly IEnderecosServices _service;
+        public EnderecosControllers(IGenerallyRepository generally, IMapper mapper, IEnderecosServices service)
         {
             this._generally = generally;
             this._mapper = mapper;
+            this._service = service;
         }
 
         [HttpPost()]
@@ -27,9 +30,9 @@ namespace Mybarber.Controllers
 
 
 
-            _generally.Add(_mapper.Map<Enderecos>(endereco));
+            var result = await _service.PostEnderecoAsync(_mapper.Map<Enderecos>(endereco));
 
-            if (await _generally.SaveChangesAsync())
+            if (result != null)
             {
                 return Ok(endereco);
             }

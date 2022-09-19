@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.Contatos;
 using Mybarber.Models;
 using Mybarber.Repository;
+using Mybarber.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
 
@@ -17,11 +18,13 @@ namespace Mybarber.Controllers
         private readonly IBarbeariasRepository _repo;
         private readonly IMapper _mapper;
         private readonly IGenerallyRepository _generally;
-        public ContatosControllers(IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo)
+        private readonly IContatosServices _service;
+        public ContatosControllers(IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo, IContatosServices service)
         {
             this._generally = generally;
             this._repo = repo;
             this._mapper = mapper;
+            this._service = service;
         }
 
         [HttpPost()]
@@ -30,11 +33,11 @@ namespace Mybarber.Controllers
 
 
 
-            _generally.Add(_mapper.Map<Contatos>(contato));
+            var result = await _service.PostContatosAsync(_mapper.Map<Contatos>(contato));
 
-            if (await _generally.SaveChangesAsync())
+            if (result != null)
             {
-                return Ok(contato);
+                return Ok(result);
             }
             else
             {

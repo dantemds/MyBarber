@@ -15,9 +15,9 @@ namespace Mybarber.Presenter
         //Task<BarbeariasResponseDto> GetBarbeariaAsyncById(int idBarbearia);
         Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route);
         Task<BarbeariasCompleteResponseDto> PostBarbeariaAsync(BarbeariasRequestDto barbeariaDto);
-
         Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncById(Guid idBarbearia);
         Task<string> DeleteBarbeariaAsyncById(Guid idBarbearia);
         Task<bool> PutBarbeariaAsyncById(Guid idBarbearia, BarbeariasRequestDto dto);
+        Task<BarbeariasCompleteRequestDto> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto);
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.Temas;
 using Mybarber.Models;
 using Mybarber.Repository;
+using Mybarber.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,14 @@ namespace Mybarber.Controllers
         private readonly IMapper _mapper;
         private readonly IGenerallyRepository _generally;
         private readonly IBarbeariasRepository _repo;
+        private readonly ITemasServices _service;
 
-        public TemasControllers( IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo)
+        public TemasControllers( IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo, ITemasServices service)
         {
             this._generally = generally;
             this._mapper = mapper;
             this._repo = repo;
+            this._service = service;
 
         }
 
@@ -34,11 +37,10 @@ namespace Mybarber.Controllers
 
 
 
-            _generally.Add(_mapper.Map<Temas>(tema));
-
-            if(await _generally.SaveChangesAsync())
+            var result = await _service.PostTemaAsync(_mapper.Map<Temas>(tema));
+            if (result != null)
             {
-                return Ok(tema);
+                return Ok(result);
             }
             else
             {

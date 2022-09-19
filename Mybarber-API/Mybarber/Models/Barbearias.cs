@@ -21,7 +21,7 @@ namespace Mybarber.Models
         public Enderecos Enderecos { get; set; }
         public Contatos Contatos { get; set; }
         public bool LandingPage { get; set; }
-        public bool Ativa { get; set; } = true;
+        public bool Ativa { get; set; } 
         public HorarioFuncionamento HorarioFuncionamento { get; set; }
         public Banner Banner { get; set; }
         public ICollection<LandingPageImages> LandingPageImages { get; set; }

@@ -42,6 +42,12 @@ namespace Mybarber.Config
             services.AddScoped<IHash,Hash>();
             services.AddScoped<IBarbeiroImagemRepository, BarbeiroImagemRepository>();
             services.AddScoped<IServicoImagemRepository, ServicoImagemRepository>();
+            services.AddScoped<ILandingPageServices, LandingPageServices>();
+            services.AddScoped<IBannerServices, BannerServices>();
+            services.AddScoped<ITemasServices, TemasServices>();
+            services.AddScoped<IEnderecosServices, EnderecosServices>();
+            services.AddScoped<IContatosServices, ContatosServices>();
+            services.AddScoped<IHorarioFuncionamentoServices, HorarioFuncionamentoServices>();
 
 
 

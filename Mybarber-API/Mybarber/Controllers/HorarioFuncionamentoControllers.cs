@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.Horario;
 using Mybarber.Models;
 using Mybarber.Repository;
+using Mybarber.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
 
@@ -19,13 +20,14 @@ namespace Mybarber.Controllers
         private readonly IMapper _mapper;
         private readonly IGenerallyRepository _generally;
         private readonly IBarbeariasRepository _repo;
+        private readonly IHorarioFuncionamentoServices _service;
 
-        public HorarioFuncionamentoControllers(IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo)
+        public HorarioFuncionamentoControllers(IGenerallyRepository generally, IMapper mapper, IBarbeariasRepository repo, IHorarioFuncionamentoServices service)
         {
             this._generally = generally;
             this._mapper = mapper;
             this._repo = repo;
-
+            this._service = service;
 
         }
 
@@ -33,11 +35,11 @@ namespace Mybarber.Controllers
         public async Task<IActionResult> PostHorarioAsync([FromBody] HorarioFuncionamentoRequestDto horario)
         {
 
+            var result = await _service.PostHorarioAsync(_mapper.Map<HorarioFuncionamento>(horario));
 
+            
 
-            _generally.Add(_mapper.Map<HorarioFuncionamento>(horario));
-
-            if (await _generally.SaveChangesAsync())
+            if (result != null)
             {
                 return Ok(horario);
             }
