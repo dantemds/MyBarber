@@ -6251,11 +6251,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\TDD\\TDD.csproj",
+      "projectUniqueName": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\TDD\\TDD.csproj",
       "projectName": "TDD",
-      "projectPath": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\TDD\\TDD.csproj",
+      "projectPath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\TDD\\TDD.csproj",
       "packagesPath": "C:\\Users\\soumu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\TDD\\obj\\",
+      "outputPath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\TDD\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6272,14 +6272,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "V:\\Paths e Dicas\\DOTNET\\NuGet": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
-              "projectPath": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj"
+            "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
+              "projectPath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj"
             }
           }
         }

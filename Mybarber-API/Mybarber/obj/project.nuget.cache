@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i8cL6rQ5DGSKMZstp5a7szEJPVpJ/XBARaZlzpmye0yQ8UXEfDWgcfRd4EQ+ROMNYyQCo8Ldn7/GgOdiUXxspQ==",
+  "dgSpecHash": "PpQGm8JSfyAlKqM3DKPo+WgDm7uRzLylKGY4JbdcamugNZBpwknd3SPgr/OneYhpeUwgmKpdp9QhGGTgODSisA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\soumu\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj",
+  "projectFilePath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soumu\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
