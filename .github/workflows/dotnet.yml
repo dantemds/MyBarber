@@ -16,8 +16,8 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 3.0.x
-        
+        dotnet-version: 3.x.x
+
     - name: Restore dependencies
       run: dotnet restore ./Mybarber-API/Mybarber-API.sln
 

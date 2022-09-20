@@ -23,6 +23,13 @@
 	  <NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove=".github\**" />
+	  <Content Remove=".github\**" />
+	  <EmbeddedResource Remove=".github\**" />
+	  <None Remove=".github\**" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.9.43" />
