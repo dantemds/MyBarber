@@ -33,7 +33,7 @@ jobs:
         image: dantemds/mybarber
         tags: latest
         registry: docker.io
-        dockerfile: ./Mybarber-API/Dockerfile
+        dockerfile: ./Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
