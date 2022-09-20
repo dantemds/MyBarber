@@ -15,7 +15,7 @@
             </summary>
             <param name="presenter"></param>
         </member>
-        <member name="M:Mybarber.Controllers.BarbeariasControllers.GetBarbeariaAsyncById(System.Int32)">
+        <member name="M:Mybarber.Controllers.BarbeariasControllers.GetBarbeariaAsyncById(System.Guid)">
             <summary>
             Método responsável por obter as barbearias utilizando o parametro IdBarbearia
             </summary>
@@ -40,14 +40,14 @@
             </summary>
             <param name="presenter"></param>
         </member>
-        <member name="M:Mybarber.Controllers.BarbeirosControllers.GetBarbeiroAsyncById(System.Int32)">
+        <member name="M:Mybarber.Controllers.BarbeirosControllers.GetBarbeiroAsyncById(System.Guid)">
             <summary>
             
             </summary>
             <param name="idBarbeiro"></param>
             <returns></returns>
         </member>
-        <member name="M:Mybarber.Controllers.BarbeirosControllers.GetBarbeiroAsyncByTenant(System.Int32)">
+        <member name="M:Mybarber.Controllers.BarbeirosControllers.GetBarbeiroAsyncByTenant(System.Guid)">
             <summary>
             
             </summary>
@@ -66,7 +66,7 @@
             
             </summary>
         </member>
-        <member name="M:Mybarber.Controllers.ServicoImagemControllers.#ctor(Mybarber.Presenters.IServicoImagemPresenter)">
+        <member name="M:Mybarber.Controllers.ServicoImagemControllers.#ctor(Mybarber.Presenters.IServicoImagemPresenter,Mybarber.Services.IServicoImagemServices)">
             <summary>
             
             </summary>
@@ -108,14 +108,14 @@
             </summary>
             <param name="presenter"></param>
         </member>
-        <member name="M:Mybarber.Controllers.ServicosControllers.GetServicoAsyncById(System.Int32)">
+        <member name="M:Mybarber.Controllers.ServicosControllers.GetServicoAsyncById(System.Guid)">
             <summary>
             
             </summary>
             <param name="idServico"></param>
             <returns></returns>
         </member>
-        <member name="M:Mybarber.Controllers.ServicosControllers.GetBarbeariaAsyncByTenant(System.Int32)">
+        <member name="M:Mybarber.Controllers.ServicosControllers.GetBarbeariaAsyncByTenant(System.Guid)">
             <summary>
             
             </summary>

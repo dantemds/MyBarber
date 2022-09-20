@@ -1,10 +1,16 @@
 ﻿using AutoMapper;
+using Mybarber.DataTransferObject.Banner;
 using Mybarber.DataTransferObject.Barbearia;
 using Mybarber.DataTransferObject.Barbeiro;
+using Mybarber.DataTransferObject.Contatos;
+using Mybarber.DataTransferObject.Enderecos;
+using Mybarber.DataTransferObject.Horario;
 using Mybarber.DataTransferObject.Servico;
+using Mybarber.DataTransferObject.Temas;
 using Mybarber.Exceptions;
 using Mybarber.Models;
 using Mybarber.Services;
+using Mybarber.Services.Interfaces;
 using Mybarber.Validations;
 using System;
 using System.Collections.Generic;
@@ -16,14 +22,21 @@ namespace Mybarber.Presenter
     {
         private readonly IMapper _mapper;
         private readonly IBarbeariasServices _service;
-     
-        public BarbeariasPresenter(IBarbeariasServices serviceBarbearia , IMapper mapper
-     )
+        private readonly ITemasServices _serviceTema;
+        private readonly IEnderecosServices _serviceEnderecos;
+        private readonly IContatosServices _serviceContatos;
+        private readonly IHorarioFuncionamentoServices _serviceHorarioFuncionamento;
+        private readonly IBannerServices _serviceBanner;
+
+        public BarbeariasPresenter(IBarbeariasServices serviceBarbearia , IMapper mapper, IEnderecosServices serviceEnderecos, ITemasServices serviceTema, IContatosServices serviceContatos, IHorarioFuncionamentoServices serviceHorarioFuncionamento, IBannerServices serviceBanner)
         {
             this._service = serviceBarbearia;
             this._mapper = mapper;
-     
-
+            this._serviceEnderecos = serviceEnderecos;
+            this._serviceTema = serviceTema;
+            this._serviceContatos = serviceContatos;
+            this._serviceHorarioFuncionamento = serviceHorarioFuncionamento;
+            this._serviceBanner = serviceBanner;
         }
 
 
@@ -40,8 +53,89 @@ namespace Mybarber.Presenter
         //        throw new Exception();
         //    }
         //}
-        
-        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncById(int idBarbearia)
+
+        public async Task<BarbeariasCompleteRequestDto> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
+        {
+            try
+            {
+                var barbeariaDto = new BarbeariasRequestDto(dto.CNPJ, dto.NomeBarbearia, dto.Route, dto.LandingPage);
+                
+                var barbearia = _mapper.Map<Barbearias>(barbeariaDto);
+
+                await _service.PostBarbeariaAsync(barbearia);
+
+                //-------------------------------------------------------------//
+
+                var temaDto = new TemasRequestDto();
+
+                temaDto = dto.Temas;
+
+                temaDto.BarbeariasId = barbearia.IdBarbearia;
+
+                var temas = _mapper.Map<Temas>(temaDto);
+
+                await _serviceTema.PostTemaAsync(temas);
+
+                //-------------------------------------------------------------//
+
+                var enderecoDto = new EnderecosRequestDto();
+
+                enderecoDto = dto.Enderecos;
+
+                enderecoDto.BarbeariasId = barbearia.IdBarbearia;
+
+                var endereco = _mapper.Map<Enderecos>(enderecoDto);
+
+                await _serviceEnderecos.PostEnderecoAsync(endereco);
+
+                //-------------------------------------------------------------//
+
+                var contatoDto = new ContatosRequestDto();
+
+                contatoDto = dto.Contatos;
+
+                contatoDto.BarbeariasId = barbearia.IdBarbearia;
+
+                var contato = _mapper.Map<Contatos>(contatoDto);
+
+                await _serviceContatos.PostContatosAsync(contato);
+
+                //-------------------------------------------------------------//
+
+                var horarioFuncionamentoDto = new HorarioFuncionamentoRequestDto();
+
+                horarioFuncionamentoDto = dto.HorarioFuncionamento;
+
+                horarioFuncionamentoDto.BarbeariasId = barbearia.IdBarbearia;
+
+                var horarioFuncionamento = _mapper.Map<HorarioFuncionamento>(horarioFuncionamentoDto);
+
+                await _serviceHorarioFuncionamento.PostHorarioAsync(horarioFuncionamento);
+
+                //-------------------------------------------------------------//
+
+                var bannerDto = new BannerRequestDto();
+
+                bannerDto = dto.Banner;
+
+                bannerDto.BarbeariaId = barbearia.IdBarbearia;
+
+                await _serviceBanner.PostBannerS3Async(bannerDto);
+
+                //-------------------------------------------------------------//
+                 //LISTA DE LADING
+
+
+
+                return dto;
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncById(Guid idBarbearia)
         {
             try
             {
@@ -52,6 +146,22 @@ namespace Mybarber.Presenter
                 return barbeariaDto;
             }
             catch (Exception) 
+            {
+                throw new Exception();
+            }
+        }
+
+        public async Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route)
+        {
+            try
+            {
+                var barbearia = await _service.GetBarbeariaAsyncByRoute(route);
+
+                var barbeariaDto = _mapper.Map<BarbeariasResponseDto>(barbearia);
+
+                return barbeariaDto;
+            }
+            catch (Exception)
             {
                 throw new Exception();
             }
@@ -94,7 +204,7 @@ namespace Mybarber.Presenter
            
         }
 
-        public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)
+        public async Task<string> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
             try
             {
@@ -112,7 +222,7 @@ namespace Mybarber.Presenter
 
 
         }
-        public async Task<bool> PutBarbeariaAsyncById(int idBarbearia, BarbeariasRequestDto dto)
+        public async Task<bool> PutBarbeariaAsyncById(Guid idBarbearia, BarbeariasRequestDto dto)
         {
             try
             {

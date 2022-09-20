@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mybarber.DataTransferObject.Agenda
 {
     public class AgendasResponseDto
     {
 
-        public int IdAgendas { get; set; }
+        public Guid IdAgendas { get; set; }
         public List<float> Segunda { get; set; }
 
         public List<float> Terca { get; set; }
@@ -20,6 +21,6 @@ namespace Mybarber.DataTransferObject.Agenda
 
         public List<float> Domingo { get; set; }
 
-        public int BarbeirosId { get; set; }
+        public Guid BarbeirosId { get; set; }
     }
 }

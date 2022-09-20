@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Mybarber.Helpers;
+using Mybarber.Persistencia;
+using Mybarber.Repositories;
+using Mybarber.Services;
 using Serilog;
 using System;
 
@@ -11,9 +14,10 @@ namespace Mybarber
     {
         public static void Main(string[] args)
        {
-          
-
             
+
+
+
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
                 .WriteTo.File("text.txt")

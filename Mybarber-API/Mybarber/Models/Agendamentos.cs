@@ -8,7 +8,7 @@ namespace Mybarber.Models
     {
 
         [Key]
-        public int IdAgendamento { get; set; }
+        public Guid IdAgendamento { get; set; }
 
         [Required(ErrorMessage = "O nome deve ser informado"), MaxLength(80, ErrorMessage = "Nome não pode exceder 80 caracteres"), MinLength(3, ErrorMessage = "Nome deve conter 3 ou mais caracteres")]
         public string Name { get; set; }
@@ -24,17 +24,17 @@ namespace Mybarber.Models
         public DateTime Horario { get; set; }
 
         [ForeignKey("Servicos")]
-        public int ServicosId { get; set; }
+        public Guid ServicosId { get; set; }
 
         public virtual Servicos Servicos { get; set; }
 
         [ForeignKey("Barbeiros")]
-        public int BarbeirosId { get; set; }
+        public Guid BarbeirosId { get; set; }
 
         public  virtual Barbeiros Barbeiros { get; set; }
 
         [ForeignKey("Barbearias")]
-        public int BarbeariasId { get; set; }
+        public Guid BarbeariasId { get; set; }
 
         public virtual Barbearias Barbearias { get; set; }
 

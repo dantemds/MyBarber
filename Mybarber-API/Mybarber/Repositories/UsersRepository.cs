@@ -52,7 +52,7 @@ namespace Mybarber.Repositories
             }
 
         }
-        public async Task<Users> GetUserAsyncById(int id)
+        public async Task<Users> GetUserAsyncById(Guid id)
         {
             try
             {

@@ -5,6 +5,7 @@ using Mybarber.Presenter;
 using Mybarber.Presenters;
 using Mybarber.Presenters.Interfaces;
 using Mybarber.Repositories;
+using Mybarber.Repositories.Interface;
 using Mybarber.Repository;
 using Mybarber.Services;
 using Mybarber.Services.Interfaces;
@@ -39,8 +40,14 @@ namespace Mybarber.Config
             services.AddScoped<IAgendasServices, AgendasServices>();
             services.AddScoped<IAgendasPresenter, AgendasPresenter>();
             services.AddScoped<IHash,Hash>();
-            
-
+            services.AddScoped<IBarbeiroImagemRepository, BarbeiroImagemRepository>();
+            services.AddScoped<IServicoImagemRepository, ServicoImagemRepository>();
+            services.AddScoped<ILandingPageServices, LandingPageServices>();
+            services.AddScoped<IBannerServices, BannerServices>();
+            services.AddScoped<ITemasServices, TemasServices>();
+            services.AddScoped<IEnderecosServices, EnderecosServices>();
+            services.AddScoped<IContatosServices, ContatosServices>();
+            services.AddScoped<IHorarioFuncionamentoServices, HorarioFuncionamentoServices>();
 
 
 

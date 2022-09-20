@@ -45,8 +45,8 @@ namespace Mybarber.Controllers
         /// </summary>
         /// <param name="idBarbeiro"></param>
         /// <returns></returns>
-        [HttpGet("{idBarbeiro:int}")]
-        public async Task<IActionResult> GetBarbeiroAsyncById(int idBarbeiro)
+        [HttpGet("{idBarbeiro}")]
+        public async Task<IActionResult> GetBarbeiroAsyncById(Guid idBarbeiro)
         {
             try
             {
@@ -67,8 +67,8 @@ namespace Mybarber.Controllers
         /// </summary>
         /// <param name="idBarbearia"></param>
         /// <returns></returns>
-        [HttpGet("barbearia/{idBarbearia:int}")]
-        public async Task<IActionResult> GetBarbeiroAsyncByTenant(int idBarbearia)
+        [HttpGet("barbearia/{idBarbearia}")]
+        public async Task<IActionResult> GetBarbeiroAsyncByTenant(Guid idBarbearia)
         {
             try
             {
@@ -102,8 +102,8 @@ namespace Mybarber.Controllers
             
            
         }
-        [HttpDelete("{idBarbeiro:int}")]
-        public async Task<IActionResult> DeleteBarbeiroAsyncById(int idBarbeiro)
+        [HttpDelete("{idBarbeiro}")]
+        public async Task<IActionResult> DeleteBarbeiroAsyncById(Guid idBarbeiro)
         {
 
             try

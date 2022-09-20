@@ -54,19 +54,40 @@ namespace Mybarber.Controllers
         /// </summary>
         /// <param name="idBarbearia"></param>
         /// <returns></returns>
-        [HttpGet("{idBarbearia:int}")]
+        [HttpGet("id/{idBarbearia}")]
         
-        public async Task<IActionResult> GetBarbeariaAsyncById(int idBarbearia)
+        public async Task<IActionResult> GetBarbeariaAsyncById(Guid idBarbearia)
         
         {
             
                 var result = await _presenter.GetAllAtributesBarbeariaAsyncById(idBarbearia);
                
-
-                return  Ok(result);
+            if(result == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(result);
+            }
+                
 
             
          
+
+        }
+        [HttpGet("{route}")]
+
+        public async Task<IActionResult> GetBarbeariaAsyncByRoute(string route)
+
+        {
+            var result = await _presenter.GetAllAtributesBarbeariaAsyncByRoute(route);
+
+            return Ok(result);
+            
+
+
+
 
         }
         /// <summary>
@@ -84,19 +105,29 @@ namespace Mybarber.Controllers
                 return Created($"/api/v1/Barbearias/{result.IdBarbearia}", result);
             
         }
-        [HttpPut("{idBarbearia:int}")]
+        [HttpPut("{idBarbearia}")]
 
-        public async Task<IActionResult> PutBarbeariaAsync(int idBarbearia, [FromBody] BarbeariasRequestDto dto)
+        public async Task<IActionResult> PutBarbeariaAsync(Guid idBarbearia, [FromBody] BarbeariasRequestDto dto)
         {
 
             var result = await _presenter.PutBarbeariaAsyncById( idBarbearia,  dto);
+
+
+
 
             return Ok();
 
         }
 
-        [HttpDelete("{idBarbearia:int}")]
-        public async Task<IActionResult> DeleteBarbeariaAsyncById(int idBarbearia)
+        //[HttpPost("complete")]
+        //public async Task<IActionResult> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
+        //{
+
+        //}
+
+
+        [HttpDelete("{idBarbearia}")]
+        public async Task<IActionResult> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
 
           

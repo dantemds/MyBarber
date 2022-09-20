@@ -8,6 +8,10 @@ using Mybarber.DataTransferObject.Relacionamento;
 using Mybarber.DataTransferObject.Servico;
 using Mybarber.Models;
 using Mybarber.DataTransferObject.Roles;
+using Mybarber.DataTransferObject.Temas;
+using Mybarber.DataTransferObject.Enderecos;
+using Mybarber.DataTransferObject.Horario;
+using Mybarber.DataTransferObject.Contatos;
 
 namespace Mybarber.Helpers
 {
@@ -38,8 +42,23 @@ namespace Mybarber.Helpers
             CreateMap<Barbeiros, BarbeirosForAgendamentosDto>();
             CreateMap<Agendas, AgendasRequestDto>().ReverseMap();
             CreateMap<Agendas, AgendasResponseDto>();
-          
-
+            CreateMap<Agendas, AgendasResponseDto>().ReverseMap();
+            CreateMap<Temas, TemasResponseDto>().ReverseMap();
+            CreateMap<Temas, TemasResponseDto>();
+            CreateMap<Temas, TemasRequestDto>().ReverseMap();
+            CreateMap<Temas, TemasRequestDto>();
+            CreateMap<Enderecos, EnderecosRequestDto>().ReverseMap();
+            CreateMap<Enderecos, EnderecosRequestDto>();
+            CreateMap<Enderecos, EnderecosResponseDto>();
+            CreateMap<Enderecos, EnderecosResponseDto>().ReverseMap();
+            CreateMap<HorarioFuncionamento, HorarioFuncionamentoResponseDto>().ReverseMap();
+            CreateMap<HorarioFuncionamento, HorarioFuncionamentoResponseDto>();
+            CreateMap<HorarioFuncionamento, HorarioFuncionamentoRequestDto>();
+            CreateMap<HorarioFuncionamento, HorarioFuncionamentoRequestDto>().ReverseMap();
+            CreateMap<Contatos, ContatosRequestDto>().ReverseMap();
+            CreateMap<Contatos, ContatosRequestDto>();
+            CreateMap<Contatos, ContatosResponseDto>().ReverseMap();
+            CreateMap<Contatos, ContatosResponseDto>();
         }
     }
 }

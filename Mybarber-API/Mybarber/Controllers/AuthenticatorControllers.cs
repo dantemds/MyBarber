@@ -265,14 +265,14 @@ namespace Mybarber.Controllers
 
         public class RetornoUsuario
         {
-            public int IdBarbeiro { get; set; }
+            public Guid IdBarbeiro { get; set; }
             public string NomeUsuario { get; set; }
 
             public string Token { get; set; }
 
-            public int IdBarbearia { get ; set; }
+            public Guid IdBarbearia { get ; set; }
 
-            public RetornoUsuario(int idUser,string nomeUsuario, string token, int idbarbearia)
+            public RetornoUsuario(Guid idUser,string nomeUsuario, string token, Guid idbarbearia)
             {
                 this.NomeUsuario = nomeUsuario;
                 this.Token = token;

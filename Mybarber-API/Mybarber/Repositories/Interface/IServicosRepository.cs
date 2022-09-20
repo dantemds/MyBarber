@@ -1,4 +1,5 @@
 ﻿using Mybarber.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Mybarber.Repository
@@ -9,8 +10,8 @@ namespace Mybarber.Repository
 
         //SERVIÇOS
         //Task<Servicos[]> GetAllServicosAsync();
-        Task<Servicos> GetServicosAsyncById(int idServico);
-        Task<Servicos[]> GetServicosAsyncByTenant(int idBarbearia);
+        Task<Servicos> GetServicosAsyncById(Guid idServico);
+        Task<Servicos[]> GetServicosAsyncByTenant(Guid idBarbearia);
 
 
     }

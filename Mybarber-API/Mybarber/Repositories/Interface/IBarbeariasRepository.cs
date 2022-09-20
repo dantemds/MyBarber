@@ -1,4 +1,6 @@
-﻿using Mybarber.Models;
+﻿using Mybarber.DataTransferObject.Barbearia;
+using Mybarber.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Mybarber.Repository
@@ -7,8 +9,10 @@ namespace Mybarber.Repository
     {
         //BARBEARIA
         Task<Barbearias[]> GetAllBarbeariasAsync();
-        Task<Barbearias> GetBarbeariasAsyncById(int idBarbearia);
-
+        Task<Barbearias> GetBarbeariasAsyncById(Guid idBarbearia);
+        Task<Barbearias> GetBarbeariasAsyncByIdDAO(Guid idBarbearia);
+        Task<Barbearias> GetBarbeariasAsyncByRoute(string route);
+       
 
     }
 }
