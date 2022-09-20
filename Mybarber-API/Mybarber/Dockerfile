@@ -6,8 +6,8 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-#COPY ["Mybarber.csproj", "Mybarber/"]
-RUN cp dotnet restore "Mybarber/Mybarber.csproj"
+#COPY ["Mybarber/Mybarber.csproj", "Mybarber/"]
+RUN dotnet restore "Mybarber/Mybarber.csproj"
 COPY . .
 WORKDIR "/src/Mybarber"
 RUN dotnet build "Mybarber.csproj" -c Release -o /app/build
