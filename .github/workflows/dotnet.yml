@@ -22,8 +22,8 @@ jobs:
       run: dotnet restore ./Mybarber-API/Mybarber-API.sln
 
     - name: Build
-      run: dotnet build --no-restore ./Mybarber-API/Mybarber-API.sln
+      run: dotnet build --no-restore ./Mybarber-API/Mybarber
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./Mybarber-API/Mybarber-API.sln
+      run: dotnet test --no-build --verbosity normal ./Mybarber-API/Mybarber
     
