@@ -5,8 +5,8 @@ WORKDIR /app
 
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR /Mybarber
-COPY ["Mybarber/", "Mybarber/"]
+WORKDIR /src
+COPY ["Mybarber.csproj", "Mybarber/"]
 RUN dotnet restore "Mybarber/Mybarber.csproj"
 COPY . .
 WORKDIR "/src/Mybarber"
