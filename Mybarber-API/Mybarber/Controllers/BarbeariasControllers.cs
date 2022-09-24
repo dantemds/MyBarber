@@ -20,15 +20,15 @@ namespace Mybarber.Controllers
     public class BarbeariasControllers : ControllerBase
     {
         private readonly IBarbeariasPresenter _presenter;
-    
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="presenter"></param>
-        public BarbeariasControllers(IBarbeariasPresenter presenter )
+        public BarbeariasControllers(IBarbeariasPresenter presenter)
         {
             this._presenter = presenter;
-           
+
         }
 
         //[HttpGet]
@@ -46,7 +46,7 @@ namespace Mybarber.Controllers
         //        return BadRequest($"Erro:{ex.Message}");
         //    }
         //}
-        
+
 
 
         /// <summary>
@@ -55,14 +55,14 @@ namespace Mybarber.Controllers
         /// <param name="idBarbearia"></param>
         /// <returns></returns>
         [HttpGet("id/{idBarbearia}")]
-        
+
         public async Task<IActionResult> GetBarbeariaAsyncById(Guid idBarbearia)
-        
+
         {
-            
-                var result = await _presenter.GetAllAtributesBarbeariaAsyncById(idBarbearia);
-               
-            if(result == null)
+
+            var result = await _presenter.GetAllAtributesBarbeariaAsyncById(idBarbearia);
+
+            if (result == null)
             {
                 return NotFound();
             }
@@ -70,10 +70,10 @@ namespace Mybarber.Controllers
             {
                 return Ok(result);
             }
-                
 
-            
-         
+
+
+
 
         }
         [HttpGet("{route}")]
@@ -84,7 +84,7 @@ namespace Mybarber.Controllers
             var result = await _presenter.GetAllAtributesBarbeariaAsyncByRoute(route);
 
             return Ok(result);
-            
+
 
 
 
@@ -96,21 +96,21 @@ namespace Mybarber.Controllers
         /// <param name="barbeariaDto"></param>
         /// <returns></returns>
         [HttpPost]
-        
+
         public async Task<IActionResult> PostBarbeariaAsync(BarbeariasRequestDto barbeariaDto)
         {
-            
-                var result = await _presenter.PostBarbeariaAsync(barbeariaDto);
 
-                return Created($"/api/v1/Barbearias/{result.IdBarbearia}", result);
-            
+            var result = await _presenter.PostBarbeariaAsync(barbeariaDto);
+
+            return Created($"/api/v1/Barbearias/{result.IdBarbearia}", result);
+
         }
         [HttpPut("{idBarbearia}")]
 
         public async Task<IActionResult> PutBarbeariaAsync(Guid idBarbearia, [FromBody] BarbeariasRequestDto dto)
         {
 
-            var result = await _presenter.PutBarbeariaAsyncById( idBarbearia,  dto);
+            var result = await _presenter.PutBarbeariaAsyncById(idBarbearia, dto);
 
 
 
@@ -130,12 +130,12 @@ namespace Mybarber.Controllers
         public async Task<IActionResult> DeleteBarbeariaAsyncById(Guid idBarbearia)
         {
 
-          
-                var result = await _presenter.DeleteBarbeariaAsyncById(idBarbearia);
 
-                return Ok(result);
+            var result = await _presenter.DeleteBarbeariaAsyncById(idBarbearia);
 
-        
+            return Ok(result);
+
+
 
         }
     }

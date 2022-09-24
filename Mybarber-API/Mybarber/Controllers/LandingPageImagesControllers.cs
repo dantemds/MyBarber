@@ -9,7 +9,7 @@ namespace Mybarber.Controllers
 {
     [EnableCors]
     [ApiController]
-    [Route("api/v1/agendamentos")]
+    [Route("api/v1/landingpage")]
     public class LandingPageImagesControllers:ControllerBase
     {
         private readonly ILandingPageServices _service;
@@ -17,6 +17,7 @@ namespace Mybarber.Controllers
         {
             this._service = service;
         }
+        [HttpPost]
         public async Task<IActionResult> PostLadingPageImageS3Async(LandingPageImagesRequestDto dto)
         {
             try

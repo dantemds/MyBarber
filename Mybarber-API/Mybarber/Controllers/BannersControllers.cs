@@ -18,7 +18,7 @@ namespace Mybarber.Controllers
             this._servico = servico;
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> PostBannerS3Async(BannerRequestDto bannerDto)
         {
             try
