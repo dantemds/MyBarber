@@ -14,9 +14,9 @@ namespace Mybarber.Models
 
         public string URL { get; set; }
 
-        public virtual ICollection<Barbeiros> Barbeiros { get; set; }
+        public virtual Barbeiros Barbeiros { get; set; }
+        public Guid BarbeirosId { get; set; }
 
-        
 
         public BarbeiroImagens(){ }
 

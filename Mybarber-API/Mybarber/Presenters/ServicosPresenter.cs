@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Mybarber.DataTransferObject.Servico;
+using Mybarber.DataTransferObject.ServicoImagem;
 using Mybarber.Models;
 using Mybarber.Services;
 using System;
@@ -86,11 +87,16 @@ namespace Mybarber.Presenter
             };
             var servico = _mapper.Map<Servicos>(dto);
 
+
+            var imageDto = new ServicoImagemRequestS3Dto() { 
+            File = servicoDto.File,
+            Route = servicoDto.Route,
+            NomeImagem = servicoDto.NomeServico,
+            IdServico = servico.IdServico
+            };
+            var imagem =  await _serviceImagem.PostServicoImagemS3Async(imageDto);
+
             
-
-            var imagem =  await _serviceImagem.PostServicoImagemS3Async(servicoDto.File, servicoDto.Route, servico.IdServico, servicoDto.NomeServico);
-
-            servico.ServicoImagemId = imagem.IdImagemServico;
 
             var servicoSalvo = await _service.PostServicoAsync(servico);
 

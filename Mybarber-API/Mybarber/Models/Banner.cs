@@ -10,7 +10,7 @@ namespace Mybarber.Models
         public Guid IdBanner { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
         public string URL { get; set; }
-
+        public bool Mobile { get; set; }    
         [ForeignKey("Barbearias")]
         public Guid BarbeariasId { get; set; }
         public virtual Barbearias Barbearias { get; set; }

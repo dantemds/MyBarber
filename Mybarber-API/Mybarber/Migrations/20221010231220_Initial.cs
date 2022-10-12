@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mybarber.Migrations
 {
-    public partial class BarbeariaStatus : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace Mybarber.Migrations
                     NomeBarbearia = table.Column<string>(nullable: false),
                     CNPJ = table.Column<string>(nullable: false),
                     Route = table.Column<string>(nullable: true),
-                    LandingPage = table.Column<bool>(nullable: false),
+                    FuncaoAgendamento = table.Column<bool>(nullable: false),
                     Ativa = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -28,29 +28,45 @@ namespace Mybarber.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BarbeiroImagens",
+                name: "Banner",
                 columns: table => new
                 {
-                    IdBarbeiroImagem = table.Column<Guid>(nullable: false),
+                    IdBanner = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    URL = table.Column<string>(nullable: true)
+                    URL = table.Column<string>(nullable: true),
+                    Mobile = table.Column<bool>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BarbeiroImagens", x => x.IdBarbeiroImagem);
+                    table.PrimaryKey("PK_Banner", x => x.IdBanner);
+                    table.ForeignKey(
+                        name: "FK_Banner_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ServicoImagens",
+                name: "Barbeiros",
                 columns: table => new
                 {
-                    IdImagemServico = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    URL = table.Column<string>(nullable: true)
+                    IdBarbeiro = table.Column<Guid>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    NameBarbeiro = table.Column<string>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServicoImagens", x => x.IdImagemServico);
+                    table.PrimaryKey("PK_Barbeiros", x => x.IdBarbeiro);
+                    table.ForeignKey(
+                        name: "FK_Barbeiros_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,6 +136,50 @@ namespace Mybarber.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LandingPageImages",
+                columns: table => new
+                {
+                    IdLandingPageImage = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true),
+                    NumeroImagem = table.Column<int>(nullable: false),
+                    Posicao = table.Column<string>(nullable: true),
+                    Especificacao = table.Column<string>(nullable: true),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LandingPageImages", x => x.IdLandingPageImage);
+                    table.ForeignKey(
+                        name: "FK_LandingPageImages_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Servicos",
+                columns: table => new
+                {
+                    IdServico = table.Column<Guid>(nullable: false),
+                    NomeServico = table.Column<string>(nullable: false),
+                    TempoServico = table.Column<DateTime>(nullable: false),
+                    PrecoServico = table.Column<float>(nullable: false),
+                    BarbeariasId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Servicos", x => x.IdServico);
+                    table.ForeignKey(
+                        name: "FK_Servicos_Barbearias_BarbeariasId",
+                        column: x => x.BarbeariasId,
+                        principalTable: "Barbearias",
+                        principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Temas",
                 columns: table => new
                 {
@@ -163,62 +223,6 @@ namespace Mybarber.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Barbeiros",
-                columns: table => new
-                {
-                    IdBarbeiro = table.Column<Guid>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    NameBarbeiro = table.Column<string>(nullable: false),
-                    BarbeariasId = table.Column<Guid>(nullable: false),
-                    BarbeiroImagemId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Barbeiros", x => x.IdBarbeiro);
-                    table.ForeignKey(
-                        name: "FK_Barbeiros_Barbearias_BarbeariasId",
-                        column: x => x.BarbeariasId,
-                        principalTable: "Barbearias",
-                        principalColumn: "IdBarbearia",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Barbeiros_BarbeiroImagens_BarbeiroImagemId",
-                        column: x => x.BarbeiroImagemId,
-                        principalTable: "BarbeiroImagens",
-                        principalColumn: "IdBarbeiroImagem",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Servicos",
-                columns: table => new
-                {
-                    IdServico = table.Column<Guid>(nullable: false),
-                    NomeServico = table.Column<string>(nullable: false),
-                    TempoServico = table.Column<DateTime>(nullable: false),
-                    PrecoServico = table.Column<float>(nullable: false),
-                    ServicoImagemId = table.Column<Guid>(nullable: false),
-                    BarbeariasId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Servicos", x => x.IdServico);
-                    table.ForeignKey(
-                        name: "FK_Servicos_Barbearias_BarbeariasId",
-                        column: x => x.BarbeariasId,
-                        principalTable: "Barbearias",
-                        principalColumn: "IdBarbearia",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Servicos_ServicoImagens_ServicoImagemId",
-                        column: x => x.ServicoImagemId,
-                        principalTable: "ServicoImagens",
-                        principalColumn: "IdImagemServico",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Agendas",
                 columns: table => new
                 {
@@ -244,6 +248,26 @@ namespace Mybarber.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Agendas_Barbeiros_BarbeirosId",
+                        column: x => x.BarbeirosId,
+                        principalTable: "Barbeiros",
+                        principalColumn: "IdBarbeiro",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BarbeiroImagens",
+                columns: table => new
+                {
+                    IdBarbeiroImagem = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true),
+                    BarbeirosId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BarbeiroImagens", x => x.IdBarbeiroImagem);
+                    table.ForeignKey(
+                        name: "FK_BarbeiroImagens_Barbeiros_BarbeirosId",
                         column: x => x.BarbeirosId,
                         principalTable: "Barbeiros",
                         principalColumn: "IdBarbeiro",
@@ -280,6 +304,26 @@ namespace Mybarber.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Agendamentos_Servicos_ServicosId",
+                        column: x => x.ServicosId,
+                        principalTable: "Servicos",
+                        principalColumn: "IdServico",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServicoImagens",
+                columns: table => new
+                {
+                    IdImagemServico = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true),
+                    ServicosId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServicoImagens", x => x.IdImagemServico);
+                    table.ForeignKey(
+                        name: "FK_ServicoImagens_Servicos_ServicosId",
                         column: x => x.ServicosId,
                         principalTable: "Servicos",
                         principalColumn: "IdServico",
@@ -344,14 +388,20 @@ namespace Mybarber.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Barbeiros_BarbeariasId",
-                table: "Barbeiros",
+                name: "IX_Banner_BarbeariasId",
+                table: "Banner",
                 column: "BarbeariasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Barbeiros_BarbeiroImagemId",
+                name: "IX_BarbeiroImagens_BarbeirosId",
+                table: "BarbeiroImagens",
+                column: "BarbeirosId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Barbeiros_BarbeariasId",
                 table: "Barbeiros",
-                column: "BarbeiroImagemId");
+                column: "BarbeariasId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contatos_BarbeariasId",
@@ -372,14 +422,20 @@ namespace Mybarber.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Servicos_BarbeariasId",
-                table: "Servicos",
+                name: "IX_LandingPageImages_BarbeariasId",
+                table: "LandingPageImages",
                 column: "BarbeariasId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Servicos_ServicoImagemId",
+                name: "IX_ServicoImagens_ServicosId",
+                table: "ServicoImagens",
+                column: "ServicosId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicos_BarbeariasId",
                 table: "Servicos",
-                column: "ServicoImagemId");
+                column: "BarbeariasId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServicosBarbeiros_BarbeariasId",
@@ -412,6 +468,12 @@ namespace Mybarber.Migrations
                 name: "Agendas");
 
             migrationBuilder.DropTable(
+                name: "Banner");
+
+            migrationBuilder.DropTable(
+                name: "BarbeiroImagens");
+
+            migrationBuilder.DropTable(
                 name: "Contatos");
 
             migrationBuilder.DropTable(
@@ -419,6 +481,12 @@ namespace Mybarber.Migrations
 
             migrationBuilder.DropTable(
                 name: "HorarioFuncionamento");
+
+            migrationBuilder.DropTable(
+                name: "LandingPageImages");
+
+            migrationBuilder.DropTable(
+                name: "ServicoImagens");
 
             migrationBuilder.DropTable(
                 name: "ServicosBarbeiros");
@@ -436,13 +504,7 @@ namespace Mybarber.Migrations
                 name: "Servicos");
 
             migrationBuilder.DropTable(
-                name: "BarbeiroImagens");
-
-            migrationBuilder.DropTable(
                 name: "Barbearias");
-
-            migrationBuilder.DropTable(
-                name: "ServicoImagens");
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.Images;
+using Mybarber.DataTransferObject.ServicoImagem;
 using Mybarber.Presenters;
 using Mybarber.Services;
 using System;
@@ -52,12 +53,12 @@ namespace Mybarber.Controllers
         }
 
         [HttpPost("s3")]
-        public async Task<IActionResult> PostServicoImagemS3Async([FromForm(Name = "image")] IFormFile file, [FromForm(Name = "route")] string route, [FromForm(Name = "servico")] Guid idServico, [FromForm(Name = "nome")] string nomeImagem)
+        public async Task<IActionResult> PostServicoImagemS3Async([FromForm] ServicoImagemRequestS3Dto dto)
         {
             try
             {
 
-                var result = await _servico.PostServicoImagemS3Async(file, route, idServico, nomeImagem);
+                var result = await _servico.PostServicoImagemS3Async(dto);
 
                 return Created($"/api/v1/servicoImagem/{result}", result);
             }

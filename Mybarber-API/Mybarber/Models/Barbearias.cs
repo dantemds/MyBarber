@@ -20,10 +20,10 @@ namespace Mybarber.Models
         public Temas Temas { get; set; }
         public Enderecos Enderecos { get; set; }
         public Contatos Contatos { get; set; }
-        public bool LandingPage { get; set; }
+        public bool FuncaoAgendamento { get; set; }
         public bool Ativa { get; set; } 
         public HorarioFuncionamento HorarioFuncionamento { get; set; }
-        public Banner Banner { get; set; }
+        public ICollection<Banner> Banner { get; set; }
         public ICollection<LandingPageImages> LandingPageImages { get; set; }
         public ICollection<Agendamentos> Agendamentos { get; set; }
         public ICollection<Servicos> Servicos { get; set; }

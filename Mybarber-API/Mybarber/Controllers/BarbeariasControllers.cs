@@ -31,21 +31,21 @@ namespace Mybarber.Controllers
 
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetAllBarbeariasAsync()
-        //{
+        [HttpGet]
+        public async Task<IActionResult> GetAllBarbeariasAsync()
+        {
 
-        //    try
-        //    {
-        //        var result = await _presenter.GetAllBarbeariasAsync();
+            try
+            {
+                var result = await _presenter.GetAllBarbeariasAsync();
 
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest($"Erro:{ex.Message}");
-        //    }
-        //}
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro:{ex.Message}");
+            }
+        }
 
 
 
@@ -119,11 +119,13 @@ namespace Mybarber.Controllers
 
         }
 
-        //[HttpPost("complete")]
-        //public async Task<IActionResult> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
-        //{
+        [HttpPost("complete")]
+        public async Task<IActionResult> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
+        {
+            var result = await _presenter.PostBarbeariaCompletaAsync(dto);
 
-        //}
+            return Created("apia/v1/barbearias", result);
+        }
 
 
         [HttpDelete("{idBarbearia}")]

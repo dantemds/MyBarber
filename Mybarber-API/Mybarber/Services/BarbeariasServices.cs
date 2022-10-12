@@ -25,19 +25,20 @@ namespace Mybarber.Services
             this._generally = generally;
         }
 
-        //public async Task<IEnumerable<Barbearias>> GetAllBarbeariasAsync()
-        //{
-        //    try
-        //    {
-        //        var barbearias = await _repo.GetAllBarbeariasAsync();
+        public async Task<IEnumerable<Barbearias>> GetAllBarbeariasAsync()
+        {
+            try
+            {
+                var barbearias = await _repo.GetAllBarbeariasAsync();
 
-        //        return barbearias;
+                return barbearias;
 
-        //    }catch(Exception)
-        //    {
-        //        throw new Exception();
-        //    }
-        //}
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
         public async Task<Barbearias> GetBarbeariaAsyncById(Guid idBarbearia)
         {

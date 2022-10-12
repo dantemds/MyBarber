@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 
-namespace Mybarber.DataTransferObject.Banner
+namespace Mybarber.DataTransferObject.ServicoImagem
 {
-    public class BannerRequestDto
+    public class ServicoImagemRequestS3Dto
     {
+
         public IFormFile File { get; set; }
         public string Route { get; set; }
-        public Guid BarbeariaId { get; set; }
+        public Guid IdServico { get; set; }
         public string NomeImagem { get; set; }
-        public bool Mobile { get; set; }
     }
 }

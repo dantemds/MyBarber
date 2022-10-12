@@ -28,7 +28,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "V:\\Paths e Dicas\\DOTNET\\NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

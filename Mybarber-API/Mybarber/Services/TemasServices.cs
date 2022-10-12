@@ -12,12 +12,12 @@ namespace Mybarber.Services
         private readonly IGenerallyRepository _generally;
         public TemasServices(IGenerallyRepository generally)
         {
-
+            this._generally = generally;
         }
 
         public async Task<Temas> PostTemaAsync(Temas tema)
         {
-
+           
             _generally.Add(tema);
             if (await _generally.SaveChangesAsync())
             {

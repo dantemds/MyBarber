@@ -31,12 +31,12 @@ namespace Mybarber.Controllers
 
         }
 
-        [HttpPost()]
-        public async Task<IActionResult> PostTemaAsync([FromBody] TemasRequestDto tema)
+        [HttpPost]
+        public async Task<IActionResult> PostTemaAsync( TemasRequestDto tema)
         {
 
 
-
+            
             var result = await _service.PostTemaAsync(_mapper.Map<Temas>(tema));
             if (result != null)
             {

@@ -20,8 +20,8 @@ namespace Mybarber.Models
 
         [Required(ErrorMessage = "O preço deve ser informado")]
         public float PrecoServico { get; set; }
-        [ForeignKey("ServicoImagemId")]
-        public Guid ServicoImagemId { get; set; }
+        //[ForeignKey("ServicoImagemId")]
+        //public Guid ServicoImagemId { get; set; }
         public virtual ServicoImagens ServicoImagem { get; set; } 
 
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }

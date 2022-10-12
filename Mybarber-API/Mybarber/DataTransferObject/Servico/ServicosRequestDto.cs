@@ -11,6 +11,6 @@ namespace Mybarber.DataTransferObject.Servico
         public float PrecoServico { get; set; }
         public Guid BarbeariasId { get; set; }
 
-        public Guid ServicoImagemId { get; set; }
+       
     }
 }

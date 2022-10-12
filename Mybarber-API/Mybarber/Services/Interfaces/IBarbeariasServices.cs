@@ -7,7 +7,7 @@ namespace Mybarber.Services
 {
     public interface IBarbeariasServices
     {
-        //Task<IEnumerable<Barbearias>> GetAllBarbeariasAsync();
+        Task<IEnumerable<Barbearias>> GetAllBarbeariasAsync();
         Task<Barbearias> GetBarbeariaAsyncById(Guid idBarbearia);
 
         Task<Barbearias> PostBarbeariaAsync(Barbearias barbearias);

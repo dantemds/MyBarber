@@ -19,7 +19,7 @@ namespace Mybarber.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostBannerS3Async(BannerRequestDto bannerDto)
+        public async Task<IActionResult> PostBannerS3Async([FromForm] BannerRequestDto bannerDto)
         {
             try
             {

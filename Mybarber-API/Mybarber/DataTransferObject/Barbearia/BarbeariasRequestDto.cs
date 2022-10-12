@@ -11,15 +11,15 @@ namespace Mybarber.DataTransferObject.Barbearia
 
         public string CNPJ { get; set; }
         public string Route { get; set; }
-        public bool LandingPage { get; set; }
+        public bool FuncaoAgendamento { get; set; }
         public bool Ativa { get; set; } = true;
 
-        public BarbeariasRequestDto(string CNPJ, string nomeBarbearia, string route, bool landingPage)
+        public BarbeariasRequestDto(string CNPJ, string nomeBarbearia, string route, bool FuncaoAgendamento)
         {
             this.NomeBarbearia = nomeBarbearia;
             this.CNPJ = Format.SemFormatacao(CNPJ);
             this.Route = route;
-            this.LandingPage = landingPage;
+            this.FuncaoAgendamento = FuncaoAgendamento;
             this.Ativa = true;
         }
 

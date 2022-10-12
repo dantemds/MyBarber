@@ -10,7 +10,7 @@ namespace Mybarber.Presenter
     public interface IBarbeariasPresenter
     {
 
-        //Task<IEnumerable<BarbeariasResponseDto>> GetAllBarbeariasAsync();
+        Task<IEnumerable<BarbeariasResponseDto>> GetAllBarbeariasAsync();
 
         //Task<BarbeariasResponseDto> GetBarbeariaAsyncById(int idBarbearia);
         Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route);

@@ -53,23 +53,27 @@ namespace Mybarber.Services
                 }
 
 
-
+                string responsividade = "desktop";
+                if (banner.Mobile)
+                {
+                    responsividade = "mobile";
+                }
                 var putRequest = new PutObjectRequest
                 {
                     BucketName = bucketName,
-                    Key = _config.GetSection("S3Config:ImagesBanner").Value + banner.Route + "/" + banner.BarbeariaId,
+                    Key = _config.GetSection("S3Config:ImagesBanner").Value + banner.Route + "/" + responsividade + "/" + banner.BarbeariaId,
                     InputStream = banner.File.OpenReadStream(),
 
                 };
                 putRequest.Metadata.Add("Content-Type", banner.File.ContentType);
                 PutObjectResponse response = await client.PutObjectAsync(putRequest);
 
-
+               
                 var imagemBanner = new Banner();
-
+                imagemBanner.Mobile = banner.Mobile;
                 imagemBanner.Name = banner.NomeImagem;
                 imagemBanner.BarbeariasId = banner.BarbeariaId;
-                imagemBanner.URL = _config.GetSection("S3Config:ImagesBanner").Value + banner.Route + "/" + banner.BarbeariaId;
+                imagemBanner.URL = _config.GetSection("S3Config:ImagesBanner").Value + banner.Route + "/"+ responsividade +"/" + banner.BarbeariaId;
 
                 _generally.Add(imagemBanner);
 

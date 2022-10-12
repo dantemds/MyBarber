@@ -12,8 +12,8 @@ namespace Mybarber.Models
         public string Name { get; set; }
 
         public string URL { get; set; }
-
-        public virtual ICollection<Servicos> Servicos { get; set; }
+        public Guid ServicosId { get; set; }
+        public virtual Servicos Servicos { get; set; }
 
         public ServicoImagens() { }
 

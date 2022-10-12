@@ -12,7 +12,7 @@ namespace Mybarber.DataTransferObject.Barbearia
 
         public string CNPJ { get; set; }
         public string Route { get; set; }
-        public bool LandingPage { get; set; }
+        public bool FuncaoAgendamento { get; set; }
         public bool Ativa { get; set; }
     }
 }

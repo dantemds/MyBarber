@@ -5,6 +5,7 @@ using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.DataTransferObject.Contatos;
 using Mybarber.DataTransferObject.Enderecos;
 using Mybarber.DataTransferObject.Horario;
+using Mybarber.DataTransferObject.LadingPageImages;
 using Mybarber.DataTransferObject.Servico;
 using Mybarber.DataTransferObject.Temas;
 using Mybarber.Exceptions;
@@ -27,8 +28,9 @@ namespace Mybarber.Presenter
         private readonly IContatosServices _serviceContatos;
         private readonly IHorarioFuncionamentoServices _serviceHorarioFuncionamento;
         private readonly IBannerServices _serviceBanner;
+        private readonly ILandingPageServices _serviceLading;
 
-        public BarbeariasPresenter(IBarbeariasServices serviceBarbearia , IMapper mapper, IEnderecosServices serviceEnderecos, ITemasServices serviceTema, IContatosServices serviceContatos, IHorarioFuncionamentoServices serviceHorarioFuncionamento, IBannerServices serviceBanner)
+        public BarbeariasPresenter(ILandingPageServices serviceLading, IBarbeariasServices serviceBarbearia , IMapper mapper, IEnderecosServices serviceEnderecos, ITemasServices serviceTema, IContatosServices serviceContatos, IHorarioFuncionamentoServices serviceHorarioFuncionamento, IBannerServices serviceBanner)
         {
             this._service = serviceBarbearia;
             this._mapper = mapper;
@@ -37,28 +39,30 @@ namespace Mybarber.Presenter
             this._serviceContatos = serviceContatos;
             this._serviceHorarioFuncionamento = serviceHorarioFuncionamento;
             this._serviceBanner = serviceBanner;
+            this._serviceLading = serviceLading;
         }
 
 
-        //public async Task<IEnumerable<BarbeariasResponseDto>> GetAllBarbeariasAsync()
-        //{
-        //    try
-        //    {
-        //        var barbearias = await _service.GetAllBarbeariasAsync();
+        public async Task<IEnumerable<BarbeariasResponseDto>> GetAllBarbeariasAsync()
+        {
+            try
+            {
+                var barbearias = await _service.GetAllBarbeariasAsync();
 
-        //        return _mapper.Map<IEnumerable<BarbeariasResponseDto>>(barbearias);
+                return _mapper.Map<IEnumerable<BarbeariasResponseDto>>(barbearias);
 
-        //    }catch (Exception)
-        //    {
-        //        throw new Exception();
-        //    }
-        //}
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
 
         public async Task<BarbeariasCompleteRequestDto> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
         {
             try
             {
-                var barbeariaDto = new BarbeariasRequestDto(dto.CNPJ, dto.NomeBarbearia, dto.Route, dto.LandingPage);
+                var barbeariaDto = new BarbeariasRequestDto(dto.CNPJ, dto.NomeBarbearia, dto.Route, dto.FuncaoAgendamento);
                 
                 var barbearia = _mapper.Map<Barbearias>(barbeariaDto);
 
@@ -114,16 +118,32 @@ namespace Mybarber.Presenter
 
                 //-------------------------------------------------------------//
 
-                var bannerDto = new BannerRequestDto();
+                ICollection<BannerRequestDto> bannerDto = new List<BannerRequestDto>() ;
 
                 bannerDto = dto.Banner;
 
-                bannerDto.BarbeariaId = barbearia.IdBarbearia;
-
-                await _serviceBanner.PostBannerS3Async(bannerDto);
-
+                foreach (BannerRequestDto item in bannerDto)
+                {
+                    item.BarbeariaId = barbearia.IdBarbearia;
+                    await _serviceBanner.PostBannerS3Async(item);
+                }
                 //-------------------------------------------------------------//
-                 //LISTA DE LADING
+
+                ICollection<LandingPageImagesRequestDto> landingDto = new List<LandingPageImagesRequestDto>();
+
+                landingDto = dto.LadingPageImages;
+
+                foreach (LandingPageImagesRequestDto item in landingDto)
+                {
+                    item.BarbeariaId = barbearia.IdBarbearia;
+                    await _serviceLading.PostLadingPageImageS3Async(item);
+                }
+
+
+
+
+
+
 
 
 

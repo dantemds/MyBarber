@@ -11,8 +11,8 @@ namespace Mybarber.DataTransferObject.Barbeiro
     {
         public Guid IdBarbeiro { get; set; }
         public string NameBarbeiro { get; set; }
-        public virtual BarbeiroImagemResponseDto BarbeiroImagem { get; set; }
-        public virtual AgendasResponseDto Agendas { get; set; }
+        public  BarbeiroImagemResponseDto BarbeiroImagem { get; set; }
+        public  AgendasResponseDto Agendas { get; set; }
 
     }
 }

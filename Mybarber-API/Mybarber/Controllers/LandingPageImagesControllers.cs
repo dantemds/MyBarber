@@ -18,11 +18,11 @@ namespace Mybarber.Controllers
             this._service = service;
         }
         [HttpPost]
-        public async Task<IActionResult> PostLadingPageImageS3Async(LandingPageImagesRequestDto dto)
+        public async Task<IActionResult> PostLadingPageImageS3Async([FromForm] LandingPageImagesRequestDto dto)
         {
             try
             {
-
+                
                 var result = await _service.PostLadingPageImageS3Async(dto);
 
                 return Created($"/api/v1/ladingpageimage/{result}", result);
