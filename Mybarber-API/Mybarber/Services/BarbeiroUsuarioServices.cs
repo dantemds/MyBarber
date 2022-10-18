@@ -22,7 +22,7 @@ namespace Mybarber.Services
             this._usersServices = usersServices;
         }
 
-        public async Task<bool> CreateUsuarioBarbeiro(BarbeirosRequestDto barbeiroDto) 
+        public async Task<Users> CreateUsuarioBarbeiro(BarbeirosRequestDto barbeiroDto) 
         {
             try
             {
@@ -46,7 +46,7 @@ namespace Mybarber.Services
 
                 _generally.Add(usuario);
                 if (await _generally.SaveChangesAsync())
-                    return true;
+                    return usuario;
                 else throw new Exception();
 
 

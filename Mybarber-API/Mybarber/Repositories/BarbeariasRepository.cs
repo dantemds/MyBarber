@@ -83,7 +83,7 @@ namespace Mybarber.Repositories
                     .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
                     .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
                 .Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
-                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros).Include(it=> it.Temas).Include(it=> it.Contatos).Include(it=> it.Enderecos).Include(it=>it.HorarioFuncionamento);
+                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros).Include(it=> it.Temas).Include(it=> it.Contatos).Include(it=> it.Enderecos).Include(it=>it.HorarioFuncionamento).Include(it=>it.Banner).Include(it=>it.LandingPageImages);
 
 
                 query = query.AsNoTracking()

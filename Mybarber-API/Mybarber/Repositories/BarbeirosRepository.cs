@@ -51,13 +51,13 @@ namespace Mybarber.Repositories
 
             return await query.ToArrayAsync();
         }
-        public async Task<Barbeiros> GetBarbeirosAsyncByEmail(string email)
+        public async Task<Barbeiros> GetBarbeirosAsyncByUserId(Guid userId)
         {
             IQueryable<Barbeiros> query = _context.Barbeiros;
 
             query = query.AsNoTracking()
                 .OrderBy(barbeiros => barbeiros.IdBarbeiro)
-                .Where(candidates => candidates.Email == email);
+                .Where(candidates => candidates.UsersId == userId);
 
             return await query.FirstOrDefaultAsync();
         }

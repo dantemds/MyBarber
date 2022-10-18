@@ -10,6 +10,7 @@ namespace Mybarber.Repositories
         Task<Users> GetUserAsync(string username, string password);
         Task<Users> GetUserAsyncByEmail(string email);
         Task<Users> GetUserAsyncById(Guid id);
+        Task<Users[]> GetUsersByTenant(Guid tenantId);
     }
 
 }

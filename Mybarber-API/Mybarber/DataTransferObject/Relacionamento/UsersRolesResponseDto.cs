@@ -2,7 +2,7 @@
 
 namespace Mybarber.DataTransferObject.Relacionamento
 {
-    public class UsersRolesRequestDto
+    public class UsersRolesResponseDto
     {
         public Guid RolesId { get; set; }
         public Guid UsersId { get; set; }

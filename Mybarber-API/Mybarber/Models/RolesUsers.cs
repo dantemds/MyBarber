@@ -1,11 +1,16 @@
 ﻿using System;
 
-namespace Mybarber.DataTransferObject.Relacionamento
+namespace Mybarber.Models
 {
-    public class UsersRolesRequestDto
+    public class RolesUsers
     {
         public Guid RolesId { get; set; }
         public Guid UsersId { get; set; }
         public Guid BarbeariasId { get; set; }
+        public virtual Barbearias Barbearias { get; set; }
+        public RolesUsers()
+        {
+
+        }
     }
 }

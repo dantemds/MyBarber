@@ -85,7 +85,7 @@ namespace Mybarber.Services
                     try
                     {
                         
-                        _email.SendEmail(agendamentos, "EmailAgendamento");
+                        //_email.SendEmail(agendamentos, "EmailAgendamento");
                     }catch(Exception ex)
                     { return agendamentos; }
                     return agendamentos;

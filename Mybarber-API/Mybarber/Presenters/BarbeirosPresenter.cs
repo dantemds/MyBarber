@@ -90,10 +90,10 @@ namespace Mybarber.Presenter
 
                 var usuario = await _serviceUserBarbeiro.CreateUsuarioBarbeiro(barbeiroDto);
 
-                if (!usuario.Equals(true))
+                if (usuario == null)
                     throw new ViewException("User.Not.Saved");
 
-                
+                barbeiro.UsersId = usuario.IdUser;
                 await _service.PostBarbeiroAsync(barbeiro);
 
                 var barbeiroResult = await _service.GetBarbeiroAsyncById(barbeiro.IdBarbeiro);

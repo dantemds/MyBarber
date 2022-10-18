@@ -48,14 +48,13 @@ namespace Mybarber.Config
             services.AddScoped<IEnderecosServices, EnderecosServices>();
             services.AddScoped<IContatosServices, ContatosServices>();
             services.AddScoped<IHorarioFuncionamentoServices, HorarioFuncionamentoServices>();
-
-
-
             services.AddScoped<IEmailServices, EmailServices>();
             services.AddScoped<IServicosBarbeirosServices, ServicosBarbeirosServices>();
-         
             services.AddScoped<IBarbeiroUsuarioServices, BarbeiroUsuarioServices>();
             services.AddScoped<IUsersServices, UsersServices>();
+            services.AddScoped<IRolesUsersPresenter, RolesUsersPresenter>();
+            services.AddScoped<IRolesUsersServices, RolesUsersServices>();
+            services.AddScoped<IRolesRepository, RolesRepository>();
 
         }
     }

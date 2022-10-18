@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,6 +19,9 @@ namespace Mybarber.Models
         public Guid BarbeariasId { get; set; }
 
         public virtual Barbearias Barbearias { get; set; }
+        public virtual Barbeiros Barbeiros { get; set; }
+
+        public virtual ICollection<RolesUsers> RolesUsers { get; set; }
 
 
 

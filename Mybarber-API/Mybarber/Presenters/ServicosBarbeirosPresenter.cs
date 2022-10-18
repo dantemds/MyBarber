@@ -11,11 +11,11 @@ namespace Mybarber.Presenters
     public class ServicosBarbeirosPresenter : IServicosBarbeirosPresenter
     {
         private readonly IMapper _mapper;
-      
+
         private readonly IServicosBarbeirosServices _servicosBarbeirosServices;
         public ServicosBarbeirosPresenter(IMapper mapper, IServicosBarbeirosServices servicosBarbeirosServices)
         {
-           
+
             this._mapper = mapper;
             this._servicosBarbeirosServices = servicosBarbeirosServices;
         }
@@ -24,17 +24,12 @@ namespace Mybarber.Presenters
         {
             try
             {
-                
 
-
-                var relacionamento =   _mapper.Map<ServicosBarbeiros>(relacionamentoDto);
+                var relacionamento = _mapper.Map<ServicosBarbeiros>(relacionamentoDto);
 
                 await _servicosBarbeirosServices.PostServicoBarbeirosAsync(relacionamento);
 
                 return relacionamentoDto;
-
-               
-
 
             }
             catch (Exception)

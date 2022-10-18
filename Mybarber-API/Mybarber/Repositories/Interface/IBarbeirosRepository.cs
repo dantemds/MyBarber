@@ -10,6 +10,6 @@ namespace Mybarber.Repository
         //Task<Barbeiros[]> GetAllBarbeirosAsync();
         Task<Barbeiros> GetBarbeirosAsyncById(Guid idBarbeiro);
         Task<Barbeiros[]> GetBarbeirosAsyncByTenant(Guid idBarbearia);
-        Task<Barbeiros> GetBarbeirosAsyncByEmail(string email);
+        Task<Barbeiros> GetBarbeirosAsyncByUserId(Guid userId);
     }
 }

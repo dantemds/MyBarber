@@ -33,12 +33,27 @@ namespace Mybarber.Repositories
                 throw new Exception();
             }
         }
+        public async Task<Users[]> GetUsersByTenant(Guid tenantId)
+        {
+            try
+            {
+                IQueryable<Users> query = _context.Users;
+                query = query.AsNoTracking()
+                       .OrderBy(users => users.IdUser)
+                       .Where(it=>it.BarbeariasId == tenantId);
+                return await query.ToArrayAsync();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception();
+            }
+        }
 
         public async Task<Users> GetUserAsyncByEmail(string email)
         {
             try
             {
-                IQueryable<Users> query = _context.Users;
+                IQueryable<Users> query = _context.Users.Include(it => it.Barbeiros) ;
 
                 query = query.AsNoTracking()
                        .OrderBy(users => users.IdUser)

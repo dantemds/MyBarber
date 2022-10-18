@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Mybarber.DataTransferObject.Login;
 using Mybarber.Exceptions;
 using Mybarber.Helpers;
 using Mybarber.Models;
@@ -59,9 +60,16 @@ namespace Mybarber.Controllers
 
 
         }
+        [HttpGet("/{tenant}")]
+        public async Task<IActionResult> GetUsuariosByTenant(Guid tenant)
+        {
+            var result = await _Authenticate.GetUsersByTenant(tenant);
+            return Ok(result);
+        }
+
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<dynamic>> AuthenticateAsync(Users model)
+        public async Task<ActionResult<dynamic>> AuthenticateAsync(LoginRequestDto model)
         {
 
 
@@ -73,21 +81,12 @@ namespace Mybarber.Controllers
                 var token = await GerarJwt(model.Email);
 
 
-                RetornoUsuario retorno = new RetornoUsuario(user.IdUser, user.UserName, token, user.BarbeariasId);
+                RetornoUsuario retorno = new RetornoUsuario(user.Barbeiros.IdBarbeiro,user.IdUser, user.UserName, token, user.BarbeariasId);
 
                 return Ok(retorno);
 
             }
             else return BadRequest();
-
-
-
-
-        
-
-
-
-
 
             //var user = await _Authenticate.GetUserAsync(model.Username, model.Password);
             //var roles = await _Aut.GetRoleAsyncByUsersId(user.IdUser);
@@ -100,8 +99,6 @@ namespace Mybarber.Controllers
             ////HttpContext.Session.SetString("SessionNome", user.Username);
 
             ////HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(user));
-
-
 
             //user.Password = "";
             //return new
@@ -133,26 +130,6 @@ namespace Mybarber.Controllers
                 return Ok();
             else return BadRequest()
     ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             //try
             //{
@@ -191,13 +168,7 @@ namespace Mybarber.Controllers
         //        identityFinded.PasswordHash = senha;
         //        await _userManager.UpdateAsync(identityFinded);
 
-               
-
-               
-               
-                
-
-               
+         
 
         //        await _generally.SaveChangesAsync();
         //        return Ok(); 
@@ -266,18 +237,18 @@ namespace Mybarber.Controllers
         public class RetornoUsuario
         {
             public Guid IdBarbeiro { get; set; }
+            public Guid IdUsuario { get; set; }
             public string NomeUsuario { get; set; }
-
             public string Token { get; set; }
-
             public Guid IdBarbearia { get ; set; }
 
-            public RetornoUsuario(Guid idUser,string nomeUsuario, string token, Guid idbarbearia)
+            public RetornoUsuario(Guid IdBarbeiro, Guid IdUsuario, string nomeUsuario, string token, Guid idbarbearia)
             {
+                this.IdUsuario = IdUsuario;
                 this.NomeUsuario = nomeUsuario;
                 this.Token = token;
                 this.IdBarbearia = idbarbearia;
-                this.IdBarbeiro = idUser;
+                this.IdBarbeiro = IdBarbeiro;
             }
 
 

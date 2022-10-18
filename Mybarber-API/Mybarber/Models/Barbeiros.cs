@@ -9,8 +9,8 @@ namespace Mybarber.Models
     {
         [Key()]
         public Guid IdBarbeiro { get; set; } = Guid.NewGuid();
-        public string Email { get; set; }
-        public string Password { get; set; }
+        //public string Email { get; set; }
+        //public string Password { get; set; }
 
 
         [Required(ErrorMessage = "O nome deve ser informado")]
@@ -23,7 +23,8 @@ namespace Mybarber.Models
 
         public virtual Barbearias Barbearias { get; set; }
 
-
+        public virtual Users Users { get; set; }
+        public Guid UsersId { get; set; }
 
         //[ForeignKey("BarbeiroImagemId")]
         //public Guid BarbeiroImagemId { get; set; }

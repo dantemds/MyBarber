@@ -26,6 +26,8 @@ namespace Mybarber.Persistencia
         public DbSet<Agendas> Agendas { get; set;}
         public DbSet<Temas> Temas { get; set; }
         public DbSet<Contatos> Contatos { get; set; }
+        public DbSet<RolesUsers> RolesUsers { get; set; }
+        public DbSet<Role> Role { get; set; }
         public DbSet<Enderecos> Enderecos { get; set; }
         public DbSet<HorarioFuncionamento> HorarioFuncionamento { get; set; }
         public DbSet<Banner> Banner { get; set; }
@@ -41,6 +43,7 @@ namespace Mybarber.Persistencia
 
             modelBuilder.ApplyConfiguration(new ServicosBarbeirosConfiguration());
             modelBuilder.ApplyConfiguration(new BarbeirosConfiguration());
+            modelBuilder.ApplyConfiguration(new RolesUsersConfiguration());
          
 
 

@@ -12,6 +12,8 @@ using Mybarber.DataTransferObject.Temas;
 using Mybarber.DataTransferObject.Enderecos;
 using Mybarber.DataTransferObject.Horario;
 using Mybarber.DataTransferObject.Contatos;
+using Mybarber.DataTransferObject.Banner;
+using Mybarber.DataTransferObject.LadingPageImages;
 
 namespace Mybarber.Helpers
 {
@@ -59,6 +61,18 @@ namespace Mybarber.Helpers
             CreateMap<Contatos, ContatosRequestDto>();
             CreateMap<Contatos, ContatosResponseDto>().ReverseMap();
             CreateMap<Contatos, ContatosResponseDto>();
+            CreateMap<Banner, BannerResponseDto>();
+            CreateMap<Banner, BannerResponseDto>().ReverseMap();
+            CreateMap<LandingPageImages, LandingPageImagesResponseDto>().ReverseMap();
+            CreateMap<LandingPageImages, LandingPageImagesResponseDto>();
+            CreateMap<RolesUsers, UsersRolesRequestDto>();
+            CreateMap<RolesUsers, UsersRolesRequestDto>().ReverseMap();
+            CreateMap<RolesUsers, UsersRolesResponseDto>();
+            CreateMap<RolesUsers, UsersRolesResponseDto>().ReverseMap();
+            CreateMap<UsersRolesResponseDto, UsersRolesRequestDto>().ReverseMap();
+            CreateMap<UsersRolesResponseDto, UsersRolesRequestDto>();
+            CreateMap<Role, RolesRequestDto>().ReverseMap();
+            CreateMap<Role, RolesRequestDto>();
         }
     }
 }
