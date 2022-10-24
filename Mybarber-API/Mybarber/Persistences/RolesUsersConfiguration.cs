@@ -8,7 +8,7 @@ namespace Mybarber.Persistences
     {
         public void Configure(EntityTypeBuilder<RolesUsers> builder)
         {
-            builder.HasKey(x => new { x.RolesId, x.UsersId });
+            builder.HasKey(x => new { x.RoleId, x.UsersId });
         }
     }
 }

@@ -61,12 +61,14 @@ namespace Mybarber.Services
             var HorarioMax=0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
 
-            //string tz = TZConvert.WindowsToIana("E. South America Standard Time");
-            //var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
-            //var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
-            var horaBrasilia = DateTime.Now;
+            string tz = TZConvert.WindowsToIana("E. South America Standard Time");
+            var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
+            var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
+            //var horaBrasilia = DateTime.Now;
             var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
-            if(horaAtual.Count() < 5)
+            Console.WriteLine("--------------hora atual string---------------");
+            Console.WriteLine(horaAtual);
+            if (horaAtual.Count() < 5)
             {
                 horaAtual = "0" + horaAtual;
             }
@@ -85,8 +87,8 @@ namespace Mybarber.Services
 
 
             var horaAtualFloat = Convert.ToSingle(horaAtual);
-            
-
+            Console.WriteLine("--------------Hora atual em float---------------");
+            Console.WriteLine(horaAtualFloat);
             switch (dia)
             {
                 case "domingo":
@@ -153,6 +155,8 @@ namespace Mybarber.Services
 
         private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, Guid idServico, Guid tenant,Guid idBarbeiro)
         {
+            Console.WriteLine("--------------Agenda---------------");
+            Console.WriteLine(agenda.Count());
             var servico = await _servicoRepo.GetServicosAsyncById(idServico);
             PageParams pageParams = new PageParams();
             pageParams.Date = data;
@@ -166,24 +170,31 @@ namespace Mybarber.Services
             Console.WriteLine(duracaoServicoFloat);
             var agendamentos = await _agendamentosRepo.GetAgendamentosAsyncByTenant(tenant, pageParams);
            
-            
-            foreach(var item in agenda.ToArray())
+            foreach (var item in agenda.ToArray())
             {
                 foreach(var agendamento in agendamentos.ToArray())
                 {
                     if (agendamento.BarbeirosId == idBarbeiro)
                     {
-
+                        Console.WriteLine("--------------hora em string---------------");
                         var hora = agendamento.Horario.Hour.ToString() + '.' + agendamento.Horario.Minute.ToString();
+                        Console.WriteLine(hora);
                         hora = hora.Replace("30", "5");
                         var horaFloat = Convert.ToSingle(hora);
+                        Console.WriteLine("--------------hora em float---------------");
+                        Console.WriteLine(horaFloat);
                         if (item == horaFloat)
                         {
                             var durancaoServicoAgendado = agendamento.Servicos.TempoServico.Hour.ToString() + '.' + agendamento.Servicos.TempoServico.Minute.ToString();
+                            Console.WriteLine("--------------Duração servico agendado---------------");
+                            Console.WriteLine(durancaoServicoAgendado);
                             durancaoServicoAgendado = durancaoServicoAgendado.Replace("30", "5");
                             var duracaoServicoAgendadoFloat = Convert.ToSingle(durancaoServicoAgendado);
+                            Console.WriteLine("--------------Duração servico agendado em float---------------");
+                            Console.WriteLine(duracaoServicoAgendadoFloat);
                             var itensExcluidos = (int)(duracaoServicoAgendadoFloat / 0.5);
-
+                            Console.WriteLine("--------------ItensExcluidos---------------");
+                            Console.WriteLine(itensExcluidos);
                             var index = agenda.IndexOf(item);
                             agenda.RemoveRange(index, itensExcluidos);
                         }

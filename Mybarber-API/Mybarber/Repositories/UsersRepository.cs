@@ -53,7 +53,7 @@ namespace Mybarber.Repositories
         {
             try
             {
-                IQueryable<Users> query = _context.Users.Include(it => it.Barbeiros) ;
+                IQueryable<Users> query = _context.Users.Include(it => it.Barbeiros).Include(it=>it.RolesUsers).ThenInclude(it=>it.Role) ;
 
                 query = query.AsNoTracking()
                        .OrderBy(users => users.IdUser)

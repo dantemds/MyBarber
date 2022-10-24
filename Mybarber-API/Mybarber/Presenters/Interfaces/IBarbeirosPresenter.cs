@@ -12,7 +12,7 @@ namespace Mybarber.Presenter
 
         Task<BarbeirosResponseDto> GetBarbeiroAsyncById(Guid idBarbeiro);
 
-        Task<BarbeirosResponseDto> GetBarbeiroAsyncByTenant(Guid idBarbearia);
+        Task<List<BarbeirosResponseDto>> GetBarbeiroAsyncByTenant(Guid idBarbearia);
 
         Task<BarbeirosCompleteResponseDto> PostBarbeiroAsync(BarbeirosRequestDto barbeiroDto);
 

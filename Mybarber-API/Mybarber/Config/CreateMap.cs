@@ -73,6 +73,8 @@ namespace Mybarber.Helpers
             CreateMap<UsersRolesResponseDto, UsersRolesRequestDto>();
             CreateMap<Role, RolesRequestDto>().ReverseMap();
             CreateMap<Role, RolesRequestDto>();
+            CreateMap<Role, RolesResponseDto>();
+            CreateMap<Role, RolesResponseDto>().ReverseMap();
         }
     }
 }

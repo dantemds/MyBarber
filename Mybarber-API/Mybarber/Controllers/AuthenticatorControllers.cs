@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Mybarber.DataTransferObject.Login;
+using Mybarber.DataTransferObject.Roles;
 using Mybarber.Exceptions;
 using Mybarber.Helpers;
 using Mybarber.Models;
@@ -15,6 +17,7 @@ using Mybarber.Repositories;
 using Mybarber.Repository;
 
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -33,26 +36,21 @@ namespace Mybarber.Controllers
         private readonly IUsersRepository _Authenticate;
         private readonly IGenerallyRepository _generally;
         private readonly IUsersRepository _repoUser;
-       
-       
-
-     
-       
         private readonly AppSettings _appSettings;
-   
         private readonly IHash _hash;
+        private readonly IMapper _mapper;
 
 
 
         public AuthenticatorControllers(IUsersRepository Authenticate,
             IGenerallyRepository generally, 
             UserManager<IdentityUser> userManager,
-            IOptions<AppSettings> appSettings,  IBarbeirosRepository repoBarbeiro, IHash hash, IUsersRepository repoUser)
+            IOptions<AppSettings> appSettings,  IBarbeirosRepository repoBarbeiro, IHash hash, IUsersRepository repoUser, IMapper mapper)
         {
             this._Authenticate = Authenticate;
             this._generally = generally;
             this._hash = hash;
-
+            this._mapper = mapper;
             this._repoUser = repoUser;
             this._appSettings = appSettings.Value;
           
@@ -71,17 +69,20 @@ namespace Mybarber.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> AuthenticateAsync(LoginRequestDto model)
         {
-
-
-
           var user = await  _Authenticate.GetUserAsyncByEmail(model.Email);
 
             if (_hash.VerificarSenha(model.Password, user.Password) == true)
             {
                 var token = await GerarJwt(model.Email);
+                List<RolesResponseDto> roles = new List<RolesResponseDto>();
+                foreach (var roleUser in user.RolesUsers)
+                {
+                    var roleDto = _mapper.Map<RolesResponseDto>(roleUser.Role);
+                    roles.Add(roleDto);
+                }
 
 
-                RetornoUsuario retorno = new RetornoUsuario(user.Barbeiros.IdBarbeiro,user.IdUser, user.UserName, token, user.BarbeariasId);
+                RetornoUsuario retorno = new RetornoUsuario(user.Barbeiros.IdBarbeiro,user.IdUser, user.UserName, token, user.BarbeariasId, roles);
 
                 return Ok(retorno);
 
@@ -241,14 +242,16 @@ namespace Mybarber.Controllers
             public string NomeUsuario { get; set; }
             public string Token { get; set; }
             public Guid IdBarbearia { get ; set; }
+            public ICollection<RolesResponseDto> Role { get; set; } 
 
-            public RetornoUsuario(Guid IdBarbeiro, Guid IdUsuario, string nomeUsuario, string token, Guid idbarbearia)
+            public RetornoUsuario(Guid IdBarbeiro, Guid IdUsuario, string nomeUsuario, string token, Guid idbarbearia, ICollection<RolesResponseDto> Role)
             {
                 this.IdUsuario = IdUsuario;
                 this.NomeUsuario = nomeUsuario;
                 this.Token = token;
                 this.IdBarbearia = idbarbearia;
                 this.IdBarbeiro = IdBarbeiro;
+                this.Role = Role;
             }
 
 
