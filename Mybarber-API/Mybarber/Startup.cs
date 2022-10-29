@@ -102,9 +102,9 @@ namespace Mybarber
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
-         
-           Swagger.AddAppSwagger(app);
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            Swagger.AddAppSwagger(app);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

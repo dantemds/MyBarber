@@ -5,9 +5,18 @@ namespace Mybarber.Config
 {
     public static class Cors
     {
-
+        
         public static void AddCors(IServiceCollection services)
         {
+            //services.AddCors(option =>
+            //{
+            //    option.AddPolicy(name: "MyAllow",
+            //        policy =>
+            //        {
+            //            policy.WithOrigins("https://minha-barbearia.online");
+            //        });
+            //});
+
             services.AddCors();
         }
 
@@ -18,6 +27,7 @@ namespace Mybarber.Config
           .AllowAnyMethod()
 
           );
+            //app.UseCors("MyAllow");
 
         }
     }

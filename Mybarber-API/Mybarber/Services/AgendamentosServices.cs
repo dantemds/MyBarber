@@ -111,7 +111,7 @@ namespace Mybarber.Services
 
             if (await _generally.SaveChangesAsync()) 
             {
-                _email.SendEmail(agendamento, "EmailCancelamento");
+                //_email.SendEmail(agendamento, "EmailCancelamento");
                 return true;
             
             }
