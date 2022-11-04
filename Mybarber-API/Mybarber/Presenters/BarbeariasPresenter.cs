@@ -58,6 +58,36 @@ namespace Mybarber.Presenter
             }
         }
 
+        public async Task<BarbeariasResponseDto> PatchToggleAgendamentoByBarbearia(Guid idBarbearia)
+        {
+            try
+            {
+                var barbearia = await _service.PatchToggleAgendamentoByBarbearia(idBarbearia);
+
+                return _mapper.Map<BarbeariasResponseDto>(barbearia);
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+        public async Task<BarbeariasResponseDto> PatchToggleAtivoByBarbearia(Guid idBarbearia)
+        {
+            try
+            {
+                var barbearia = await _service.PatchToggleAtivoByBarbearia(idBarbearia);
+
+                return _mapper.Map<BarbeariasResponseDto>(barbearia);
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+
         public async Task<BarbeariasCompleteRequestDto> PostBarbeariaCompletaAsync(BarbeariasCompleteRequestDto dto)
         {
             try

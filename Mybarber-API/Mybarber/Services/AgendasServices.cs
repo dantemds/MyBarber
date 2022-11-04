@@ -61,11 +61,11 @@ namespace Mybarber.Services
             var HorarioMax=0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
 
-            //string tz = TZConvert.WindowsToIana("E. South America Standard Time");
-            //var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
-            //var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
-            var horaBrasilia = DateTime.Now;
-            var horaAtual = (horaBrasilia.Hour.ToString() + ',' + horaBrasilia.Minute.ToString());
+            string tz = TZConvert.WindowsToIana("E. South America Standard Time");
+            var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
+            var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
+            //var horaBrasilia = DateTime.Now;
+            var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
             Console.WriteLine("--------------hora atual string---------------");
             Console.WriteLine(horaAtual);
             if (horaAtual.Count() < 5)
@@ -79,7 +79,7 @@ namespace Mybarber.Services
                 if (horaAtual[3] == '3' || horaAtual[3] == '4' || horaAtual[3] == '5')
                 {
 
-                    horaAtual = horaAtual.Substring(0, 2) + ',' + "51";
+                    horaAtual = horaAtual.Substring(0, 2) + '.' + "51";
                 }
             }
            
@@ -161,7 +161,7 @@ namespace Mybarber.Services
             PageParams pageParams = new PageParams();
             pageParams.Date = data;
             Console.WriteLine("--------------duracaoServico  EM STRING---------------");
-            var durancaoServico = servico.TempoServico.Hour.ToString() + ',' + servico.TempoServico.Minute.ToString();
+            var durancaoServico = servico.TempoServico.Hour.ToString() + '.' + servico.TempoServico.Minute.ToString();
             Console.WriteLine(durancaoServico);
             durancaoServico = durancaoServico.Replace("30", "5");
 
@@ -177,7 +177,7 @@ namespace Mybarber.Services
                     if (agendamento.BarbeirosId == idBarbeiro)
                     {
                         Console.WriteLine("--------------hora em string---------------");
-                        var hora = agendamento.Horario.Hour.ToString() + ',' + agendamento.Horario.Minute.ToString();
+                        var hora = agendamento.Horario.Hour.ToString() + '.' + agendamento.Horario.Minute.ToString();
                         Console.WriteLine(hora);
                         hora = hora.Replace("30", "5");
                         var horaFloat = Convert.ToSingle(hora);
@@ -185,7 +185,7 @@ namespace Mybarber.Services
                         Console.WriteLine(horaFloat);
                         if (item == horaFloat)
                         {
-                            var durancaoServicoAgendado = agendamento.Servicos.TempoServico.Hour.ToString() + ',' + agendamento.Servicos.TempoServico.Minute.ToString();
+                            var durancaoServicoAgendado = agendamento.Servicos.TempoServico.Hour.ToString() + '.' + agendamento.Servicos.TempoServico.Minute.ToString();
                             Console.WriteLine("--------------Duração servico agendado---------------");
                             Console.WriteLine(durancaoServicoAgendado);
                             durancaoServicoAgendado = durancaoServicoAgendado.Replace("30", "5");

@@ -40,6 +40,77 @@ namespace Mybarber.Services
             }
         }
 
+        public async Task<Barbearias> PatchToggleAgendamentoByBarbearia(Guid idBarbearia)
+        {
+            try
+            {
+                var barbearia = await _repo.GetBarbeariasAsyncById(idBarbearia);
+
+                if (barbearia.FuncaoAgendamento)
+                {
+                    barbearia.FuncaoAgendamento = false;
+                    _generally.Update(barbearia);
+                }
+                else
+                {
+                    barbearia.FuncaoAgendamento = true;
+                    _generally.Update(barbearia);
+                }
+
+
+                if (await _generally.SaveChangesAsync())
+                {
+                    return barbearia;
+                }
+
+                else
+                {
+                    throw new Exception();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
+
+        public async Task<Barbearias> PatchToggleAtivoByBarbearia(Guid idBarbearia)
+        {
+            try
+            {
+                var barbearia = await _repo.GetBarbeariasAsyncById(idBarbearia);
+
+                if (barbearia.Ativa)
+                {
+                    barbearia.Ativa = false;
+                    _generally.Update(barbearia);
+                }
+                else
+                {
+                    barbearia.Ativa = true;
+                    _generally.Update(barbearia);
+                }
+
+
+                if (await _generally.SaveChangesAsync())
+                {
+                    return barbearia;
+                }
+
+                else
+                {
+                    throw new Exception();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+        }
+
         public async Task<Barbearias> GetBarbeariaAsyncById(Guid idBarbearia)
         {
             try 
@@ -88,6 +159,9 @@ namespace Mybarber.Services
                 var barbeariaFinded = await _repo.GetBarbeariasAsyncById(idBarbearia);
                 barbeariaFinded.NomeBarbearia = barbearias.NomeBarbearia;
                 barbeariaFinded.CNPJ = barbearias.CNPJ;
+                barbeariaFinded.Ativa = barbearias.Ativa;
+                barbeariaFinded.Route = barbearias.Route;
+                barbeariaFinded.FuncaoAgendamento = barbearias.FuncaoAgendamento;
                 _generally.Update(barbeariaFinded);
                 if(await _generally.SaveChangesAsync())
                 {

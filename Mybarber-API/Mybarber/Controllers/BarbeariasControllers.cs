@@ -57,9 +57,7 @@ namespace Mybarber.Controllers
         [HttpGet("id/{idBarbearia}")]
 
         public async Task<IActionResult> GetBarbeariaAsyncById(Guid idBarbearia)
-
         {
-
             var result = await _presenter.GetAllAtributesBarbeariaAsyncById(idBarbearia);
 
             if (result == null)
@@ -71,10 +69,6 @@ namespace Mybarber.Controllers
                 return Ok(result);
             }
 
-
-
-
-
         }
         [HttpGet("{route}")]
 
@@ -84,10 +78,6 @@ namespace Mybarber.Controllers
             var result = await _presenter.GetAllAtributesBarbeariaAsyncByRoute(route);
 
             return Ok(result);
-
-
-
-
 
         }
         /// <summary>
@@ -139,6 +129,22 @@ namespace Mybarber.Controllers
 
 
 
+        }
+
+        [HttpPatch("toggleagendamento/{idBarbearia}")]
+        public async Task<IActionResult> PatchToggleAgendamentoByBarbearia(Guid idBarbearia)
+        {
+            var result = await _presenter.PatchToggleAgendamentoByBarbearia(idBarbearia);
+
+            return Ok(result);
+        }
+
+        [HttpPatch("toggleativabarbearia/{idBarbearia}")]
+        public async Task<IActionResult> PatchToggleAtivoByBarbearia(Guid idBarbearia)
+        {
+            var result = await _presenter.PatchToggleAtivoByBarbearia(idBarbearia);
+
+            return Ok(result);
         }
     }
 }

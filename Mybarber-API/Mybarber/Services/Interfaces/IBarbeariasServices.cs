@@ -8,8 +8,9 @@ namespace Mybarber.Services
     public interface IBarbeariasServices
     {
         Task<IEnumerable<Barbearias>> GetAllBarbeariasAsync();
+        Task<Barbearias> PatchToggleAtivoByBarbearia(Guid idBarbearia);
         Task<Barbearias> GetBarbeariaAsyncById(Guid idBarbearia);
-
+        Task<Barbearias> PatchToggleAgendamentoByBarbearia(Guid idBarbearia);
         Task<Barbearias> PostBarbeariaAsync(Barbearias barbearias);
         Task<string> DeleteBarbeariaAsyncById(Guid idBarbearia);
         Task<bool> PutBarbeariaAsyncById(Guid idBarbearia, Barbearias barbearias);

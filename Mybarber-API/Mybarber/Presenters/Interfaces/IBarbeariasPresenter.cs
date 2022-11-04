@@ -11,6 +11,8 @@ namespace Mybarber.Presenter
     {
 
         Task<IEnumerable<BarbeariasResponseDto>> GetAllBarbeariasAsync();
+        Task<BarbeariasResponseDto> PatchToggleAgendamentoByBarbearia(Guid idBarbearia);
+        Task<BarbeariasResponseDto> PatchToggleAtivoByBarbearia(Guid idBarbearia);
 
         //Task<BarbeariasResponseDto> GetBarbeariaAsyncById(int idBarbearia);
         Task<BarbeariasResponseDto> GetAllAtributesBarbeariaAsyncByRoute(string route);
