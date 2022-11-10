@@ -45,7 +45,13 @@ namespace Mybarber.Services
             try
             {
                 var barbearia = await _repo.GetBarbeariasAsyncById(idBarbearia);
-
+                barbearia.Barbeiros = null;
+                barbearia.Servicos = null;
+                barbearia.Agendamentos = null;
+                barbearia.Banner = null;
+                barbearia.ServicosBarbeiros = null;
+                barbearia.LandingPageImages = null;
+                barbearia.Users = null;
                 if (barbearia.FuncaoAgendamento)
                 {
                     barbearia.FuncaoAgendamento = false;
@@ -69,9 +75,9 @@ namespace Mybarber.Services
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new Exception();
+                throw new Exception(e.Message);
             }
         }
 
@@ -81,6 +87,13 @@ namespace Mybarber.Services
             try
             {
                 var barbearia = await _repo.GetBarbeariasAsyncById(idBarbearia);
+                barbearia.Barbeiros = null;
+                barbearia.Servicos = null;
+                barbearia.Agendamentos = null;
+                barbearia.Banner = null;
+                barbearia.ServicosBarbeiros = null;
+                barbearia.LandingPageImages = null;
+                barbearia.Users = null;
 
                 if (barbearia.Ativa)
                 {
@@ -157,6 +170,13 @@ namespace Mybarber.Services
 
 
                 var barbeariaFinded = await _repo.GetBarbeariasAsyncById(idBarbearia);
+                barbeariaFinded.Barbeiros = null;
+                barbeariaFinded.Servicos = null;
+                barbeariaFinded.Agendamentos = null;
+                barbeariaFinded.Banner = null;
+                barbeariaFinded.ServicosBarbeiros = null;
+                barbeariaFinded.LandingPageImages = null;
+                barbeariaFinded.Users = null;
                 barbeariaFinded.NomeBarbearia = barbearias.NomeBarbearia;
                 barbeariaFinded.CNPJ = barbearias.CNPJ;
                 barbeariaFinded.Ativa = barbearias.Ativa;

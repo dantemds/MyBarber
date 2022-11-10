@@ -6,6 +6,7 @@ using Mybarber.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TimeZoneConverter;
 
 namespace Mybarber.Presenter
 {
@@ -53,6 +54,10 @@ namespace Mybarber.Presenter
         {
             try
             {
+                //string tz = TZConvert.WindowsToIana("E. South America Standard Time");
+                //var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
+                //var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
+                var horaBrasilia = DateTime.Now;
                 if (agendamentoDto == null)
                     throw new ViewException("Agendamento.Missing.Info");
                 if (string.IsNullOrEmpty(agendamentoDto.Email))
@@ -71,6 +76,16 @@ namespace Mybarber.Presenter
                     throw new ViewException("Barbeiro.Missing.Info");
                 if (agendamentoDto.ServicosId.Equals(null))
                     throw new ViewException("Servico.Missing.Info");
+                if(agendamentoDto.Horario.Date == horaBrasilia.Date)
+                {
+                    if(agendamentoDto.Horario < horaBrasilia)
+                    {
+                        throw new ViewException("Time.out.Brazilian");
+                    }
+                }
+                if(agendamentoDto.Horario.Date < horaBrasilia.Date)
+                    throw new ViewException("Time.out.Brazilian");
+               
 
 
                 var agendamento = _mapper.Map<Agendamentos>(agendamentoDto);
