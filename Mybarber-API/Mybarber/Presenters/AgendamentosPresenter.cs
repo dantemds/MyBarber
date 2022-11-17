@@ -36,7 +36,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<AgendamentosResponseDto> GetAgendamentoAsyncById(Guid idAgendamento)
+        public async Task<AgendamentosResponseDto> GetAgendamentoAsyncById(int idAgendamento)
         {
             try
             {
@@ -54,10 +54,10 @@ namespace Mybarber.Presenter
         {
             try
             {
-                //string tz = TZConvert.WindowsToIana("E. South America Standard Time");
-                //var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
-                //var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
-                var horaBrasilia = DateTime.Now;
+                string tz = TZConvert.WindowsToIana("E. South America Standard Time");
+                var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
+                var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
+                //var horaBrasilia = DateTime.Now;
                 if (agendamentoDto == null)
                     throw new ViewException("Agendamento.Missing.Info");
                 if (string.IsNullOrEmpty(agendamentoDto.Email))
@@ -106,7 +106,7 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<bool> DeleteAgendamentoAsyncById(Guid idAgendamento)
+        public async Task<bool> DeleteAgendamentoAsyncById(int idAgendamento)
         {
 
 

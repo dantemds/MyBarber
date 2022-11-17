@@ -42,7 +42,7 @@ namespace Mybarber.Services
             }
         }
 
-        public async Task<Agendamentos> GetAgendamentoAsyncById(Guid idAgendamento)
+        public async Task<Agendamentos> GetAgendamentoAsyncById(int idAgendamento)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Mybarber.Services
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteAgendamentoAsync(Guid idAgendamento) 
+        public async Task<bool> DeleteAgendamentoAsync(int idAgendamento) 
         {
             var agendamento = await _repo.GetAgendamentosAsyncById(idAgendamento);
             if (agendamento.Equals(null))

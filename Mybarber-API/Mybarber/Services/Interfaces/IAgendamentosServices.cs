@@ -8,8 +8,8 @@ namespace Mybarber.Services
     public interface IAgendamentosServices
     {
         Task<IEnumerable<Agendamentos>> GetAllAgendamentosAsync();
-        Task<Agendamentos> GetAgendamentoAsyncById(Guid idAgendamento);
+        Task<Agendamentos> GetAgendamentoAsyncById(int idAgendamento);
         Task<Agendamentos> PostAgendamentoAsync(Agendamentos agendamentos);
-        Task<bool> DeleteAgendamentoAsync(Guid idAgendamento);
+        Task<bool> DeleteAgendamentoAsync(int idAgendamento);
     }
 }

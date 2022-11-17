@@ -4,7 +4,7 @@ namespace Mybarber.DataTransferObject.Agendamento
 {
     public class AgendamentosCompleteResponseDto 
     {
-        public Guid IdAgendamento { get; set; }
+        public int IdAgendamento { get; set; }
         public string Name { get; set; }
         public string Contato { get; set; }
         public string Email { get; set; }

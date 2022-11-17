@@ -22,6 +22,7 @@ namespace Mybarber.DataTransferObject.Barbearia
     {
         public Guid IdBarbearia { get; set; }
         public string NomeBarbearia { get; set; }
+        public string Route { get;set; }
         public bool Ativa { get; set; }
         public bool FuncaoAgendamento { get; set; }
         public virtual ICollection<ServicosResponseDto> Servicos { get; set; }

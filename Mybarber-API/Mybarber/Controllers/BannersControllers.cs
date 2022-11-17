@@ -34,8 +34,22 @@ namespace Mybarber.Controllers
             }
         }
 
-        //[HttpDelete()]
-        //public async Task<IActionResult> DeleteBannerS3Async()
+        [HttpDelete("s3/{idBanner}")]
+        public async Task<IActionResult> DeleteBannerImagemS3Async(string route, Guid idBanner, Guid barbeariaId, bool responsividade)
+        {
+            try
+            {
+                var result = await _servico.DeleteBannerImagemS3Async(route, idBanner, barbeariaId, responsividade);
+
+                return Ok(result);
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

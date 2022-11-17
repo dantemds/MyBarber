@@ -103,7 +103,7 @@ namespace Mybarber.Services
 
 
 
-        public async Task<bool> PutBarbeiroImagemS3Async(IFormFile file, string route, Guid idBarbeiro, string nomeBarbeiro)
+        public async Task<bool> PutBarbeiroImagemS3Async(BarbeiroImagemRequestS3Dto dto)
         {
 
 
@@ -114,12 +114,12 @@ namespace Mybarber.Services
 
             try
             {
-                var imagemAnterior = await _repository.GetImagemBarbeiroByIdBarbeiro(idBarbeiro);
+                var imagemAnterior = await _repository.GetImagemBarbeiroByIdBarbeiro(dto.IdBarbeiro);
 
                 var deleteObjectRequest = new DeleteObjectRequest
                 {
                     BucketName = bucketName,
-                    Key = _config.GetSection("S3Config:ImagesBarbeiro").Value + route + "/" + idBarbeiro
+                    Key = _config.GetSection("S3Config:ImagesBarbeiro").Value + dto.Route + "/" + dto.IdBarbeiro
                 };
 
                 await client.DeleteObjectAsync(deleteObjectRequest);
@@ -127,16 +127,16 @@ namespace Mybarber.Services
                 var putRequest = new PutObjectRequest
                 {
                     BucketName = bucketName,
-                    Key = _config.GetSection("S3Config:ImagesBarbeiro").Value + route + "/" + idBarbeiro,
-                    InputStream = file.OpenReadStream(),
+                    Key = _config.GetSection("S3Config:ImagesBarbeiro").Value + dto.Route + "/" + dto.IdBarbeiro,
+                    InputStream = dto.File.OpenReadStream(),
 
                 };
 
-                putRequest.Metadata.Add("Content-Type", file.ContentType);
+                putRequest.Metadata.Add("Content-Type", dto.File.ContentType);
 
                 PutObjectResponse response = await client.PutObjectAsync(putRequest);
 
-                imagemAnterior.URL = _config.GetSection("S3Config:ImagesBarbeiro").Value + route + "/" + idBarbeiro;
+                imagemAnterior.URL = _config.GetSection("S3Config:ImagesBarbeiro").Value + dto.Route + "/" + dto.IdBarbeiro;
 
                 _generally.Update(imagemAnterior);
                 if (await _generally.SaveChangesAsync())

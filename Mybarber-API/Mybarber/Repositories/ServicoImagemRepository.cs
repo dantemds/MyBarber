@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mybarber.Repositories
 {
-    public class ServicoImagemRepository: IServicoImagemRepository
+    public class ServicoImagemRepository : IServicoImagemRepository
     {
         private readonly Context _context;
         public ServicoImagemRepository(Context context)

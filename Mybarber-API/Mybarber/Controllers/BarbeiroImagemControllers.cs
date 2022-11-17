@@ -62,11 +62,11 @@ namespace Mybarber.Controllers
 
         [HttpPut("s3/{idBarbeiro}")]
 
-        public async Task<IActionResult> PutBarbeiroImagemS3Async([FromForm(Name = "image")] IFormFile file, [FromForm(Name = "route")] string route, [FromForm(Name = "barbeiro")] Guid idBarbeiro, [FromForm(Name = "nome")] string nomeImagem)
+        public async Task<IActionResult> PutBarbeiroImagemS3Async([FromForm] BarbeiroImagemRequestS3Dto dto)
         {
             try
             {
-                var result = await _service.PutBarbeiroImagemS3Async(file, route, idBarbeiro, nomeImagem);
+                var result = await _service.PutBarbeiroImagemS3Async(dto);
 
                 return Ok(result);
 

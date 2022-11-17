@@ -16,9 +16,9 @@ namespace Mybarber.Services
         private readonly IGenerallyRepository _generally;
         private readonly IConfiguration _config;
         private readonly IServicoImagemRepository _repository;
-        public ServicoImagemServices( IGenerallyRepository generally, IConfiguration config)
+        public ServicoImagemServices( IGenerallyRepository generally, IConfiguration config, IServicoImagemRepository repository)
         {
-          
+            this._repository = repository;
             this._generally = generally;
             this._config = config;
 
@@ -152,7 +152,7 @@ namespace Mybarber.Services
             }
         }
 
-        public async Task<bool> PutServicoImagemS3Async(IFormFile file, string route, Guid idServico, string nomeServico)
+        public async Task<bool> PutServicoImagemS3Async(ServicoImagemRequestS3Dto dto)
         {
 
             string bucketName = _config.GetSection("S3Config:BucketName").Value;
@@ -162,12 +162,12 @@ namespace Mybarber.Services
 
             try
             {
-                var imagemAnterior = await _repository.GetImagemServicoByIdServico(idServico);
+                var imagemAnterior = await _repository.GetImagemServicoByIdServico(dto.IdServico);
 
                 var deleteObjectRequest = new DeleteObjectRequest
                 {
                     BucketName = bucketName,
-                    Key = _config.GetSection("S3Config:ImagesServico").Value + route + "/" + idServico
+                    Key = _config.GetSection("S3Config:ImagesServico").Value + dto.Route + "/" + dto.IdServico
                 };
 
                 await client.DeleteObjectAsync(deleteObjectRequest);
@@ -175,16 +175,16 @@ namespace Mybarber.Services
                 var putRequest = new PutObjectRequest
                 {
                     BucketName = bucketName,
-                    Key = _config.GetSection("S3Config:ImagesServico").Value + route + "/" + idServico,
-                    InputStream = file.OpenReadStream(),
+                    Key = _config.GetSection("S3Config:ImagesServico").Value + dto.Route + "/" + dto.IdServico,
+                    InputStream = dto.File.OpenReadStream(),
 
                 };
 
-                putRequest.Metadata.Add("Content-Type", file.ContentType);
+                putRequest.Metadata.Add("Content-Type", dto.File.ContentType);
 
                 PutObjectResponse response = await client.PutObjectAsync(putRequest);
 
-                imagemAnterior.URL = _config.GetSection("S3Config:ImagesServico").Value + route + "/" + idServico;
+                imagemAnterior.URL = _config.GetSection("S3Config:ImagesServico").Value + dto.Route + "/" + dto.IdServico;
 
                 _generally.Update(imagemAnterior);
                 if (await _generally.SaveChangesAsync())

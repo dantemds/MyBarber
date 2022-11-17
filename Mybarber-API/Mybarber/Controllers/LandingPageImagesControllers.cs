@@ -32,5 +32,23 @@ namespace Mybarber.Controllers
                 return BadRequest($"Erro:{ex.Message}");
             }
         }
+
+        [HttpPut("s3/{idLading}")]
+
+        public async Task<IActionResult> PutBarbeiroImagemS3Async([FromForm] LandingPageImagesRequestDto dto, Guid idLandingPage)
+        {
+            try
+            {
+                var result = await _service.PutLadingImagemS3Async(dto, idLandingPage);
+
+                return Ok(result);
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

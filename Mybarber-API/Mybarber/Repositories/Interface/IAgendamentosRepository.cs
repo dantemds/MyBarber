@@ -12,7 +12,7 @@ namespace Mybarber.Repository
 
         //AGENDAMENTO
         Task<Agendamentos[]> GetAllAgendamentosAsync();
-        Task<Agendamentos> GetAgendamentosAsyncById(Guid idAgendamento);
+        Task<Agendamentos> GetAgendamentosAsyncById(int idAgendamento);
         Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(Guid tenant, PageParams pageParams);
         Task<Agendamentos> GetAgendamentosAsyncByHorario(Agendamentos horario);
         Task<IEnumerable<AgendamentosDoBarbeiro>> GetAgendamentosAsyncByIdBarbeiro(DateTime data, Guid idBarbeiro, Guid tenant);

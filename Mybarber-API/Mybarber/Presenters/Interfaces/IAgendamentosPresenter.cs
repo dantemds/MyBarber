@@ -9,11 +9,11 @@ namespace Mybarber.Presenter
     {
         Task<IEnumerable<AgendamentosResponseDto>> GetAllAgendamentosAsync();
 
-        Task<AgendamentosResponseDto> GetAgendamentoAsyncById(Guid idAgendamento);
+        Task<AgendamentosResponseDto> GetAgendamentoAsyncById(int idAgendamento);
 
         Task<AgendamentosCompleteResponseDto> PostAgendamentoAsync(AgendamentosRequestDto agendamentoDto);
 
-        Task<bool> DeleteAgendamentoAsyncById(Guid idAgendamento);
+        Task<bool> DeleteAgendamentoAsyncById(int idAgendamento);
       
     }
 }

@@ -3,6 +3,7 @@ using Amazon.S3.Model;
 using Microsoft.Extensions.Configuration;
 using Mybarber.DataTransferObject.Banner;
 using Mybarber.Models;
+using Mybarber.Repositories.Interface;
 using Mybarber.Repository;
 using Mybarber.Services.Interfaces;
 using System;
@@ -14,8 +15,10 @@ namespace Mybarber.Services
     {
         private readonly IGenerallyRepository _generally;
         private readonly IConfiguration _config;
-        public BannerServices(IGenerallyRepository generally, IConfiguration config)
+        private readonly IBannerRepository _repository;
+        public BannerServices(IGenerallyRepository generally, IConfiguration config, IBannerRepository repository)
         {
+            this._repository = repository;  
             this._generally = generally;
             this._config = config;
         }
@@ -102,6 +105,54 @@ namespace Mybarber.Services
                     throw new Exception("Error occurred: " + amazonS3Exception.Message);
                 }
             }
+        }
+        public async Task<bool> DeleteBannerImagemS3Async(string route, Guid idBanner, Guid barbeariaId, bool responsividade)
+        {
+
+            string bucketName = _config.GetSection("S3Config:BucketName").Value;
+
+
+            var client = new AmazonS3Client(_config.GetSection("S3Config:IdAcess").Value, _config.GetSection("S3Config:SecretKey").Value, Amazon.RegionEndpoint.USEast1);
+
+            try
+            {
+                var imagem = await _repository.GetImagemBannerById(idBanner);
+
+                var deleteObjectRequest = new DeleteObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = _config.GetSection("S3Config:ImagesBanner").Value + route + "/" + responsividade + "/" + barbeariaId,
+                };
+
+                await client.DeleteObjectAsync(deleteObjectRequest);
+
+                _generally.Delete(imagem);
+
+                if (await _generally.SaveChangesAsync())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                if (amazonS3Exception.ErrorCode != null &&
+                    (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId")
+                    ||
+                    amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
+                {
+                    throw new Exception("Check the provided AWS Credentials.");
+                }
+                else
+                {
+                    throw new Exception("Error occurred: " + amazonS3Exception.Message);
+                }
+            }
+
         }
     }
 }

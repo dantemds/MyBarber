@@ -69,12 +69,12 @@ namespace Mybarber.Controllers
         }
 
         [HttpPut("s3/{idServico}")]
-        public async Task<IActionResult> UpdateServicoImagemS3Async([FromForm(Name = "image")] IFormFile file, [FromForm(Name = "route")] string route, [FromForm(Name = "servico")] Guid idServico, [FromForm(Name = "nome")] string nomeImagem)
+        public async Task<IActionResult> UpdateServicoImagemS3Async([FromForm] ServicoImagemRequestS3Dto dto)
         {
             try
             {
 
-                var result = await _servico.PutServicoImagemS3Async(file, route, idServico, nomeImagem);
+                var result = await _servico.PutServicoImagemS3Async(dto);
 
                 return Created($"/api/v1/servicoImagem/{result}", result);
             }

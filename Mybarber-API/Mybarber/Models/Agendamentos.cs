@@ -8,7 +8,7 @@ namespace Mybarber.Models
     {
 
         [Key]
-        public Guid IdAgendamento { get; set; } = Guid.NewGuid();
+        public int IdAgendamento { get; set; }
 
         [Required(ErrorMessage = "O nome deve ser informado"), MaxLength(80, ErrorMessage = "Nome não pode exceder 80 caracteres"), MinLength(3, ErrorMessage = "Nome deve conter 3 ou mais caracteres")]
         public string Name { get; set; }

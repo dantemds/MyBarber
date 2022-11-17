@@ -10,7 +10,7 @@ namespace Mybarber.Services
     {
         Task<ServicoImagens> PostServicoImagemAsync(ServicoImagens imagem);
         Task<ServicoImagens> PostServicoImagemS3Async(ServicoImagemRequestS3Dto dto);
-        Task<bool> PutServicoImagemS3Async(IFormFile file, string route, Guid idServico, string nomeServico);
+        Task<bool> PutServicoImagemS3Async(ServicoImagemRequestS3Dto dto);
         Task<bool> DeleteServicoImagemS3Async(string route, Guid idServico);
     }
 }

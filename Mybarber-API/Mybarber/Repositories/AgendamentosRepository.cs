@@ -27,7 +27,7 @@ namespace Mybarber.Repositories
 
         //-----------------------------------------------------------------------------------------------------//
 
-        public async Task<Agendamentos> GetAgendamentosAsyncById(Guid idAgendamento)
+        public async Task<Agendamentos> GetAgendamentosAsyncById(int idAgendamento)
         {
             IQueryable<Agendamentos> query = _context.Agendamentos.Include(it => it.Servicos).Include(it => it.Barbeiros);
 

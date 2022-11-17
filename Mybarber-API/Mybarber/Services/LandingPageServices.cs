@@ -3,6 +3,7 @@ using Amazon.S3.Model;
 using Microsoft.Extensions.Configuration;
 using Mybarber.DataTransferObject.LadingPageImages;
 using Mybarber.Models;
+using Mybarber.Repositories.Interface;
 using Mybarber.Repository;
 using Mybarber.Services.Interfaces;
 using System;
@@ -14,10 +15,12 @@ namespace Mybarber.Services
     public class LandingPageServices: ILandingPageServices
     {
         private readonly IConfiguration _config;
+        private readonly ILandingPageRepository _repository;
         private readonly IGenerallyRepository _generally;
-        public LandingPageServices(IGenerallyRepository generally, IConfiguration config)
+        public LandingPageServices(IGenerallyRepository generally, IConfiguration config, ILandingPageRepository repository)
         {
             this._generally = generally;
+            this._repository = repository;
             this._config = config;
         }
 
@@ -118,6 +121,68 @@ namespace Mybarber.Services
                     throw new Exception("Error occurred: " + amazonS3Exception.Message);
                 }
             }
+        }
+
+        public async Task<bool> PutLadingImagemS3Async(LandingPageImagesRequestDto dto, Guid idLandingPage)
+        {
+
+
+            string bucketName = _config.GetSection("S3Config:BucketName").Value;
+
+
+            var client = new AmazonS3Client(_config.GetSection("S3Config:IdAcess").Value, _config.GetSection("S3Config:SecretKey").Value, Amazon.RegionEndpoint.USEast1);
+
+            try
+            {
+                var imagemAnterior = await _repository.GetImagemLadingById(idLandingPage);
+
+                var deleteObjectRequest = new DeleteObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = _config.GetSection("S3Config:ImagesLanding").Value + dto.Route + "/" + dto.Posicao + "/" + dto.NumeroImagem + "/" + dto.BarbeariaId,
+                };
+
+                await client.DeleteObjectAsync(deleteObjectRequest);
+
+                var putRequest = new PutObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = _config.GetSection("S3Config:ImagesLanding").Value + dto.Route + "/" + dto.Posicao + "/" + dto.NumeroImagem + "/" + dto.BarbeariaId,
+                    InputStream = dto.File.OpenReadStream(),
+
+                };
+
+                putRequest.Metadata.Add("Content-Type", dto.File.ContentType);
+
+                PutObjectResponse response = await client.PutObjectAsync(putRequest);
+
+                imagemAnterior.URL = _config.GetSection("S3Config:ImagesLanding").Value + dto.Route + "/" + dto.Posicao + "/" + dto.NumeroImagem + "/" + dto.BarbeariaId;
+
+                _generally.Update(imagemAnterior);
+                if (await _generally.SaveChangesAsync())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (AmazonS3Exception amazonS3Exception)
+            {
+                if (amazonS3Exception.ErrorCode != null &&
+                    (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId")
+                    ||
+                    amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
+                {
+                    throw new Exception("Check the provided AWS Credentials.");
+                }
+                else
+                {
+                    throw new Exception("Error occurred: " + amazonS3Exception.Message);
+                }
+            }
+
         }
     }
 }
