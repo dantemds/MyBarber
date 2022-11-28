@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RVIiY640sQKLpRUgjyKaPzSTNRYqSK58o8rJ9BYNeJNPW2AMd/eRwirg/tX3aUtvoGL4OLuMxJLRqlBgktw7yQ==",
+  "dgSpecHash": "FAMjkZdYYizoVkllb/eiwVBrWQgTUlBWv++tAlUl5YW8iFOAVy0kcVVR8BKCMOdJdbIjWZibJJ/wTwCf6Herkw==",
   "success": true,
   "projectFilePath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\soumu\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\soumu\\.nuget\\packages\\awssdk.cloudfront\\3.7.4.11\\awssdk.cloudfront.3.7.4.11.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\awssdk.core\\3.7.100.20\\awssdk.core.3.7.100.20.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\awssdk.s3\\3.7.101.20\\awssdk.s3.3.7.101.20.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",

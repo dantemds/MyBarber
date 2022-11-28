@@ -27,5 +27,6 @@
     <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\soumu\.nuget\packages\microsoft.entityframeworkcore.tools\3.1.2</PkgMicrosoft_EntityFrameworkCore_Tools>
     <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">C:\Users\soumu\.nuget\packages\awssdk.core\3.7.100.20</PkgAWSSDK_Core>
     <PkgAWSSDK_S3 Condition=" '$(PkgAWSSDK_S3)' == '' ">C:\Users\soumu\.nuget\packages\awssdk.s3\3.7.101.20</PkgAWSSDK_S3>
+    <PkgAWSSDK_CloudFront Condition=" '$(PkgAWSSDK_CloudFront)' == '' ">C:\Users\soumu\.nuget\packages\awssdk.cloudfront\3.7.4.11</PkgAWSSDK_CloudFront>
   </PropertyGroup>
 </Project>

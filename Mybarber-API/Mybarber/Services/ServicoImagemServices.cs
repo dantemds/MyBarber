@@ -3,6 +3,7 @@ using Amazon.S3.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Mybarber.DataTransferObject.ServicoImagem;
+using Mybarber.Helpers;
 using Mybarber.Models;
 using Mybarber.Repositories.Interface;
 using Mybarber.Repository;
@@ -47,6 +48,7 @@ namespace Mybarber.Services
 
                 if (await _generally.SaveChangesAsync())
                 {
+                    var invalidation = await AWS.CreateInvalidation(_config);
                     return true;
                 }
                 else
@@ -127,6 +129,7 @@ namespace Mybarber.Services
 
                 if (await _generally.SaveChangesAsync())
                 {
+                    var invalidation = await AWS.CreateInvalidation(_config);
                     return imagemServico;
                 }
                 else
@@ -189,6 +192,7 @@ namespace Mybarber.Services
                 _generally.Update(imagemAnterior);
                 if (await _generally.SaveChangesAsync())
                 {
+                    var invalidation = await AWS.CreateInvalidation(_config);
                     return true;
                 }
                 else

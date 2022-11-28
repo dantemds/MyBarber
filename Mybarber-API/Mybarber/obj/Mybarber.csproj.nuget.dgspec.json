@@ -46,6 +46,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AWSSDK.CloudFront": {
+              "target": "Package",
+              "version": "[3.7.4.11, )"
+            },
             "AWSSDK.Core": {
               "target": "Package",
               "version": "[3.7.100.20, )"

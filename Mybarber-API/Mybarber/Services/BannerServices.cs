@@ -1,7 +1,10 @@
-﻿using Amazon.S3;
+﻿using Amazon.CloudFront;
+using Amazon.CloudFront.Model;
+using Amazon.S3;
 using Amazon.S3.Model;
 using Microsoft.Extensions.Configuration;
 using Mybarber.DataTransferObject.Banner;
+using Mybarber.Helpers;
 using Mybarber.Models;
 using Mybarber.Repositories.Interface;
 using Mybarber.Repository;
@@ -79,18 +82,20 @@ namespace Mybarber.Services
                 imagemBanner.URL = _config.GetSection("S3Config:ImagesBanner").Value + banner.Route + "/"+ responsividade +"/" + banner.BarbeariaId;
 
                 _generally.Add(imagemBanner);
-
+              
                 if (await _generally.SaveChangesAsync())
                 {
+                    var invalidation = await AWS.CreateInvalidation(_config);
+
                     return imagemBanner;
                 }
                 else
                 {
                     return imagemBanner;
                 }
+              
 
-
-            }
+                }
             catch (AmazonS3Exception amazonS3Exception)
             {
                 if (amazonS3Exception.ErrorCode != null &&
@@ -130,6 +135,7 @@ namespace Mybarber.Services
 
                 if (await _generally.SaveChangesAsync())
                 {
+                    var invalidation = await AWS.CreateInvalidation(_config);
                     return true;
                 }
                 else

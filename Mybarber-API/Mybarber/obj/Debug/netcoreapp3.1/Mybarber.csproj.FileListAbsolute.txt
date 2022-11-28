@@ -252,3 +252,4 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\websocket-sharp.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\AWSSDK.CloudFront.dll

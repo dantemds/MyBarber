@@ -29,6 +29,18 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "AWSSDK.CloudFront/3.7.4.11": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.4.6, 4.0.0)"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.CloudFront.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.CloudFront.dll": {}
+        }
+      },
       "AWSSDK.Core/3.7.100.20": {
         "type": "package",
         "compile": {
@@ -1305,6 +1317,33 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "AWSSDK.CloudFront/3.7.4.11": {
+      "sha512": "ZS89f5S4UIs9WXm0sTNprI4YOI7N7aoHv3Is9hnphSnGsojyqYf0RQlOahJBVEguaPTiMttTrymPGYkq77R84Q==",
+      "type": "package",
+      "path": "awssdk.cloudfront/3.7.4.11",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.CloudFront.CodeAnalysis.dll",
+        "awssdk.cloudfront.3.7.4.11.nupkg.sha512",
+        "awssdk.cloudfront.nuspec",
+        "lib/net35/AWSSDK.CloudFront.dll",
+        "lib/net35/AWSSDK.CloudFront.pdb",
+        "lib/net35/AWSSDK.CloudFront.xml",
+        "lib/net45/AWSSDK.CloudFront.dll",
+        "lib/net45/AWSSDK.CloudFront.pdb",
+        "lib/net45/AWSSDK.CloudFront.xml",
+        "lib/netcoreapp3.1/AWSSDK.CloudFront.dll",
+        "lib/netcoreapp3.1/AWSSDK.CloudFront.pdb",
+        "lib/netcoreapp3.1/AWSSDK.CloudFront.xml",
+        "lib/netstandard2.0/AWSSDK.CloudFront.dll",
+        "lib/netstandard2.0/AWSSDK.CloudFront.pdb",
+        "lib/netstandard2.0/AWSSDK.CloudFront.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
       ]
     },
     "AWSSDK.Core/3.7.100.20": {
@@ -3636,6 +3675,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "AWSSDK.CloudFront >= 3.7.4.11",
       "AWSSDK.Core >= 3.7.100.20",
       "AWSSDK.S3 >= 3.7.101.20",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
@@ -3710,6 +3750,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "AWSSDK.CloudFront": {
+            "target": "Package",
+            "version": "[3.7.4.11, )"
+          },
           "AWSSDK.Core": {
             "target": "Package",
             "version": "[3.7.100.20, )"

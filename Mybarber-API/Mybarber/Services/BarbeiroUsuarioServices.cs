@@ -70,7 +70,8 @@ namespace Mybarber.Services
         {
             try
             {
-                _generally.Delete(barbeiros.Users);
+                var user = barbeiros.Users;
+                _generally.Delete(user);
                 if (await _generally.SaveChangesAsync())
                     return true;
                 else throw new Exception();
@@ -84,4 +85,3 @@ namespace Mybarber.Services
     }
 
     }
-}

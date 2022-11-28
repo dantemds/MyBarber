@@ -122,9 +122,11 @@ namespace Mybarber.Presenter
             try
             {
                 var barbeiroFinded = await _service.GetBarbeiroAsyncById(idBarbeiro);
+                //cascade 
                 var usuario = await _serviceUserBarbeiro.DeleteUsuarioBarbeiro(barbeiroFinded);
+                //var barbeiro = await _service.DeleteBarbeiroAsyncById(idBarbeiro);
 
-                var barbeiro = await _service.DeleteBarbeiroAsyncById(idBarbeiro);
+
 
                 return "Barbeiro Deletado com sucesso.";
             }
