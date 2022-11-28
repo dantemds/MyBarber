@@ -8,7 +8,7 @@ namespace Mybarber.Models
     public class Agendas
     {
         [Key()]
-        public Guid IdAgendas { get; set; }
+        public Guid IdAgendas { get; set; } = Guid.NewGuid();
         public List<float> Segunda { get; set; }
 
         public List<float> Terca { get; set; }

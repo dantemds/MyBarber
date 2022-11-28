@@ -141,5 +141,16 @@ namespace Mybarber.Repositories
 
         }
 
+        public async Task<Agendamentos[]> GetAgendamentosApartirDeByBarbeiro(DateTime data, Guid idBarbeiro)
+        {
+            IQueryable<Agendamentos> query = _context.Agendamentos.Include(it=>it.Servicos);
+            query = query.AsNoTracking()
+                        .OrderBy(a => a.IdAgendamento)
+                        .Where(agendamento => agendamento.Horario.Year >= data.Year && agendamento.Horario.Month >= data.Month
+                        && agendamento.Horario.Day >= data.Day && agendamento.BarbeirosId == idBarbeiro);
+
+            return await query.ToArrayAsync();
+        }
+
     }
 }

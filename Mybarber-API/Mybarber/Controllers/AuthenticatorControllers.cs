@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Mybarber.DataTransferObject.Login;
 using Mybarber.DataTransferObject.Roles;
+using Mybarber.DataTransferObject.Usuario;
 using Mybarber.Exceptions;
 using Mybarber.Helpers;
 using Mybarber.Models;
@@ -80,12 +81,15 @@ namespace Mybarber.Controllers
                     var roleDto = _mapper.Map<RolesResponseDto>(roleUser.Role);
                     roles.Add(roleDto);
                 }
-
-
-                RetornoUsuario retorno = new RetornoUsuario(user.Barbeiros.IdBarbeiro,user.IdUser, user.UserName, token, user.BarbeariasId, roles);
-
-                return Ok(retorno);
-
+                if(user.Barbeiros != null)
+                {
+                    RetornoUsuario retorno = new RetornoUsuario(user.Barbeiros.IdBarbeiro, user.IdUser, user.UserName, token, user.BarbeariasId, roles);
+                    return Ok(retorno);
+                }
+                else{
+                  dynamic  retorno = new {user.IdUser, user.UserName, token, user.BarbeariasId, roles };
+                    return Ok(retorno);
+                }
             }
             else return BadRequest();
 
@@ -111,9 +115,10 @@ namespace Mybarber.Controllers
         }
         [AllowAnonymous]
         [HttpPost("create")]
-        public async Task<ActionResult> PostUserAsync(Users user)
+        public async Task<ActionResult> PostUserAsync(UsuarioCreateRequestDto user)
         {
-
+            var usuarioFinded = await _repoUser.GetUserAsyncByEmail(user.Email);
+            if (usuarioFinded != null) throw new Exception();
             var passwordHash = _hash.CriptografarSenha(user.Password);
 
 
@@ -128,7 +133,7 @@ namespace Mybarber.Controllers
 
          _generally.Add(usuario);
             if (await _generally.SaveChangesAsync())
-                return Ok();
+                return Ok(usuario);
             else return BadRequest()
     ;
 

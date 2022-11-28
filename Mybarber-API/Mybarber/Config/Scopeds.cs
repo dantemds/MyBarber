@@ -57,6 +57,8 @@ namespace Mybarber.Config
             services.AddScoped<IRolesRepository, RolesRepository>();
             services.AddScoped<IBannerRepository, BannerRepository>();
             services.AddScoped<ILandingPageRepository, LandingPageRepository>();
+            services.AddScoped<IEventosAgendadosPresenter, EventosAgendadosPresenter>();
+            services.AddScoped<IEventoRepository, EventoRepository>();
         }
     }
 }

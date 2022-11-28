@@ -5,8 +5,11 @@ using Mybarber.Helpers;
 using Mybarber.Persistencia;
 using Mybarber.Repositories;
 using Mybarber.Services;
+using Mybarber.WebSockets.Server;
 using Serilog;
 using System;
+using System.Globalization;
+using System.Threading;
 
 namespace Mybarber
 {
@@ -14,9 +17,7 @@ namespace Mybarber
     {
         public static void Main(string[] args)
        {
-            
-
-
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()

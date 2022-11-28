@@ -46,9 +46,13 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AWSSDK.Core": {
+              "target": "Package",
+              "version": "[3.7.100.20, )"
+            },
             "AWSSDK.S3": {
               "target": "Package",
-              "version": "[3.7.9.43, )"
+              "version": "[3.7.101.20, )"
             },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -98,6 +102,14 @@
               "target": "Package",
               "version": "[1.14.0, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.4.2, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[4.1.3, )"
@@ -133,6 +145,10 @@
             "TimeZoneConverter.Posix": {
               "target": "Package",
               "version": "[3.0.1, )"
+            },
+            "WebSocketSharp-NonPreRelease": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [

@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Mybarber.Config;
 using Mybarber.Models;
 using Mybarber.Persistencia;
+using Mybarber.WebSockets.Server;
 using System;
 using System.Text;
 
@@ -44,6 +45,7 @@ namespace Mybarber
             Cors.AddCors(services);
 
             Scopeds.GetScoped(services);
+            Server.Start();
 
             Swagger.AddSwager(services);
 

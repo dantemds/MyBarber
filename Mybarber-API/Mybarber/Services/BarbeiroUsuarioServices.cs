@@ -3,6 +3,7 @@ using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.Exceptions;
 using Mybarber.Helpers;
 using Mybarber.Models;
+using Mybarber.Repositories;
 using Mybarber.Repository;
 using Mybarber.Services.Interfaces;
 using System;
@@ -15,11 +16,13 @@ namespace Mybarber.Services
         private readonly IHash _hash;
         private readonly IUsersServices _usersServices;
         private readonly IGenerallyRepository _generally;
-        public BarbeiroUsuarioServices(IGenerallyRepository generally, UserManager<IdentityUser> userManager, IUsersServices usersServices, IHash hash)
+        private readonly IUsersRepository _usersRepository;
+        public BarbeiroUsuarioServices(IGenerallyRepository generally, UserManager<IdentityUser> userManager, IUsersServices usersServices, IHash hash, IUsersRepository usersRepository)
         {
             this._generally = generally;
-            this._hash = hash;
+            this._hash = hash;  
             this._usersServices = usersServices;
+            this._usersRepository = usersRepository;
         }
 
         public async Task<Users> CreateUsuarioBarbeiro(BarbeirosRequestDto barbeiroDto) 
@@ -27,7 +30,8 @@ namespace Mybarber.Services
             try
             {
 
-
+                var usuarioFinded = await _usersRepository.GetUserAsyncByEmail(barbeiroDto.Email);
+                if (usuarioFinded !=  null) throw new Exception();
                 var passwordHash = _hash.CriptografarSenha(barbeiroDto.Password);
 
 
@@ -60,11 +64,24 @@ namespace Mybarber.Services
             }
         }
 
-       
 
-        public Task<bool> DeleteUsuarioBarbeiro()
+
+        public async Task<bool> DeleteUsuarioBarbeiro(Barbeiros barbeiros)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _generally.Delete(barbeiros.Users);
+                if (await _generally.SaveChangesAsync())
+                    return true;
+                else throw new Exception();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
+    }
+
     }
 }

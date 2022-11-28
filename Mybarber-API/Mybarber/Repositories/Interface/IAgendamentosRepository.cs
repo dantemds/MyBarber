@@ -17,5 +17,6 @@ namespace Mybarber.Repository
         Task<Agendamentos> GetAgendamentosAsyncByHorario(Agendamentos horario);
         Task<IEnumerable<AgendamentosDoBarbeiro>> GetAgendamentosAsyncByIdBarbeiro(DateTime data, Guid idBarbeiro, Guid tenant);
         Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenantDAO(Guid tenant, PageParams pageParams);
+        Task<Agendamentos[]> GetAgendamentosApartirDeByBarbeiro(DateTime data, Guid idBarbeiro);
     }
 }

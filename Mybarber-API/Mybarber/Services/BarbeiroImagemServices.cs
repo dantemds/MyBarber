@@ -1,7 +1,5 @@
-﻿
-using Amazon.S3;
+﻿using Amazon.S3;
 using Amazon.S3.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Mybarber.DataTransferObject.BarbeiroImagem;
 using Mybarber.Models;
@@ -62,7 +60,7 @@ namespace Mybarber.Services
             {
                 var imagem = await _repository.GetImagemBarbeiroByIdBarbeiro(idBarbeiro);
 
-                var deleteObjectRequest = new DeleteObjectRequest
+                var deleteObjectRequest = new Amazon.S3.Model.DeleteObjectRequest
                 {
                     BucketName = bucketName,
                     Key = _config.GetSection("S3Config:ImagesBarbeiro").Value + route + "/" + idBarbeiro
@@ -110,7 +108,7 @@ namespace Mybarber.Services
             string bucketName = _config.GetSection("S3Config:BucketName").Value;
 
 
-            var client = new AmazonS3Client(_config.GetSection("S3Config:IdAcess").Value, _config.GetSection("S3Config:SecretKey").Value, Amazon.RegionEndpoint.USEast1);
+            var client = new Amazon.S3.AmazonS3Client(_config.GetSection("S3Config:IdAcess").Value, _config.GetSection("S3Config:SecretKey").Value, Amazon.RegionEndpoint.USEast1);
 
             try
             {

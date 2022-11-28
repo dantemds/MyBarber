@@ -32,6 +32,7 @@ namespace Mybarber.Persistencia
         public DbSet<HorarioFuncionamento> HorarioFuncionamento { get; set; }
         public DbSet<Banner> Banner { get; set; }
         public DbSet<LandingPageImages> LandingPageImages { get; set; } 
+        public DbSet<EventoAgendado> EventoAgendado { get; set; }
 
         public IConfiguration _config { get; }
 

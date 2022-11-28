@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using TimeZoneConverter;
 using static Mybarber.Exceptions.ViewException;
@@ -34,7 +35,6 @@ namespace Mybarber.Services
         {
             try
             {
-                
 
 
                 _generally.Add(agenda);
@@ -56,14 +56,13 @@ namespace Mybarber.Services
         }
         public async Task<List<float>> PopularHorario(Guid idBarbeiro, string dia, DateTime data, Guid tenant, Guid idServico)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             List<float> agenda = new List<float>();
             var HorarioMin=0.0f;
             var HorarioMax=0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
-
-            string tz = TZConvert.WindowsToIana("E. South America Standard Time");
-            var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
-            var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
+            var eventosAgendados = barbeiro.EventoAgendado;
+            var horaBrasilia = Date.GetNow();
             //var horaBrasilia = DateTime.Now;
             var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
             Console.WriteLine("--------------hora atual string---------------");
@@ -82,10 +81,17 @@ namespace Mybarber.Services
                     horaAtual = horaAtual.Substring(0, 2) + '.' + "51";
                 }
             }
-           
 
 
 
+            var eventosAgendadosNaDataList = new List<EventoAgendado>();
+            foreach(var evento in eventosAgendados)
+            {
+                if(evento.DiaSemana == dia)
+                {
+                    eventosAgendadosNaDataList.Add(evento);
+                }
+            }
             var horaAtualFloat = Convert.ToSingle(horaAtual);
             Console.WriteLine("--------------Hora atual em float---------------");
             Console.WriteLine(horaAtualFloat);
@@ -145,7 +151,7 @@ namespace Mybarber.Services
                 }
                 
             }
-            var result = await ExcluirHorariosAgendados(agenda, data, idServico, tenant, barbeiro.IdBarbeiro);
+            var result = await ExcluirHorariosAgendados(agenda, data, idServico, tenant, barbeiro.IdBarbeiro, eventosAgendadosNaDataList);
             return result;
 
         }
@@ -153,7 +159,7 @@ namespace Mybarber.Services
 
        
 
-        private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, Guid idServico, Guid tenant,Guid idBarbeiro)
+        private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, Guid idServico, Guid tenant,Guid idBarbeiro, List<EventoAgendado> eventoAgendados)
         {
             Console.WriteLine("--------------Agenda---------------");
             Console.WriteLine(agenda.Count());
@@ -170,9 +176,27 @@ namespace Mybarber.Services
             Console.WriteLine(duracaoServicoFloat);
             var agendamentos = await _agendamentosRepo.GetAgendamentosAsyncByTenant(tenant, pageParams);
            
+           
+
             foreach (var item in agenda.ToArray())
             {
-                foreach(var agendamento in agendamentos.ToArray())
+                foreach (var evento in eventoAgendados.ToArray())
+                {
+                    var horaInicio = evento.HoraInicio;
+                    horaInicio = horaInicio.Replace("30", "5").Replace(":", ".");
+                    var horaFloat = Convert.ToSingle(horaInicio);
+                    if(horaFloat == item)
+                    {
+                        var durancaoEventoAgendado = evento.Duracao.TotalHours.ToString();
+                        durancaoEventoAgendado = durancaoEventoAgendado.Replace("30", "5");
+                        var durancaoEventoAgendadoFloat = Convert.ToSingle(durancaoEventoAgendado);
+                        var itensExcluidos = (int)(durancaoEventoAgendadoFloat / 0.5);
+                        var index = agenda.IndexOf(item);
+                        agenda.RemoveRange(index, itensExcluidos);
+                    }
+
+                }
+                foreach (var agendamento in agendamentos.ToArray())
                 {
                     if (agendamento.BarbeirosId == idBarbeiro)
                     {

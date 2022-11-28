@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Mybarber.DataTransferObject.Agendamento;
 using Mybarber.Exceptions;
+using Mybarber.Helpers;
 using Mybarber.Models;
 using Mybarber.Services;
 using System;
@@ -54,9 +55,8 @@ namespace Mybarber.Presenter
         {
             try
             {
-                string tz = TZConvert.WindowsToIana("E. South America Standard Time");
-                var brasilia = TimeZoneInfo.FindSystemTimeZoneById(tz);
-                var horaBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, brasilia);
+
+                var horaBrasilia = Date.GetNow();
                 //var horaBrasilia = DateTime.Now;
                 if (agendamentoDto == null)
                     throw new ViewException("Agendamento.Missing.Info");

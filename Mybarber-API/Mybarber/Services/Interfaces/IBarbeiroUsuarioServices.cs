@@ -6,7 +6,7 @@ namespace Mybarber.Services.Interfaces
 {
     public interface IBarbeiroUsuarioServices
     {
-        Task<bool> DeleteUsuarioBarbeiro();
+        Task<bool> DeleteUsuarioBarbeiro(Barbeiros barbeiros);
         Task<Users> CreateUsuarioBarbeiro(BarbeirosRequestDto barbeiroDto);
         
     }

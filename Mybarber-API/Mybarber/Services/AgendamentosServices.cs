@@ -84,9 +84,11 @@ namespace Mybarber.Services
                 {
                     try
                     {
-                        
+
                         //_email.SendEmail(agendamentos, "EmailAgendamento");
-                    }catch(Exception ex)
+                        _email.SendSESEMail(agendamentos, "EmailAgendamento");
+                    }
+                    catch(Exception ex)
                     { return agendamentos; }
                     return agendamentos;
 
@@ -112,6 +114,7 @@ namespace Mybarber.Services
             if (await _generally.SaveChangesAsync()) 
             {
                 //_email.SendEmail(agendamento, "EmailCancelamento");
+                _email.SendSESEMail(agendamento, "EmailCancelamento");
                 return true;
             
             }
