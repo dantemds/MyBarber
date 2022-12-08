@@ -56,51 +56,13 @@ namespace Mybarber.Presenters
             var horaFim = new DateTime(0001, 1, 1, horaFDouble, minutosFDouble, 0);
 
             var duracao = horaFim - horaInicio;
-
-            var agendamentos = await _agendamentosRepo.GetAgendamentosApartirDeByBarbeiro(DateTime.Now, dto.BarbeirosId);
-
-            foreach (var agendamento in agendamentos)
+            var eventos = await _eventoRepo.GetEventosByBarbeiroAsync(dto.BarbeirosId);
+            foreach(var evento in eventos)
             {
-                string diaSemanaString = "dia";
-                var diaSemana = (int)agendamento.Horario.DayOfWeek;
-                //monday = 1..
-                switch (diaSemana)
+                if(evento.DiaSemana == dto.DiaSemana)
                 {
-                    case 1:
-                        diaSemanaString = "segunda";
-
-                        break;
-                    case 2:
-
-                        diaSemanaString = "terca";
-                        break;
-                    case 3:
-                        diaSemanaString = "quarta";
-
-                        break;
-                    case 4:
-                        diaSemanaString = "quinta";
-
-                        break;
-                    case 5:
-                        diaSemanaString = "sexta";
-
-                        break;
-                    case 6:
-                        diaSemanaString = "sabado";
-
-                        break;
-                    case 7:
-
-                        diaSemanaString = "domingo";
-                        break;
-                }
-
-                if (diaSemanaString == dto.DiaSemana)
-                {
-                    string horaAgendamento = agendamento.Horario.ToString("HH:mm");
-                    if (dto.HoraInicio.ToString() == horaAgendamento) throw new Exception("Canceles seus agendamentos");
-
+                    var eventoMarcadoInicio = evento.HoraInicio;
+                    if (dto.HoraInicio.ToString() == eventoMarcadoInicio) throw new Exception("Evento Repetido");
                     var dtoHoraI = dto.HoraInicio.ToString().Replace("30", "5").Replace(":", ".");
                     var dtoHoraF = dto.HoraFim.ToString().Replace("30", "5").Replace(":", ".");
                     var dtoHoraIFloat = Convert.ToSingle(dtoHoraI);
@@ -111,29 +73,130 @@ namespace Mybarber.Presenters
                     {
                         agendaDto.Add(i);
                     }
-                    var agendaAgendamentoDto = new List<float>();
-                    var agendamentoI = horaAgendamento.Replace("30", "5").Replace(":", ".");
-                    var agendamentoIFloat = Convert.ToSingle(agendamentoI);
-                    var duracaoAgendamento = agendamento.Servicos.TempoServico.ToString("HH:mm").Replace("30", "5").Replace(":", "."); ;
-                    var agendamentoFFloat = agendamentoIFloat + Convert.ToSingle(duracaoAgendamento);
-                    for (float i = agendamentoIFloat; i < agendamentoFFloat; i += 0.5f)
+                    var agendaEventosDto = new List<float>();
+                    var eventoMarcadoI = eventoMarcadoInicio.Replace("30", "5").Replace(":", ".");
+                    var eventoIFloat = Convert.ToSingle(eventoMarcadoI);
+                    var duracaoEvento = evento.Duracao.ToString().Substring(0,5);
+                    duracaoEvento = duracaoEvento.Replace("30", "5").Replace(":", ".");
+                    var eventoFFloat = eventoIFloat + Convert.ToSingle(duracaoEvento);
+                    for (float i = eventoIFloat; i < eventoFFloat; i += 0.5f)
                     {
-                        agendaAgendamentoDto.Add(i);
+                        agendaEventosDto.Add(i);
                     }
 
-                    foreach (float i in agendaAgendamentoDto)
+                    foreach (float i in agendaEventosDto)
                     {
                         foreach (float j in agendaDto)
                         {
                             if (i == j)
                             {
-                                throw new Exception("Canceles seus agendamentos");
+                                throw new Exception("Evento Repetido");
                             }
                         }
                     }
 
                 }
             }
+            var agendamentos = await _agendamentosRepo.GetAgendamentosApartirDeByBarbeiro(DateTime.Now, dto.BarbeirosId);
+            var agendamentosResult = new List<Agendamentos>();
+            if (dto.Temporario)
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+                foreach (var agendamento in agendamentos)
+                {
+                    
+                    var agendamentoHorario = agendamento.Horario.ToString("dd/MM/yyyy");
+                    var dataFim = dto.DataFim;
+                    var agendamentoConvert =Convert.ToDateTime(agendamentoHorario);
+                    var dataFimConvert = Convert.ToDateTime(dataFim);
+                    if(agendamentoConvert <= dataFimConvert)
+                    {
+                        agendamentosResult.Add(agendamento);
+
+                    }
+                }
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            }
+            else
+            {
+                agendamentosResult = (List<Agendamentos>) agendamentos.Clone();
+            }
+            
+                foreach (var agendamento in agendamentosResult)
+                {
+                    string diaSemanaString = "dia";
+                    var diaSemana = (int)agendamento.Horario.DayOfWeek;
+                    //monday = 1..
+                    switch (diaSemana)
+                    {
+                        case 1:
+                            diaSemanaString = "segunda";
+
+                            break;
+                        case 2:
+
+                            diaSemanaString = "terca";
+                            break;
+                        case 3:
+                            diaSemanaString = "quarta";
+
+                            break;
+                        case 4:
+                            diaSemanaString = "quinta";
+
+                            break;
+                        case 5:
+                            diaSemanaString = "sexta";
+
+                            break;
+                        case 6:
+                            diaSemanaString = "sabado";
+
+                            break;
+                        case 7:
+
+                            diaSemanaString = "domingo";
+                            break;
+                    }
+
+                    if (diaSemanaString == dto.DiaSemana)
+                    {
+                        string horaAgendamento = agendamento.Horario.ToString("HH:mm");
+                        if (dto.HoraInicio.ToString() == horaAgendamento) throw new Exception("Canceles seus agendamentos");
+
+                        var dtoHoraI = dto.HoraInicio.ToString().Replace("30", "5").Replace(":", ".");
+                        var dtoHoraF = dto.HoraFim.ToString().Replace("30", "5").Replace(":", ".");
+                        var dtoHoraIFloat = Convert.ToSingle(dtoHoraI);
+                        var dtoHoraFFloat = Convert.ToSingle(dtoHoraF);
+                        var agendaDto = new List<float>();
+
+                        for (float i = dtoHoraIFloat; i < dtoHoraFFloat; i += 0.5f)
+                        {
+                            agendaDto.Add(i);
+                        }
+                        var agendaAgendamentoDto = new List<float>();
+                        var agendamentoI = horaAgendamento.Replace("30", "5").Replace(":", ".");
+                        var agendamentoIFloat = Convert.ToSingle(agendamentoI);
+                        var duracaoAgendamento = agendamento.Servicos.TempoServico.ToString("HH:mm").Replace("30", "5").Replace(":", "."); ;
+                        var agendamentoFFloat = agendamentoIFloat + Convert.ToSingle(duracaoAgendamento);
+                        for (float i = agendamentoIFloat; i < agendamentoFFloat; i += 0.5f)
+                        {
+                            agendaAgendamentoDto.Add(i);
+                        }
+
+                        foreach (float i in agendaAgendamentoDto)
+                        {
+                            foreach (float j in agendaDto)
+                            {
+                                if (i == j)
+                                {
+                                    throw new Exception("Canceles seus agendamentos");
+                                }
+                            }
+                        }
+
+                    }
+                }
             return duracao;
         }
         public async Task<EventoAgendadoRequestDto> PostEventoAgendadoAsync(EventoAgendadoRequestDto dto)
@@ -143,6 +206,7 @@ namespace Mybarber.Presenters
                 var duracao = await ValidadeEvento(dto);
                 var eventoAgendado = _mapper.Map<EventoAgendado>(dto);
                 eventoAgendado.Duracao = duracao;
+                
 
                 _repo.Add(eventoAgendado);
                 
@@ -160,6 +224,26 @@ namespace Mybarber.Presenters
             catch (Exception ex)
             { throw new Exception(ex.Message); }
         }
+
+        public async Task<List<EventoAgendadoResponseDto>> GetEventosByBarbeiro(Guid idBarbeiro)
+        {
+            try
+            {
+                var result = await _eventoRepo.GetEventosByBarbeiroAsync(idBarbeiro);
+                var retorno = new List<EventoAgendadoResponseDto>();
+                foreach(var item in result)
+                {
+                    retorno.Add(_mapper.Map<EventoAgendadoResponseDto>(item));
+
+                }
+                return retorno;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<EventoAgendadoResponseDto> UpdateEventoAgendadoAsync(EventoAgendadoRequestDto dto, int idEvento)
         {
             var duracao = await ValidadeEvento(dto);

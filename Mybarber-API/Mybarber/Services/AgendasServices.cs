@@ -62,8 +62,8 @@ namespace Mybarber.Services
             var HorarioMax=0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
             var eventosAgendados = barbeiro.EventoAgendado;
-            var horaBrasilia = Date.GetNow();
-            //var horaBrasilia = DateTime.Now;
+            //var horaBrasilia = Date.GetNow();
+            var horaBrasilia = DateTime.Now;
             var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
             Console.WriteLine("--------------hora atual string---------------");
             Console.WriteLine(horaAtual);
@@ -85,11 +85,27 @@ namespace Mybarber.Services
 
 
             var eventosAgendadosNaDataList = new List<EventoAgendado>();
+            
             foreach(var evento in eventosAgendados)
             {
+                
                 if(evento.DiaSemana == dia)
                 {
-                    eventosAgendadosNaDataList.Add(evento);
+                    if (!evento.Temporario)
+                    {
+                        eventosAgendadosNaDataList.Add(evento);
+                    }
+                    else
+                    {
+                        DateTime dataFimDate = DateTime.ParseExact(evento.DataFim, "dd/MM/yyyy", new CultureInfo("pt-BR"));
+                        //var horaBrasiliaDate = Convert.ToDateTime(data.ToString("dd-MM-yyyy"));
+                        DateTime horaBrasiliaDate = DateTime.ParseExact(data.ToString("dd/MM/yyyy"), "dd/MM/yyyy", new CultureInfo("pt-BR"));
+                        if (dataFimDate >= horaBrasiliaDate)
+                        {
+                            eventosAgendadosNaDataList.Add(evento);
+                        }
+                    }
+                   
                 }
             }
             var horaAtualFloat = Convert.ToSingle(horaAtual);

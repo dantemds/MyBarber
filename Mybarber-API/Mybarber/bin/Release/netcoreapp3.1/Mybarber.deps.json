@@ -31,6 +31,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Mybarber/1.0.0": {
         "dependencies": {
+          "AWSSDK.CloudFront": "3.7.4.11",
           "AWSSDK.Core": "3.7.100.20",
           "AWSSDK.S3": "3.7.101.20",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
@@ -355,6 +356,20 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "AWSSDK.CloudFront/3.7.4.11": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.100.20"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.CloudFront.dll": {
+            "assemblyVersion": "3.3.4.0",
+            "fileVersion": "3.7.4.11"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.CloudFront.dll": {}
         }
       },
       "AWSSDK.Core/3.7.100.20": {
@@ -3145,6 +3160,13 @@
       "sha512": "sha512-xSWoVzOipuDU4PeZcUfaZQ+xqXU8QmGv5jrdlxt3MYm9xaOmrefqcfzGQ3SQ+D+8wfBa/ZwSuL0qKOVj080inA==",
       "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512"
+    },
+    "AWSSDK.CloudFront/3.7.4.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZS89f5S4UIs9WXm0sTNprI4YOI7N7aoHv3Is9hnphSnGsojyqYf0RQlOahJBVEguaPTiMttTrymPGYkq77R84Q==",
+      "path": "awssdk.cloudfront/3.7.4.11",
+      "hashPath": "awssdk.cloudfront.3.7.4.11.nupkg.sha512"
     },
     "AWSSDK.Core/3.7.100.20": {
       "type": "package",

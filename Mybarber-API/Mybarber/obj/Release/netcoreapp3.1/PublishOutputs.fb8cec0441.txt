@@ -6,6 +6,7 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docke
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Mybarber.pdb
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\AutoMapper.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\AWSSDK.CloudFront.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\AWSSDK.Core.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\AWSSDK.S3.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Dapper.dll

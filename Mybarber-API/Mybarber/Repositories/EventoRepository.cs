@@ -2,7 +2,11 @@
 using Mybarber.Models;
 using Mybarber.Persistencia;
 using Mybarber.Repositories.Interface;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mybarber.Repositories
@@ -28,6 +32,35 @@ namespace Mybarber.Repositories
                 .Where(evento => evento.IdEventoAgendado == idEvento);
 
             return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<List<EventoAgendado>> GetEventosByBarbeiroAsync(Guid idBarbeiro)
+        {
+            IQueryable<EventoAgendado> query = _context.EventoAgendado;
+            query = query.AsNoTracking()
+                .OrderBy(evento => evento.IdEventoAgendado)
+                .Where(evento => evento.BarbeirosId == idBarbeiro);
+            var result = await query.ToArrayAsync();
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+            var retorno = new List<EventoAgendado>();
+            foreach (var item in result)
+            {
+                if (!item.Temporario)
+                {
+                    retorno.Add(item);
+                }
+                else
+                {
+                    var dataFimConvert = Convert.ToDateTime(item.DataFim);
+                    //Date.GetNow();
+                    if (dataFimConvert <= DateTime.Now)
+                    {
+                        retorno.Add(item);
+                    }
+                }
+            }
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            return retorno;
         }
 
     }

@@ -19,6 +19,20 @@ namespace Mybarber.Controllers
             this._presenter = presenter;
         }
 
+        [HttpGet("{idBarbeiro}")]
+        public async Task<IActionResult> GetEventosByBarbeiro(Guid idBarbeiro)
+        {
+            try
+            {
+                var result = await _presenter.GetEventosByBarbeiro(idBarbeiro);
+                return Ok(result);
+
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostEventoAgendadoAsync(EventoAgendadoRequestDto dto)
         {
@@ -61,5 +75,7 @@ namespace Mybarber.Controllers
             catch (Exception ex)
             { throw new Exception(ex.Message); }
         }
+
+     
     }
 }
