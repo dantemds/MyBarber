@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mybarber.Helpers;
 using Mybarber.Models;
 using Mybarber.Persistencia;
 using Mybarber.Repositories.Interface;
@@ -52,8 +53,9 @@ namespace Mybarber.Repositories
                 else
                 {
                     var dataFimConvert = Convert.ToDateTime(item.DataFim);
-                    //Date.GetNow();
-                    if (dataFimConvert <= DateTime.Now)
+                    var data = Date.GetNow();
+                    //var data = DateTime.Now;
+                    if (dataFimConvert >= data)
                     {
                         retorno.Add(item);
                     }

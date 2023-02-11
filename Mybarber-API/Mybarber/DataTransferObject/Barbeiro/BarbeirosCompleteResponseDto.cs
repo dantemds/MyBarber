@@ -9,5 +9,6 @@ namespace Mybarber.DataTransferObject.Barbeiro
         public Guid IdBarbeiro { get; set; }
         public string NameBarbeiro { get; set; }
         public Guid BarbeariasId { get; set; }
+        public string Route { get; set; }
     }
 }

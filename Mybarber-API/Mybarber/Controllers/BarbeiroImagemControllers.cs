@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.BarbeiroImagem;
 using Mybarber.DataTransferObject.Images;
@@ -7,7 +6,7 @@ using Mybarber.Presenters;
 using Mybarber.Services;
 using System;
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.Caching.Memory;
 namespace Mybarber.Controllers
 {
     [EnableCors]
@@ -19,12 +18,13 @@ namespace Mybarber.Controllers
 
         private readonly IBarbeiroImagemPresenter _presenter;
         private readonly IBarbeiroImagemServices _service;
+        private readonly IMemoryCache _memoryCache;
 
-        public BarbeiroImagemControllers(IBarbeiroImagemPresenter presenter, IBarbeiroImagemServices service)
+        public BarbeiroImagemControllers(IBarbeiroImagemPresenter presenter, IBarbeiroImagemServices service, IMemoryCache memoryCache)
         {
             this._presenter = presenter;
             this._service = service;
-
+            this._memoryCache = memoryCache;
         }
 
         [HttpPost]
@@ -52,6 +52,14 @@ namespace Mybarber.Controllers
                 
                 var result = await _service.PostBarbeiroImagemS3Async(dto);
 
+                if (result)
+                {
+                    if (_memoryCache.TryGetValue(dto.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(dto.Route);
+                    }
+                }
+
                 return Created($"/api/v1/barbeiroImagem/{result}", result);
             }
             catch (Exception ex)
@@ -67,6 +75,13 @@ namespace Mybarber.Controllers
             try
             {
                 var result = await _service.PutBarbeiroImagemS3Async(dto);
+                if (result)
+                {
+                    if (_memoryCache.TryGetValue(dto.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(dto.Route);
+                    }
+                }
 
                 return Ok(result);
 
@@ -84,6 +99,13 @@ namespace Mybarber.Controllers
             {
                 var result = await _service.DeleteBarbeiroImagemS3Async(route, idBarbeiro);
 
+                if (result)
+                {
+                    if (_memoryCache.TryGetValue(route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(route);
+                    }
+                }
                 return Ok(result);
 
 

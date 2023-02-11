@@ -84,21 +84,23 @@ namespace Mybarber.Services
                 throw new Exception();
             }
         }
-        public async Task<string> DeleteServicoAsyncById(Guid idServico)
+        public async Task<Servicos> DeleteServicoAsyncById(Guid idServico)
         {
             try
             {
                 var servicoFinded = await _repo.GetServicosAsyncById(idServico);
+
 
                 if (servicoFinded == null) { throw new Exception(); }
 
 
                 _generally.Delete(servicoFinded);
 
+
                 if (await _generally.SaveChangesAsync())
                 {
 
-                    return "Servico Deletado Com sucesso.";
+                    return servicoFinded;
                 }
                 else
                 {

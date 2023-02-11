@@ -62,8 +62,9 @@ namespace Mybarber.Presenter
                 var b = await _service.GetServicoAsyncById(servico.IdServico);
 
 
-
-                return _mapper.Map<ServicosCompleteResponseDto>(b);
+                var dto = _mapper.Map<ServicosCompleteResponseDto>(b);
+                dto.Route = b.Barbearias.Route;
+                return dto;
 
             }
             catch (Exception)
@@ -73,7 +74,7 @@ namespace Mybarber.Presenter
         }
 
 
-        public async Task<bool> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto)
+        public async Task<ServicosCompleteResponseDto> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto)
         {
             
                 
@@ -100,22 +101,31 @@ namespace Mybarber.Presenter
 
             var servicoSalvo = await _service.PostServicoAsync(servico);
 
+            var b = await _service.GetServicoAsyncById(servico.IdServico);
+
+
+            var servicoDtoReturn = _mapper.Map<ServicosCompleteResponseDto>(b);
+            servicoDto.Route = b.Barbearias.Route;
+
             if (servicoSalvo != null)
             {
-                return true;
+                return servicoDtoReturn;
             }
-            else { return false;  }
+            else { throw new Exception();  }
 
            
         }
 
-        public async Task<string> DeleteServicoAsyncById(Guid idServico)
+        public async Task<ServicosCompleteResponseDto> DeleteServicoAsyncById(Guid idServico)
         {
             try
             {
                 var service = await _service.DeleteServicoAsyncById(idServico);
 
-                return "Servico Deletado com sucesso.";
+                var servicoDtoReturn = _mapper.Map<ServicosCompleteResponseDto>(service);
+                servicoDtoReturn.Route = service.Barbearias.Route;
+
+                return servicoDtoReturn;
             }
 
 

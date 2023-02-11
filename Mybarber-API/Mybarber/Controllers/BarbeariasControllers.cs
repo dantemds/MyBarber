@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Mybarber.Config;
 using Mybarber.DataTransferObject.Barbearia;
 using Mybarber.Presenter;
-using Mybarber.Repository;
 using System;
+using Microsoft.Extensions.Caching.Memory;
 using System.Threading.Tasks;
 
 namespace Mybarber.Controllers
@@ -20,15 +18,12 @@ namespace Mybarber.Controllers
     public class BarbeariasControllers : ControllerBase
     {
         private readonly IBarbeariasPresenter _presenter;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="presenter"></param>
-        public BarbeariasControllers(IBarbeariasPresenter presenter)
+        private readonly IMemoryCache _memoryCache;
+        
+        public BarbeariasControllers(IBarbeariasPresenter presenter, IMemoryCache memoryCache)
         {
             this._presenter = presenter;
-
+            this._memoryCache = memoryCache;
         }
 
         [HttpGet]
@@ -73,12 +68,30 @@ namespace Mybarber.Controllers
         [HttpGet("{route}")]
 
         public async Task<IActionResult> GetBarbeariaAsyncByRoute(string route)
-
         {
+
+            var key = route;
+            if (_memoryCache.TryGetValue(key, out var barbeariaCache))
+                return Ok(barbeariaCache);
+
             var result = await _presenter.GetAllAtributesBarbeariaAsyncByRoute(route);
 
-            return Ok(result);
+            var memoryCacheEntryOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(600),
+                SlidingExpiration = TimeSpan.FromSeconds(600)
+            };
 
+            _memoryCache.Set(key, result, memoryCacheEntryOptions);
+
+            if (result != null)
+            {
+                return Ok(result);
+
+            } else
+            {
+                return NotFound();
+            }
         }
         /// <summary>
         /// 

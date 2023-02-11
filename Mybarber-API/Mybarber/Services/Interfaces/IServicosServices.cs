@@ -12,6 +12,6 @@ namespace Mybarber.Services
 
         Task<IEnumerable<Servicos>> GetServicoAsyncByTenant(Guid idBarbearia);
         Task<Servicos> PostServicoAsync(Servicos servicos);
-        Task<string> DeleteServicoAsyncById(Guid idServico);
+        Task<Servicos> DeleteServicoAsyncById(Guid idServico);
     }
 }

@@ -4,6 +4,7 @@ using Mybarber.DataTransferObject.Servico;
 using Mybarber.Presenter;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Mybarber.Controllers
 {
@@ -16,15 +17,14 @@ namespace Mybarber.Controllers
 
     public class ServicosControllers : ControllerBase
     {
-
+        private readonly IMemoryCache _memoryCache;
         private readonly IServicosPresenter _presenter;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="presenter"></param>
-        public ServicosControllers(IServicosPresenter presenter)
+       
+
+        public ServicosControllers(IServicosPresenter presenter, IMemoryCache memoryCache)
         {
             this._presenter = presenter;
+            this._memoryCache = memoryCache;
         }
 
         //[HttpGet]
@@ -99,6 +99,14 @@ namespace Mybarber.Controllers
             {
                 var result = await _presenter.PostServicoAsync(servicoDto);
 
+                if(result != null)
+                {
+                    if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(result.Route);
+                    }
+                }
+
                 return Created($"/api/v1/candidates/{result.IdServico}", result);
             }
             catch (Exception ex)
@@ -113,6 +121,13 @@ namespace Mybarber.Controllers
             {
 
                 var result = await _presenter.PostServiceCompleteAsync(servicoDto);
+                if (result != null)
+                {
+                    if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(result.Route);
+                    }
+                }
 
                 return Created($"/api/v1/servico/", result);
             }

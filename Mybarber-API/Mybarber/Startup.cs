@@ -11,6 +11,7 @@ using Mybarber.Config;
 using Mybarber.Models;
 using Mybarber.Persistencia;
 using Mybarber.WebSockets.Server;
+using Serilog;
 using System;
 using System.Text;
 
@@ -33,15 +34,17 @@ namespace Mybarber
             
             services.AddMemoryCache();
 
+
             services.AddControllers()
                .AddNewtonsoftJson(opt => opt.SerializerSettings
                .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            
             //Authentication.AddAuthentication(services);
 
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            
             Cors.AddCors(services);
 
             Scopeds.GetScoped(services);
@@ -90,15 +93,6 @@ namespace Mybarber
                 };
 
             });
-          
-
-          
-
-           
-
-
-            
-
         }
 
 

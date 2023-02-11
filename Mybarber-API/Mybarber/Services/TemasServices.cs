@@ -19,6 +19,9 @@ namespace Mybarber.Services
         {
            
             _generally.Add(tema);
+
+
+
             if (await _generally.SaveChangesAsync())
             {
                 return tema;

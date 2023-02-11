@@ -4,7 +4,7 @@ using Mybarber.DataTransferObject.LadingPageImages;
 using Mybarber.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.Caching.Memory;
 namespace Mybarber.Controllers
 {
     [EnableCors]
@@ -13,9 +13,11 @@ namespace Mybarber.Controllers
     public class LandingPageImagesControllers:ControllerBase
     {
         private readonly ILandingPageServices _service;
-        public LandingPageImagesControllers(ILandingPageServices service)
+        private readonly IMemoryCache _memoryCache;
+        public LandingPageImagesControllers(ILandingPageServices service, IMemoryCache memoryCache)
         {
             this._service = service;
+            this._memoryCache = memoryCache;
         }
         [HttpPost]
         public async Task<IActionResult> PostLadingPageImageS3Async([FromForm] LandingPageImagesRequestDto dto)
@@ -24,6 +26,14 @@ namespace Mybarber.Controllers
             {
                 
                 var result = await _service.PostLadingPageImageS3Async(dto);
+
+                if (result != null)
+                {
+                    if (_memoryCache.TryGetValue(dto.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(dto.Route);
+                    }
+                }
 
                 return Created($"/api/v1/ladingpageimage/{result}", result);
             }
@@ -40,6 +50,15 @@ namespace Mybarber.Controllers
             try
             {
                 var result = await _service.PutLadingImagemS3Async(dto, idLandingPage);
+
+                if (result)
+                {
+                    if (_memoryCache.TryGetValue(dto.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(dto.Route);
+                    }
+                }
+
 
                 return Ok(result);
 

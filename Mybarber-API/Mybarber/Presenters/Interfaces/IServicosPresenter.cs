@@ -14,7 +14,7 @@ namespace Mybarber.Presenter
         Task<ServicosResponseDto> GetServicoAsyncByTenant(Guid idBarbearia);
 
         Task<ServicosCompleteResponseDto> PostServicoAsync(ServicosRequestDto servicoDto);
-       Task<bool> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto);
-        Task<string> DeleteServicoAsyncById(Guid idServico);
+       Task<ServicosCompleteResponseDto> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto);
+        Task<ServicosCompleteResponseDto> DeleteServicoAsyncById(Guid idServico);
     }
 }

@@ -119,7 +119,10 @@ namespace Mybarber.Presenters
             }
             else
             {
-                agendamentosResult = (List<Agendamentos>) agendamentos.Clone();
+                foreach(var agendamento in agendamentos)
+                {
+                    agendamentosResult.Add(agendamento);
+                }
             }
             
                 foreach (var agendamento in agendamentosResult)

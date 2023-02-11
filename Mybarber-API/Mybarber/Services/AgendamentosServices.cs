@@ -6,6 +6,7 @@ using Mybarber.Models;
 using Mybarber.Repository;
 using Mybarber.Services.Interfaces;
 using Mybarber.Validations;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -115,6 +116,7 @@ namespace Mybarber.Services
             {
                 //_email.SendEmail(agendamento, "EmailCancelamento");
                 _email.SendSESEMail(agendamento, "EmailCancelamento");
+                Log.Information("Agendamento cancelado ", idAgendamento);
                 return true;
             
             }

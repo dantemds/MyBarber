@@ -55,6 +55,8 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docke
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\BouncyCastle.Crypto.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.AspNetCore.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.Enrichers.Environment.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.Enrichers.Thread.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.Extensions.Hosting.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.Extensions.Logging.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\obj\Docker\publish\Serilog.Formatting.Compact.dll

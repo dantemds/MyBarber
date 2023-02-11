@@ -32,7 +32,7 @@ namespace Mybarber.Repositories
 
         public async Task<Servicos> GetServicosAsyncById(Guid idServico)
         {
-            IQueryable<Servicos> query = _context.Servicos.Include(p => p.ServicosBarbeiros).Include(p => p.ServicoImagem);
+            IQueryable<Servicos> query = _context.Servicos.Include(p => p.ServicosBarbeiros).Include(p => p.ServicoImagem).Include(p=>p.Barbearias);
 
             query = query.AsNoTracking()
                 .OrderBy(servicos => servicos.IdServico)

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.Presenter;
 using System;
+using Microsoft.Extensions.Caching.Memory;
 using System.Threading.Tasks;
 
 
@@ -16,13 +17,15 @@ namespace Mybarber.Controllers
     public class BarbeirosControllers : ControllerBase
     {
         private readonly IBarbeirosPresenter _presenter;
+        private readonly IMemoryCache _memoryCache;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="presenter"></param>
-        public BarbeirosControllers(IBarbeirosPresenter presenter)
+        public BarbeirosControllers(IBarbeirosPresenter presenter, IMemoryCache memoryCache)
         {
             this._presenter = presenter;
+            this._memoryCache = memoryCache;
         }
 
         //[HttpGet]
@@ -98,7 +101,15 @@ namespace Mybarber.Controllers
             
                 var result = await _presenter.PostBarbeiroAsync(barbeiroDto);
 
-                return Created($"/api/v1/barbeiros/{result.IdBarbeiro}", result);
+            if (result != null)
+            {
+                if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                {
+                    _memoryCache.Remove(result.Route);
+                }
+            }
+
+            return Created($"/api/v1/barbeiros/{result.IdBarbeiro}", result);
             
            
         }
@@ -109,6 +120,14 @@ namespace Mybarber.Controllers
             try
             {
                 var result = await _presenter.DeleteBarbeiroAsyncById(idBarbeiro);
+
+                if (result != null)
+                {
+                    if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                    {
+                        _memoryCache.Remove(result.Route);
+                    }
+                }
 
                 return Ok(result);
 

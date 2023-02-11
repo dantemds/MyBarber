@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Mybarber.Helpers;
-using Mybarber.Persistencia;
-using Mybarber.Repositories;
-using Mybarber.Services;
-using Mybarber.WebSockets.Server;
 using Serilog;
-using System;
+using Serilog.Formatting.Compact;
 using System.Globalization;
 using System.Threading;
 
@@ -17,17 +11,18 @@ namespace Mybarber
     {
         public static void Main(string[] args)
        {
+
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .WriteTo.File("text.txt")
-                .CreateLogger();
-
-
-            CreateHostBuilder(args).Build().Run();
-            Log.Information("Api Acionada");
-
+            Configurelog();
+            Log.Information("API Acionada");
+            try
+            {
+                CreateHostBuilder(args).Build().Run();
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -35,6 +30,21 @@ namespace Mybarber
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).UseSerilog();
+        public static void Configurelog()
+        {
+            Log.Logger = new LoggerConfiguration()
+                 .MinimumLevel.Information()
+                 //.MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+                 //.MinimumLevel.Override("Microsoft.Hosting.Lifetime", Serilog.Events.LogEventLevel.Information)
+                 //.WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}")
+                 //.WriteTo.File("Logs/errors.txt", rollingInterval: RollingInterval.Month, restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Error)
+                 //.WriteTo.File("Logs/infos.txt", rollingInterval: RollingInterval.Month, restrictedToMinimumLevel:Serilog.Events.LogEventLevel.Information)
+                 //.WriteTo.File(new CompactJsonFormatter(), "Logs/jsonLog.txt")
+                 //.Enrich.WithEnvironmentName()
+                 //.Enrich.WithThreadId()
+                 //.Enrich.WithMachineName()
+                 .CreateLogger();
+        }
     }
 }

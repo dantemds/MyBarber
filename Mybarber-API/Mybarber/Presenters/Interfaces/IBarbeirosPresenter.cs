@@ -16,7 +16,7 @@ namespace Mybarber.Presenter
 
         Task<BarbeirosCompleteResponseDto> PostBarbeiroAsync(BarbeirosRequestDto barbeiroDto);
 
-        Task<string> DeleteBarbeiroAsyncById(Guid idBarbeiro);
+        Task<BarbeirosCompleteResponseDto> DeleteBarbeiroAsyncById(Guid idBarbeiro);
        
 
     }

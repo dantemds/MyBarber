@@ -108,8 +108,10 @@ namespace Mybarber.Presenter
                   await  _servicosBarbeirosServices.PostServicoBarbeirosAsyncFromBarbeiro(barbeiroDto.ServicosId, barbeiro);
 
                 }
+                var resultDto = _mapper.Map<BarbeirosCompleteResponseDto>(barbeiroResult);
+                resultDto.Route = barbeiroResult.Barbearias.Route;
 
-                return _mapper.Map<BarbeirosCompleteResponseDto>(barbeiroResult);
+                return resultDto;
 
             }
             catch (Exception)
@@ -117,7 +119,7 @@ namespace Mybarber.Presenter
                 throw new Exception();
             }
         }
-        public async Task<string> DeleteBarbeiroAsyncById(Guid idBarbeiro)
+        public async Task<BarbeirosCompleteResponseDto> DeleteBarbeiroAsyncById(Guid idBarbeiro)
         {
             try
             {
@@ -126,9 +128,10 @@ namespace Mybarber.Presenter
                 var usuario = await _serviceUserBarbeiro.DeleteUsuarioBarbeiro(barbeiroFinded);
                 //var barbeiro = await _service.DeleteBarbeiroAsyncById(idBarbeiro);
 
+                var barbeiroDto = _mapper.Map<BarbeirosCompleteResponseDto>(barbeiroFinded);
+                barbeiroDto.Route = barbeiroFinded.Barbearias.Route;
 
-
-                return "Barbeiro Deletado com sucesso.";
+                return barbeiroDto;
             }
 
 
