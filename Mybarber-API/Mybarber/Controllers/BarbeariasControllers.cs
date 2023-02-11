@@ -148,6 +148,13 @@ namespace Mybarber.Controllers
         public async Task<IActionResult> PatchToggleAgendamentoByBarbearia(Guid idBarbearia)
         {
             var result = await _presenter.PatchToggleAgendamentoByBarbearia(idBarbearia);
+            if (result != null)
+            {
+                if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                {
+                    _memoryCache.Remove(result.Route);
+                }
+            }
 
             return Ok(result);
         }
@@ -156,6 +163,13 @@ namespace Mybarber.Controllers
         public async Task<IActionResult> PatchToggleAtivoByBarbearia(Guid idBarbearia)
         {
             var result = await _presenter.PatchToggleAtivoByBarbearia(idBarbearia);
+            if (result != null)
+            {
+                if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                {
+                    _memoryCache.Remove(result.Route);
+                }
+            }
 
             return Ok(result);
         }
