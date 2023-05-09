@@ -90,8 +90,9 @@ namespace Mybarber.Repositories
 
                     .OrderBy(barbearias => barbearias.IdBarbearia)
                     .Where(barbearias => barbearias.Route == route);
-
-                return await query.FirstOrDefaultAsync();
+                var result = await query.FirstOrDefaultAsync();
+                result.Servicos = result.Servicos.OrderBy(s => s.Ordem).ToList();
+                return result;
             }
             catch (Exception)
             {

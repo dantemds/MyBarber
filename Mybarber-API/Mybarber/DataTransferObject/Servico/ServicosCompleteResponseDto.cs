@@ -15,6 +15,7 @@ namespace Mybarber.DataTransferObject.Servico
         public List<ServicosBarbeiros> ServicosBarbeiros { get; set; }
         public Guid ServicoImagemId { get; set; }
         public string Route { get; set; }
+        public int Ordem { get; set; }
     }
     
 }

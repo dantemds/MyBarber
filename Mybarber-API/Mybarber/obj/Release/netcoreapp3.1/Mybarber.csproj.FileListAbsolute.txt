@@ -255,3 +255,4 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Relea
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Release\netcoreapp3.1\AWSSDK.CloudFront.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Release\netcoreapp3.1\Serilog.Enrichers.Environment.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Release\netcoreapp3.1\Serilog.Enrichers.Thread.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Release\netcoreapp3.1\AWSSDK.SimpleNotificationService.dll

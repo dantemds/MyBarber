@@ -37,13 +37,18 @@ namespace Mybarber.Presenter
             }
         }
 
-        public async Task<ServicosResponseDto> GetServicoAsyncByTenant(Guid idBarbearia)
+        public async Task<List<ServicosResponseDto>> GetServicoAsyncByTenant(Guid idBarbearia)
         {
             try
             {
                 var servicos = await _service.GetServicoAsyncByTenant(idBarbearia);
-                var servicosDto = _mapper.Map<ServicosResponseDto>(servicos);
-                return servicosDto;
+                List<ServicosResponseDto> dto = new List<ServicosResponseDto>();
+                foreach (var servico in servicos)
+                {
+                    dto.Add(_mapper.Map<ServicosResponseDto>(servico));
+
+                }
+                return dto;
             }
             catch (Exception)
             {

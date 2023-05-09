@@ -208,7 +208,34 @@ namespace Mybarber.Services
                         var durancaoEventoAgendadoFloat = Convert.ToSingle(durancaoEventoAgendado);
                         var itensExcluidos = (int)(durancaoEventoAgendadoFloat / 0.5);
                         var index = agenda.IndexOf(item);
-                        agenda.RemoveRange(index, itensExcluidos);
+                        if (index != -1)
+                        {
+                            agenda.RemoveRange(index, itensExcluidos);
+                            break;
+                        }
+                    } else
+                    {
+                        var horaFinal = evento.HoraFim;
+                        horaFinal = horaFinal.Replace("30", "5").Replace(":", ".");
+                        var horaFinalFloat = Convert.ToSingle(horaFinal);
+                        var diferenca = horaFinalFloat - horaFloat;
+                        var proporcao = Convert.ToInt32(diferenca / 0.5);
+                        for (var i = proporcao; i >= 0; i--)
+                        {
+                            if (horaFloat == item)
+                            {
+                                var durancaoEventoAgendado = evento.Duracao.TotalHours.ToString();
+                                durancaoEventoAgendado = durancaoEventoAgendado.Replace("30", "5");
+                                var durancaoEventoAgendadoFloat = Convert.ToSingle(durancaoEventoAgendado);
+                                var index = agenda.IndexOf(item);
+                                if (index != -1)
+                                {
+                                    agenda.RemoveRange(index, i);
+                                    break;
+                                }
+                            }
+                            horaFloat += 0.5f;
+                        }
                     }
 
                 }

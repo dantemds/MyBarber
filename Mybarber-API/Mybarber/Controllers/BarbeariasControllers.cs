@@ -70,19 +70,19 @@ namespace Mybarber.Controllers
         public async Task<IActionResult> GetBarbeariaAsyncByRoute(string route)
         {
 
-            var key = route;
-            if (_memoryCache.TryGetValue(key, out var barbeariaCache))
-                return Ok(barbeariaCache);
+            //var key = route;
+            //if (_memoryCache.TryGetValue(key, out var barbeariaCache))
+            //    return Ok(barbeariaCache);
 
             var result = await _presenter.GetAllAtributesBarbeariaAsyncByRoute(route);
 
-            var memoryCacheEntryOptions = new MemoryCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(600),
-                SlidingExpiration = TimeSpan.FromSeconds(600)
-            };
+            //var memoryCacheEntryOptions = new MemoryCacheEntryOptions
+            //{
+            //    AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(300),
+            //    SlidingExpiration = TimeSpan.FromSeconds(300)
+            //};
 
-            _memoryCache.Set(key, result, memoryCacheEntryOptions);
+            //_memoryCache.Set(key, result, memoryCacheEntryOptions);
 
             if (result != null)
             {

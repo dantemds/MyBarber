@@ -28,6 +28,7 @@ namespace Mybarber.Helpers
             CreateMap<Servicos, ServicosCompleteResponseDto>().ReverseMap();
             CreateMap<Servicos, ServicosRequestDto>().ReverseMap();
             CreateMap<Servicos, ServicosResponseDto>();
+            CreateMap<Servicos, ServicosResponseDto>().ReverseMap();
             CreateMap<Barbeiros, BarbeirosResponseDto>();
             CreateMap<Barbeiros, BarbeirosResponseDto>().ReverseMap();
             CreateMap<Barbeiros, BarbeirosCompleteResponseDto>().ReverseMap();

@@ -34,6 +34,7 @@
           "AWSSDK.CloudFront": "3.7.4.11",
           "AWSSDK.Core": "3.7.100.20",
           "AWSSDK.S3": "3.7.101.20",
+          "AWSSDK.SimpleNotificationService": "3.5.0.18",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Dapper": "2.0.123",
           "Dapper.Contrib": "2.0.78",
@@ -398,6 +399,20 @@
         },
         "compile": {
           "lib/netcoreapp3.1/AWSSDK.S3.dll": {}
+        }
+      },
+      "AWSSDK.SimpleNotificationService/3.5.0.18": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.100.20"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.SimpleNotificationService.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.5.0.18"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.SimpleNotificationService.dll": {}
         }
       },
       "Dapper/2.0.123": {
@@ -3206,6 +3221,13 @@
       "sha512": "sha512-wKoUWnjEDxgP3CYW5KAKLEyHVq1LPAK9w70luF81OBEKdKlwW3nJnkEY9zN9qi/jJpJimXt/Zwfs8HTNVHQagA==",
       "path": "awssdk.s3/3.7.101.20",
       "hashPath": "awssdk.s3.3.7.101.20.nupkg.sha512"
+    },
+    "AWSSDK.SimpleNotificationService/3.5.0.18": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TH54VcW05IsicQ6rOTvm2NhVofQOpMVZA2J0BZZL1+zLIPuos62JJUgVMt1oINwMAlF5T0T85l8yoxbT2Gq67g==",
+      "path": "awssdk.simplenotificationservice/3.5.0.18",
+      "hashPath": "awssdk.simplenotificationservice.3.5.0.18.nupkg.sha512"
     },
     "Dapper/2.0.123": {
       "type": "package",

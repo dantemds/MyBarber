@@ -10,7 +10,9 @@ namespace Mybarber.DataTransferObject.Servico
         public DateTime TempoServico { get; set; }
         public float PrecoServico { get; set; }
         public Guid BarbeariasId { get; set; }
+        public int Ordem { get; set; }
 
-       
+
+
     }
 }

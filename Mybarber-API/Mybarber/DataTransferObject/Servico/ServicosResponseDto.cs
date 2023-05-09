@@ -14,6 +14,7 @@ namespace Mybarber.DataTransferObject.Servico
         public DateTime TempoServico { get; set; }
         public float PrecoServico { get; set; }
         public virtual ServicoImagemResponseDto ServicoImagem { get; set; }
+        public int Ordem { get; set; }
 
         public virtual ICollection<ServicosBarbeirosResponseDto> ServicosBarbeiros { get; set; }
 

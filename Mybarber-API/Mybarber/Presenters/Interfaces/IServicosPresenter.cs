@@ -11,7 +11,7 @@ namespace Mybarber.Presenter
 
         Task<ServicosResponseDto> GetServicoAsyncById(Guid idServico);
 
-        Task<ServicosResponseDto> GetServicoAsyncByTenant(Guid idBarbearia);
+        Task<List<ServicosResponseDto>> GetServicoAsyncByTenant(Guid idBarbearia);
 
         Task<ServicosCompleteResponseDto> PostServicoAsync(ServicosRequestDto servicoDto);
        Task<ServicosCompleteResponseDto> PostServiceCompleteAsync(ServicosCompleteRequestDto servicoDto);

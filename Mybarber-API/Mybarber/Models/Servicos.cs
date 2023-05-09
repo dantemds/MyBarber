@@ -27,6 +27,7 @@ namespace Mybarber.Models
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
         [ForeignKey("Barbearias")]
         public Guid BarbeariasId { get; set; }
+        public int Ordem { get; set; }
 
         public virtual Barbearias Barbearias { get; set; }
 

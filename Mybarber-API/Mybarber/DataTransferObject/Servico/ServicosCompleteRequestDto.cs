@@ -11,5 +11,6 @@ namespace Mybarber.DataTransferObject.Servico
         public Guid BarbeariasId { get; set; }
         public IFormFile File { get; set; }
         public string Route { get; set; }
+        public int Ordem { get; set; }
     }
 }

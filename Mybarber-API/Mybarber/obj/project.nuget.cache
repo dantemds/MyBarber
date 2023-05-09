@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lre36U0f3fxBJxZP6PBlOkdzK00EZyFbJqzRXwjoiOyHlFzAVQApIseGJg/LzW9E5dpvVEEfNRm9nLNRrBEgTg==",
+  "dgSpecHash": "9yWJowBTT8adZ1Xo6xt06G+U5Fy+gQ3+TE6aL1rqGzzJSLxLQjH/bEazQ3hFpMjJoLvXJMkc4vTINshgdqnbaw==",
   "success": true,
   "projectFilePath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber\\Mybarber.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\soumu\\.nuget\\packages\\awssdk.cloudfront\\3.7.4.11\\awssdk.cloudfront.3.7.4.11.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\awssdk.core\\3.7.100.20\\awssdk.core.3.7.100.20.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\awssdk.s3\\3.7.101.20\\awssdk.s3.3.7.101.20.nupkg.sha512",
+    "C:\\Users\\soumu\\.nuget\\packages\\awssdk.simplenotificationservice\\3.5.0.18\\awssdk.simplenotificationservice.3.5.0.18.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\mailkit\\3.2.0\\mailkit.3.2.0.nupkg.sha512",
@@ -105,6 +106,16 @@
     "C:\\Users\\soumu\\.nuget\\packages\\websocketsharp-nonprerelease\\1.0.0\\websocketsharp-nonprerelease.1.0.0.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Versão detectada do pacote fora da restrição de dependência: AWSSDK.SimpleNotificationService 3.5.0.18 requer AWSSDK.Core (>= 3.5.1.16 && < 3.6.0), mas a versão AWSSDK.Core 3.7.100.20 foi resolvida.",
+      "libraryId": "AWSSDK.Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",
