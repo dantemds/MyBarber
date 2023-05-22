@@ -15,6 +15,7 @@ namespace Mybarber.Persistencia
         public Context(DbContextOptions<Context> options, IConfiguration config) : base(options) { this._config = config; }
       
         
+        public DbSet<Aviso> Aviso { get; set; }
         public DbSet<BarbeiroImagens> BarbeiroImagens { get; set; }
         public DbSet<Barbearias> Barbearias { get; set; }
         public DbSet<Users> Users { get; set; }

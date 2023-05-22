@@ -78,7 +78,7 @@
             
             </summary>
         </member>
-        <member name="M:Mybarber.Controllers.ServicosBarbeirosControllers.#ctor(Mybarber.Presenters.IServicosBarbeirosPresenter,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+        <member name="M:Mybarber.Controllers.ServicosBarbeirosControllers.#ctor(Mybarber.Presenters.IServicosBarbeirosPresenter,Microsoft.Extensions.Caching.Memory.IMemoryCache,Mybarber.Services.IBarbeirosServices)">
             <summary>
             
             </summary>

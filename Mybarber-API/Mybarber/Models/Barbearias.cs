@@ -24,6 +24,7 @@ namespace Mybarber.Models
         public bool Ativa { get; set; } 
         public HorarioFuncionamento HorarioFuncionamento { get; set; }
         public ICollection<Banner> Banner { get; set; }
+        public Aviso Aviso { get; set; }
         public ICollection<LandingPageImages> LandingPageImages { get; set; }
         public ICollection<Agendamentos> Agendamentos { get; set; }
         public ICollection<Servicos> Servicos { get; set; }

@@ -25,6 +25,7 @@ namespace Mybarber.Models
 
         public virtual Users Users { get; set; }
         public Guid UsersId { get; set; }
+        public string BarbeiroContato { get; set; }
 
         //[ForeignKey("BarbeiroImagemId")]
         //public Guid BarbeiroImagemId { get; set; }

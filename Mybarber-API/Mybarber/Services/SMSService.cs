@@ -2,18 +2,34 @@
 using Amazon.Runtime;
 using Amazon.SimpleNotificationService;
 using Amazon.SimpleNotificationService.Model;
+using Microsoft.Extensions.Configuration;
+using Mybarber.Services.Interfaces;
 using System;
+using System.Threading.Tasks;
 
 namespace Mybarber.Services
 {
-    public class SMSService
+    public class SMSService: ISMSService
     {
-        public void SendSMS()
+        private readonly IConfiguration _config;
+        public SMSService(IConfiguration config)
         {
-            var awsCredentials = new BasicAWSCredentials("<ACCESS_KEY>", "<SECRET_KEY>");
-            var snsClient = new AmazonSimpleNotificationServiceClient(awsCredentials, RegionEndpoint.USWest2); // substitua pela região desejada
-            var message = "Olá! Esta é uma mensagem SMS enviada pela AWS SNS.";
-            var phoneNumber = "+55SEUNUMERODECELULAR"; // substitua pelo número de celular desejado, com o código do país (ex: +55 para o Brasil)
+            this._config = config;
+        }
+        public SMSService()
+        {
+
+        }
+        public  bool SendSMS(string phoneNumber, string message)
+        {
+            //var awsCredentials = new BasicAWSCredentials(_config.GetSection("Key:SmsUser").Value, _config.GetSection("Key:SmsPass").Value);
+            var awsCredentials = new BasicAWSCredentials("AKIAYIZRZPXD2MYUBX7J", "RRqcdenWaeydvZOaNQGc1RZEIyv/M9qxZO7UIg3j");
+            var snsClient = new AmazonSimpleNotificationServiceClient(awsCredentials, RegionEndpoint.USEast1); 
+
+            if (phoneNumber.Length >= 11)
+            {
+                phoneNumber = "+55" + phoneNumber;
+            }
 
             var request = new PublishRequest
             {
@@ -23,10 +39,20 @@ namespace Mybarber.Services
 
             try
             {
-                var response = snsClient.PublishAsync(request);
+                var response = snsClient.PublishAsync(request).Result;
+                if (response != null)
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception ex)
             {
+                return false;
             }
         }
     }

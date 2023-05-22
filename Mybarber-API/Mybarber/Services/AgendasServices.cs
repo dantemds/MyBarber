@@ -62,8 +62,8 @@ namespace Mybarber.Services
             var HorarioMax=0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
             var eventosAgendados = barbeiro.EventoAgendado;
-            var horaBrasilia = Date.GetNow();
-            //var horaBrasilia = DateTime.Now;
+            //var horaBrasilia = Date.GetNow();
+            var horaBrasilia = DateTime.Now;
             var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
             Console.WriteLine("--------------hora atual string---------------");
             Console.WriteLine(horaAtual);

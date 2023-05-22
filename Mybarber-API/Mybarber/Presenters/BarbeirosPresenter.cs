@@ -78,6 +78,30 @@ namespace Mybarber.Presenter
             }
         }
 
+        public async Task<BarbeirosCompleteResponseDto> PostBarbeiroTodosServicosAsync(BarbeirosRequestDto barbeiroDto)
+        {
+            try
+            {
+                if (barbeiroDto.Equals(null))
+                    throw new ViewException("Barbeiro.Is.Null");
+                if (barbeiroDto.Password.Equals(null) || barbeiroDto.Email.Equals(null))
+                    throw new ViewException("Credentials.Is.Null");
+
+
+                var barbeiro = await _service.PostBarbeiroTodosServicosAsync(barbeiroDto);
+
+                var resultDto = _mapper.Map<BarbeirosCompleteResponseDto>(barbeiro);
+                resultDto.Route = barbeiro.Barbearias.Route;
+
+            return resultDto;
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+
+        }
+
         public async Task<BarbeirosCompleteResponseDto> PostBarbeiroAsync(BarbeirosRequestDto barbeiroDto)
         {
             try
@@ -133,9 +157,6 @@ namespace Mybarber.Presenter
 
                 return barbeiroDto;
             }
-
-
-
             catch (Exception ex)
             {
                 throw ex;

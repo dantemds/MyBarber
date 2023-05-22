@@ -40,10 +40,14 @@ namespace Mybarber.Models
 
         public Agendamentos() { }
        
+        public string ToStringData()
+        {
+            return this.Horario.ToString("dd/MM/yyyy");
+        }
 
-
-
-
-
+        public string ToStringHora()
+        {
+            return this.Horario.ToString("HH:mm");
+        }
     }
 }

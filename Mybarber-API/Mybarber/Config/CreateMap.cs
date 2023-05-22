@@ -15,6 +15,7 @@ using Mybarber.DataTransferObject.Contatos;
 using Mybarber.DataTransferObject.Banner;
 using Mybarber.DataTransferObject.LadingPageImages;
 using Mybarber.DataTransferObject.EventoAgendado;
+using Mybarber.DataTransferObject.Aviso;
 
 namespace Mybarber.Helpers
 {
@@ -81,6 +82,8 @@ namespace Mybarber.Helpers
             CreateMap<EventoAgendado, EventoAgendadoRequestDto>();
             CreateMap<EventoAgendado, EventoAgendadoResponseDto>().ReverseMap();
             CreateMap<EventoAgendado, EventoAgendadoResponseDto>();
+            CreateMap<Aviso, AvisoResponseDto>();
+            CreateMap<Aviso, AvisoResponseDto>().ReverseMap();
         }
     }
 }

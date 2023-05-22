@@ -3,6 +3,7 @@ using Mybarber.Exceptions;
 using Mybarber.Exceptions.Tradutor;
 using Mybarber.Helpers;
 using Mybarber.Models;
+using Mybarber.Models.Enum;
 using Mybarber.Repository;
 using Mybarber.Services.Interfaces;
 using Mybarber.Validations;
@@ -17,15 +18,19 @@ namespace Mybarber.Services
     public class AgendamentosServices : IAgendamentosServices
     {
         private readonly IAgendamentosRepository _repo;
+        private readonly ISMSService _sms;
 
         private readonly IGenerallyRepository _generally;
         private readonly IEmailServices _email;
+        private readonly IBarbeirosRepository _barbeirosRepository;
 
-        public AgendamentosServices(IAgendamentosRepository repo, IGenerallyRepository generally, IEmailServices email)
+        public AgendamentosServices(IAgendamentosRepository repo, IGenerallyRepository generally, IEmailServices email, ISMSService sms, IBarbeirosRepository barbeirosRepository)
         {
             this._repo = repo;
             this._generally = generally;
+            this._sms = sms;
             this._email = email;
+            this._barbeirosRepository = barbeirosRepository;
         }
 
         public async Task<IEnumerable<Agendamentos>> GetAllAgendamentosAsync()
@@ -71,11 +76,11 @@ namespace Mybarber.Services
                     throw new AgendamentoException(TraslateExceptions.AgendamentoConflituoso);
                 //if ((DateTime.Compare(agendamentos.Horario, DateTime.Now)<0))
                 //    throw new AgendamentoException(TraslateExceptions.AgendamentoImpossivel);
-                    
-                
+
+                var barbeiro = await _barbeirosRepository.GetBarbeirosAsyncById(agendamentos.BarbeirosId);
                 
 
-             _generally.Add(agendamentos);
+                _generally.Add(agendamentos);
 
                
                 
@@ -85,9 +90,13 @@ namespace Mybarber.Services
                 {
                     try
                     {
-
                         //_email.SendEmail(agendamentos, "EmailAgendamento");
                         _email.SendSESEMail(agendamentos, "EmailAgendamento");
+                        _sms.SendSMS(agendamentos.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoCliente, agendamentos));
+                        if (barbeiro.BarbeiroContato != null)
+                        {
+                            _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
+                        }
                     }
                     catch(Exception ex)
                     { return agendamentos; }
@@ -116,6 +125,7 @@ namespace Mybarber.Services
             {
                 //_email.SendEmail(agendamento, "EmailCancelamento");
                 _email.SendSESEMail(agendamento, "EmailCancelamento");
+                _sms.SendSMS(agendamento.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.CancelarAgendamento, agendamento));
                 Log.Information("Agendamento cancelado ", idAgendamento);
                 return true;
             

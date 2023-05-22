@@ -20,6 +20,8 @@ namespace Mybarber.Presenters
             this._servicosBarbeirosServices = servicosBarbeirosServices;
         }
 
+       
+
         public async Task<ServicosBarbeirosRequestDto> PostServicoBarbeirosAsync(ServicosBarbeirosRequestDto relacionamentoDto)
         {
             try

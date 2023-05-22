@@ -1,5 +1,6 @@
 ﻿
 using Mybarber.DataTransferObject.Agendamento;
+using Mybarber.DataTransferObject.Aviso;
 using Mybarber.DataTransferObject.Banner;
 using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.DataTransferObject.Contatos;
@@ -34,6 +35,7 @@ namespace Mybarber.DataTransferObject.Barbearia
         //public virtual ICollection<BarbeirosResponseDto> Barbeiros { get; set; }
         public ICollection<BannerResponseDto> Banner { get; set; }
         public ICollection<LandingPageImagesResponseDto> LandingPageImages { get; set; }
+        public AvisoResponseDto Aviso { get; set; }
 
 
 

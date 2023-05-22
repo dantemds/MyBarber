@@ -5,6 +5,7 @@ using Mybarber.DataTransferObject.Relacionamento;
 using Mybarber.Persistencia;
 using Mybarber.Presenter;
 using Mybarber.Presenters;
+using Mybarber.Services;
 using System;
 using System.Threading.Tasks;
 
@@ -19,13 +20,15 @@ namespace Mybarber.Controllers
     {
         private readonly IMemoryCache _memoryCache;
         private readonly IServicosBarbeirosPresenter _presenter;
+        private readonly IBarbeirosServices _barbeirosServices;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="presenter"></param>
-        public ServicosBarbeirosControllers(IServicosBarbeirosPresenter presenter, IMemoryCache memoryCache)
+        public ServicosBarbeirosControllers(IServicosBarbeirosPresenter presenter, IMemoryCache memoryCache, IBarbeirosServices barbeirosServices)
         {
             this._presenter = presenter;
+            this._barbeirosServices = barbeirosServices;
             this._memoryCache = memoryCache;
         }
         /// <summary>
@@ -47,6 +50,18 @@ namespace Mybarber.Controllers
             catch (Exception ex)
             {
                 return BadRequest($"Erro:{ex.Message}");
+            }
+        }
+
+        [HttpPost("todosbarbeirostodosservicos")]
+        public async Task<IActionResult> PostTodosBarbeiroTodosServicos(Guid tenant)
+        {
+            try
+            {
+                return Ok(await _barbeirosServices.PostTodosBarbeiroTodosServicos(tenant));
+            }catch (Exception ex)
+            { 
+                return BadRequest(ex);
             }
         }
 

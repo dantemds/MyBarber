@@ -112,7 +112,26 @@ namespace Mybarber.Controllers
             return Created($"/api/v1/barbeiros/{result.IdBarbeiro}", result);
             
            
+        
         }
+
+        [HttpPost("comservico")]
+        public async Task<IActionResult> PostBarbeiroComTodosServicosAsync(BarbeirosRequestDto barbeiroDto)
+        {
+
+            var result = await _presenter.PostBarbeiroTodosServicosAsync(barbeiroDto);
+
+            if (result != null)
+            {
+                if (_memoryCache.TryGetValue(result.Route, out var barbeariaCache))
+                {
+                    _memoryCache.Remove(result.Route);
+                }
+            }
+
+            return Created($"/api/v1/barbeiros/{result.IdBarbeiro}", result);
+        }
+
         [HttpDelete("{idBarbeiro}")]
         public async Task<IActionResult> DeleteBarbeiroAsyncById(Guid idBarbeiro)
         {

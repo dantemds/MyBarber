@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Mybarber.Helpers;
+using Mybarber.Persistences;
 using Mybarber.Presenter;
 using Mybarber.Presenters;
 using Mybarber.Presenters.Interfaces;
@@ -59,6 +60,8 @@ namespace Mybarber.Config
             services.AddScoped<ILandingPageRepository, LandingPageRepository>();
             services.AddScoped<IEventosAgendadosPresenter, EventosAgendadosPresenter>();
             services.AddScoped<IEventoRepository, EventoRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISMSService, SMSService>();
         }
     }
 }
