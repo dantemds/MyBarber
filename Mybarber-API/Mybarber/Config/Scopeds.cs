@@ -10,6 +10,7 @@ using Mybarber.Repositories.Interface;
 using Mybarber.Repository;
 using Mybarber.Services;
 using Mybarber.Services.Interfaces;
+using Mybarber.UseCase;
 using System.Security.Cryptography;
 
 namespace Mybarber.Config
@@ -62,6 +63,7 @@ namespace Mybarber.Config
             services.AddScoped<IEventoRepository, EventoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISMSService, SMSService>();
+            services.AddScoped<IAutenticadorUsuarioCasoDeUso, AutenticadorUsuarioCasoDeUso>();
         }
     }
 }

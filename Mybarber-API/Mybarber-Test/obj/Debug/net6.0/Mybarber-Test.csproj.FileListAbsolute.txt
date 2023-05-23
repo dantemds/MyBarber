@@ -173,3 +173,7 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.pdb
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.genruntimeconfig.cache
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\ref\Mybarber-Test.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Castle.Core.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\NSubstitute.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Konscious.Security.Cryptography.Blake2.dll

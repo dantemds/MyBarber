@@ -70,7 +70,7 @@ namespace Mybarber.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<dynamic>> AuthenticateAsync(LoginRequestDto model)
         {
-          var user = await  _Authenticate.GetUserAsyncByEmail(model.Email);
+            var user = await  _Authenticate.GetUserAsyncByEmail(model.Email);
 
             if (_hash.VerificarSenha(model.Password, user.Password) == true)
             {
@@ -92,27 +92,8 @@ namespace Mybarber.Controllers
                 }
             }
             else return BadRequest();
-
-            //var user = await _Authenticate.GetUserAsync(model.Username, model.Password);
-            //var roles = await _Aut.GetRoleAsyncByUsersId(user.IdUser);
-
-            //if (user == null)
-            //    return NotFound(new { messaage = "Usuário ou senha inválido" });
-
-            //var token = TokenServices.GenerateToken(user);
-
-            ////HttpContext.Session.SetString("SessionNome", user.Username);
-
-            ////HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(user));
-
-            //user.Password = "";
-            //return new
-            //{
-            //    user = user.Username,
-            //    token = token
-            //};
-
         }
+
         [AllowAnonymous]
         [HttpPost("create")]
         public async Task<ActionResult> PostUserAsync(UsuarioCreateRequestDto user)
@@ -134,85 +115,13 @@ namespace Mybarber.Controllers
          _generally.Add(usuario);
             if (await _generally.SaveChangesAsync())
                 return Ok(usuario);
-            else return BadRequest()
-    ;
-
-            //try
-            //{
-            //    _generally.Add(user);
-
-            //    if (await _generally.SaveChangesAsync())
-            //    {
-            //        return Ok();
-            //    }
-            //    else { return BadRequest(); }
-
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw new Exception();
-            //}
-
+            else return BadRequest();
 
         }
 
-
-        //[HttpPatch]
-        //public async Task<ActionResult> PatchUserPasswordAsync( [FromBody] Users user)
-        //{
-        //    try
-        //    {
-                
-              
-                
-
-
-        //        var identityFinded = await _userManager.FindByEmailAsync(user.Email);
-
-        //        var senha = _userManager.PasswordHasher.HashPassword(identityFinded, user.Password);
-        //        identityFinded.PasswordHash = senha;
-        //        await _userManager.UpdateAsync(identityFinded);
-
-         
-
-        //        await _generally.SaveChangesAsync();
-        //        return Ok(); 
-               
-        //    }
-        //    catch (Exception ex)
-        //    { throw new Exception(ex.Message); }
-
-            
-           
-
-        //}
-
-
-
-
-
-
         private async Task<string> GerarJwt(string email)
         {
-
-
-
             var user = await _repoUser.GetUserAsyncByEmail(email);
-
-
-
-
-
-       
-
-
-
-
-
-            
-
-
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -232,14 +141,6 @@ namespace Mybarber.Controllers
             return tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
         }
 
-
-
-
-
-
-
-
-
         public class RetornoUsuario
         {
             public Guid IdBarbeiro { get; set; }
@@ -258,11 +159,6 @@ namespace Mybarber.Controllers
                 this.IdBarbeiro = IdBarbeiro;
                 this.Role = Role;
             }
-
-
-
-
         }
-
     }
 }

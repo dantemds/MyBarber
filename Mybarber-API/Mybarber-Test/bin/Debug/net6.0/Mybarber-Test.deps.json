@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.NET.Test.Sdk": "16.11.0",
           "Mybarber": "1.0.0",
+          "NSubstitute": "5.0.0",
           "NUnit": "3.13.2",
           "NUnit3TestAdapter": "4.0.0",
           "coverlet.collector": "3.1.0"
@@ -84,6 +85,17 @@
           }
         }
       },
+      "Castle.Core/5.0.0": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
       "coverlet.collector/3.1.0": {},
       "Dapper/2.0.123": {
         "runtime": {
@@ -101,6 +113,26 @@
           "lib/net5.0/Dapper.Contrib.dll": {
             "assemblyVersion": "2.0.0.0",
             "fileVersion": "2.0.78.45418"
+          }
+        }
+      },
+      "Konscious.Security.Cryptography.Argon2/1.3.0": {
+        "dependencies": {
+          "Konscious.Security.Cryptography.Blake2": "1.1.0",
+          "System.Memory": "4.5.4"
+        },
+        "runtime": {
+          "lib/net6.0/Konscious.Security.Cryptography.Argon2.dll": {
+            "assemblyVersion": "1.3.0.0",
+            "fileVersion": "1.3.0.0"
+          }
+        }
+      },
+      "Konscious.Security.Cryptography.Blake2/1.1.0": {
+        "runtime": {
+          "lib/net6.0/Konscious.Security.Cryptography.Blake2.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
           }
         }
       },
@@ -778,6 +810,17 @@
           }
         }
       },
+      "NSubstitute/5.0.0": {
+        "dependencies": {
+          "Castle.Core": "5.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/NSubstitute.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
       "NuGet.Frameworks/5.0.0": {
         "runtime": {
           "lib/netstandard2.0/NuGet.Frameworks.dll": {
@@ -1003,6 +1046,7 @@
         }
       },
       "System.Diagnostics.DiagnosticSource/4.7.0": {},
+      "System.Diagnostics.EventLog/6.0.0": {},
       "System.Drawing.Common/6.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "6.0.0"
@@ -1042,6 +1086,7 @@
           }
         }
       },
+      "System.Memory/4.5.4": {},
       "System.Reflection.Emit/4.7.0": {},
       "System.Reflection.Metadata/1.6.0": {},
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
@@ -1137,6 +1182,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Dapper": "2.0.123",
           "Dapper.Contrib": "2.0.78",
+          "Konscious.Security.Cryptography.Argon2": "1.3.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.0",
           "Microsoft.AspNetCore.Identity.UI": "3.1.0",
@@ -1213,6 +1259,13 @@
       "path": "awssdk.simplenotificationservice/3.5.0.18",
       "hashPath": "awssdk.simplenotificationservice.3.5.0.18.nupkg.sha512"
     },
+    "Castle.Core/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-edc8jjyXqzzy8jFdhs36FZdwmlDDTgqPb2Zy1Q5F/f2uAc88bu/VS/0Tpvgupmpl9zJOvOo5ZizVANb0ltN1NQ==",
+      "path": "castle.core/5.0.0",
+      "hashPath": "castle.core.5.0.0.nupkg.sha512"
+    },
     "coverlet.collector/3.1.0": {
       "type": "package",
       "serviceable": true,
@@ -1233,6 +1286,20 @@
       "sha512": "sha512-sUfDVIf8LlHNiz3MfUFodeyRiemfN1JFkPxYjCxFWlwNPg1iQ49mB+0E89TkywWs4X8fiRWOVDQgtH5FtzK5Kw==",
       "path": "dapper.contrib/2.0.78",
       "hashPath": "dapper.contrib.2.0.78.nupkg.sha512"
+    },
+    "Konscious.Security.Cryptography.Argon2/1.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/pNPlNmjx7r7CGvw0WqO8Rk5vHHyUuzAWhB/PRKLZ2cmhQXoM6TYUooJcuES9zE9D+6yTOl+4LmFV2nKtgDyFg==",
+      "path": "konscious.security.cryptography.argon2/1.3.0",
+      "hashPath": "konscious.security.cryptography.argon2.1.3.0.nupkg.sha512"
+    },
+    "Konscious.Security.Cryptography.Blake2/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-enWOzNAlBjFcKoiBNVVLsa1ZzOciExznu+sUURE8dx322GI1LzrBxzEuZqjeOoK9oo9RubLtg96/7Y4JtUk9zA==",
+      "path": "konscious.security.cryptography.blake2/1.1.0",
+      "hashPath": "konscious.security.cryptography.blake2.1.1.0.nupkg.sha512"
     },
     "MailKit/3.2.0": {
       "type": "package",
@@ -1619,6 +1686,13 @@
       "path": "npgsql.entityframeworkcore.postgresql/3.1.2",
       "hashPath": "npgsql.entityframeworkcore.postgresql.3.1.2.nupkg.sha512"
     },
+    "NSubstitute/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CWGy4oXvcJcZzL7m5Rr/eMSejFXMDq1RRMlsbL6eltS3AuN/d8GH3ZzUcuStQcCSlcx+hpsgTxdnb3lhozWG6w==",
+      "path": "nsubstitute/5.0.0",
+      "hashPath": "nsubstitute.5.0.0.nupkg.sha512"
+    },
     "NuGet.Frameworks/5.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1787,6 +1861,13 @@
       "path": "system.diagnostics.diagnosticsource/4.7.0",
       "hashPath": "system.diagnostics.diagnosticsource.4.7.0.nupkg.sha512"
     },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
+    },
     "System.Drawing.Common/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1807,6 +1888,13 @@
       "sha512": "sha512-xa8kptJ+uf9hzj366f3pLcs5HFZ6dQMDKzEGq/yZNF0s3mVfyIhuQwgDcTJlAU4AROne/6Z5+vITwrW3gVNKIA==",
       "path": "system.identitymodel.tokens.jwt/5.5.0",
       "hashPath": "system.identitymodel.tokens.jwt.5.5.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "path": "system.memory/4.5.4",
+      "hashPath": "system.memory.4.5.4.nupkg.sha512"
     },
     "System.Reflection.Emit/4.7.0": {
       "type": "package",

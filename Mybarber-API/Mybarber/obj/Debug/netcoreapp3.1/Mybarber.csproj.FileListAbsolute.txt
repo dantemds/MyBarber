@@ -256,3 +256,5 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Serilog.Enrichers.Environment.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Serilog.Enrichers.Thread.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\AWSSDK.SimpleNotificationService.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Konscious.Security.Cryptography.Blake2.dll
