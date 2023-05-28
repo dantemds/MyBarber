@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Mybarber.Models;
 using Mybarber.Persistences;
@@ -7,14 +6,14 @@ using Npgsql;
 
 namespace Mybarber.Persistencia
 {
-    public class Context : DbContext
+    public class Context : DbContext 
     {
         
 
       
         public Context(DbContextOptions<Context> options, IConfiguration config) : base(options) { this._config = config; }
-      
-        
+        public Context(DbContextOptions<Context> options) : base(options) { }
+
         public DbSet<Aviso> Aviso { get; set; }
         public DbSet<BarbeiroImagens> BarbeiroImagens { get; set; }
         public DbSet<Barbearias> Barbearias { get; set; }

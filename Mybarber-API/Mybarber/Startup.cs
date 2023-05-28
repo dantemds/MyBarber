@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -10,7 +11,6 @@ using Microsoft.IdentityModel.Tokens;
 using Mybarber.Config;
 using Mybarber.Models;
 using Mybarber.Persistencia;
-using Mybarber.WebSockets.Server;
 using Serilog;
 using System;
 using System.Text;
@@ -48,7 +48,6 @@ namespace Mybarber
             Cors.AddCors(services);
 
             Scopeds.GetScoped(services);
-            Server.Start();
 
             Swagger.AddSwager(services);
 

@@ -5,7 +5,13 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mybarber", "Mybarber\Mybarber.csproj", "{FBBDC599-9D6F-498F-A705-14F8EA4BF6C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mybarber-Test", "Mybarber-Test\Mybarber-Test.csproj", "{FFAB9C15-95FC-469C-987D-82A18720E66E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mybarber-Test", "Mybarber-Test\Mybarber-Test.csproj", "{FFAB9C15-95FC-469C-987D-82A18720E66E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplicacao", "Application\Aplicacao.csproj", "{6BB9A466-EF90-40E6-9A57-F153EF624841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{763FFB73-434A-404D-B6AF-C4B71A2A4F9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestrutura", "Infraestrutura\Infraestrutura.csproj", "{0AF30B14-F79D-4E93-BC41-6F8A2A688F6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{FFAB9C15-95FC-469C-987D-82A18720E66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFAB9C15-95FC-469C-987D-82A18720E66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFAB9C15-95FC-469C-987D-82A18720E66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB9A466-EF90-40E6-9A57-F153EF624841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB9A466-EF90-40E6-9A57-F153EF624841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB9A466-EF90-40E6-9A57-F153EF624841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB9A466-EF90-40E6-9A57-F153EF624841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{763FFB73-434A-404D-B6AF-C4B71A2A4F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{763FFB73-434A-404D-B6AF-C4B71A2A4F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{763FFB73-434A-404D-B6AF-C4B71A2A4F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{763FFB73-434A-404D-B6AF-C4B71A2A4F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF30B14-F79D-4E93-BC41-6F8A2A688F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF30B14-F79D-4E93-BC41-6F8A2A688F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF30B14-F79D-4E93-BC41-6F8A2A688F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF30B14-F79D-4E93-BC41-6F8A2A688F6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
