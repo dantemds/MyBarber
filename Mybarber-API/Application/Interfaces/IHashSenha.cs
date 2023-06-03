@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aplicacao.Interfaces
 {
-    public interface IHash
+    public interface IHashSenha
     {
         byte[] BagunçarSenha(string password);
         bool VerificarSenha(string password);

@@ -13,23 +13,21 @@ namespace Aplicacao.CasosDeUso
     public class GerarRelatorioGeralPdf : IGerarRelatorioGeralPdf
     {
         private readonly IAgendamentoRepositorio _agendamentoRepositorio;
-        private readonly IPrepararDadosParaRelatorioPdf _prepararDadosParaRelatorioPdf;
         private readonly IGerarRelatorioPdf _gerarRelatorio;
 
-        public GerarRelatorioGeralPdf(IAgendamentoRepositorio agendamentoRepositorio, IPrepararDadosParaRelatorioPdf prepararDadosParaRelatorioPdf, IGerarRelatorioPdf gerarRelatorio)
+        public GerarRelatorioGeralPdf(IAgendamentoRepositorio agendamentoRepositorio, IGerarRelatorioPdf gerarRelatorio)
         {
             _agendamentoRepositorio = agendamentoRepositorio;
-            _prepararDadosParaRelatorioPdf = prepararDadosParaRelatorioPdf;
             _gerarRelatorio = gerarRelatorio;  
         }
 
         public async Task Executar(ComandoGerarRelatorioGeralPdf comando)
         {
-            AgendamentosObtidosPorPeriodo[] agendamentosObtidosPorPeriodos = await _agendamentoRepositorio.ObterAgendamentosPorPeriodo(comando.DataInicio, comando.DataFim);
+            ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodo = await _agendamentoRepositorio.ObterAgendamentosPorPeriodo(comando.DataInicio, comando.DataFim);
 
-            DadosPreparadosParaRelatorioPdf dadosPreparadosParaRelatorioPdf = await _prepararDadosParaRelatorioPdf.PrepararDadosParaRelatorioPdf(agendamentosObtidosPorPeriodos);
+            DadosPreparadosParaRelatorioPdf dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorioPdf(agendamentosObtidosPorPeriodo);
 
-            _gerarRelatorio.GerarRelatorio();
+            _gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
 
 
         }

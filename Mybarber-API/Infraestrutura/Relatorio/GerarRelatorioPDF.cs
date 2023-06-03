@@ -1,4 +1,5 @@
 ﻿using Aplicacao.Interfaces;
+using Aplicacao.ObjetosDeTransferencia;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Diagnostics;
@@ -7,7 +8,7 @@ namespace Infraestrutura.Relatorio
     public class GerarRelatorioPDF : IGerarRelatorioPdf
     {
 
-        public void GerarRelatorio()
+        public void GerarRelatorio(DadosPreparadosParaRelatorioPdf dadosPreparadosParaRelatorioPdf) 
         {
             int totalPaginas = 1;
             //configurar dados do PDF
@@ -62,9 +63,9 @@ namespace Infraestrutura.Relatorio
 
             var faturamentoTitulo = new PdfPCell(new Phrase("Valor Faturado", fonteTitulo));
             var servicosTitulo = new PdfPCell(new Phrase("Número de serviços", fonteTitulo));
-
-            var faturamentoValor = new PdfPCell(new Phrase("R$ 3500.00", fonteValor));
-            var servicoValor = new PdfPCell(new Phrase("102", fonteValor));
+            
+            var faturamentoValor = new PdfPCell(new Phrase("R$ " + dadosPreparadosParaRelatorioPdf.FaturamentoGeral.ToString(), fonteValor));
+            var servicoValor = new PdfPCell(new Phrase(dadosPreparadosParaRelatorioPdf.ServicosPrestados.ToString(), fonteValor));
             faturamentoTitulo.HorizontalAlignment = Element.ALIGN_CENTER;
             servicosTitulo.HorizontalAlignment = Element.ALIGN_CENTER;
             faturamentoValor.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -88,6 +89,16 @@ namespace Infraestrutura.Relatorio
             CriarCelulaTexto(tabela, "Número de serviços", PdfPCell.ALIGN_LEFT, true);
             CriarCelulaTexto(tabela, "Faturamento", PdfPCell.ALIGN_CENTER, true);
             CriarCelulaTexto(tabela, "Comissão", PdfPCell.ALIGN_CENTER, true);
+
+            
+            //adiciona valores as colunas
+            foreach(BarbeiroRelatorioPdf barbeiro in dadosPreparadosParaRelatorioPdf.BarbeiroRelatorioPdf)
+            {
+                CriarCelulaTexto(tabela, barbeiro.NomeBarbeiro, PdfPCell.ALIGN_CENTER, true);
+                CriarCelulaTexto(tabela, barbeiro.NumeroServicos.ToString(), PdfPCell.ALIGN_LEFT, true);
+                CriarCelulaTexto(tabela, "R$ " + barbeiro.Faturamento.ToString(), PdfPCell.ALIGN_CENTER, true); ;
+                CriarCelulaTexto(tabela, "R$ 0", PdfPCell.ALIGN_CENTER, true);
+            }
 
             //Adiciona Tabela
             pdf.Add(tabela);

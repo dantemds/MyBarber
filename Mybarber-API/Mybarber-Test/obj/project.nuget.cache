@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DtTgtV2lMBmdu0AYvCcEk7sQLSv9Ir1ZnGuceid/V+Ag3oKlVCXk81Zzsb+6F9LW0maml/cMIx7FX96DnD7kwg==",
+  "dgSpecHash": "9UhzwimXj9mnbS7qAkHm8qYTA5LoNJOqZ8pSU5nOYlZ+J05AJCA2G8iA+L+igG9brW/LA4v3PAIYHVttVhJ+zQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\soumu\\Documents\\mybarberAPI\\mybarberAPI\\Mybarber-API\\Mybarber-Test\\Mybarber-Test.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,7 @@
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.5\\microsoft.entityframeworkcore.7.0.5.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.5\\microsoft.entityframeworkcore.abstractions.7.0.5.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.5\\microsoft.entityframeworkcore.analyzers.7.0.5.nupkg.sha512",
-    "C:\\Users\\soumu\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\7.0.5\\microsoft.entityframeworkcore.inmemory.7.0.5.nupkg.sha512",
+    "C:\\Users\\soumu\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\6.0.0\\microsoft.entityframeworkcore.inmemory.6.0.0.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.0\\microsoft.entityframeworkcore.relational.6.0.0.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\soumu\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",

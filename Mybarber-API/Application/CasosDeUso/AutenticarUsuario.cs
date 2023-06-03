@@ -10,8 +10,8 @@ namespace Aplicacao.CasosDeUso
     public class AutenticarUsuario: IAutenticarUsuario
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        private readonly IHash _hash;
-        public AutenticarUsuario(IUsuarioRepositorio usuarioRepositorio, IHash hash)
+        private readonly IHashSenha _hash;
+        public AutenticarUsuario(IUsuarioRepositorio usuarioRepositorio, IHashSenha hash)
         {
             this._usuarioRepositorio = usuarioRepositorio;
             this._hash = hash;

@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Aplicacao.CasosDeUso;
+using Aplicacao.CasosDeUso.Interfaces;
+using Aplicacao.Interfaces;
+using Infraestrutura.Relatorio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Mybarber.Helpers;
 using Mybarber.Persistences;
@@ -7,6 +11,7 @@ using Mybarber.Presenters;
 using Mybarber.Presenters.Interfaces;
 using Mybarber.Repositories;
 using Mybarber.Repositories.Interface;
+using Mybarber.Repositorios;
 using Mybarber.Repository;
 using Mybarber.Services;
 using Mybarber.Services.Interfaces;
@@ -61,6 +66,9 @@ namespace Mybarber.Config
             services.AddScoped<IEventoRepository, EventoRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISMSService, SMSService>();
+            services.AddScoped<IGerarRelatorioGeralPdf, GerarRelatorioGeralPdf>();
+            services.AddScoped<IAgendamentoRepositorio, AgendamentoRepositorio>();
+            services.AddScoped<IGerarRelatorioPdf, GerarRelatorioPDF>();
         }
     }
 }

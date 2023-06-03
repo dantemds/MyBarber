@@ -23,7 +23,7 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
           "Microsoft.EntityFrameworkCore.Design": "6.0.0",
-          "Microsoft.EntityFrameworkCore.Tools": "3.1.2",
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0",
           "MimeKit": "3.4.2",
           "NETCore.MailKit": "2.1.0",
@@ -320,7 +320,7 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/3.1.2": {
+      "Microsoft.EntityFrameworkCore.Tools/6.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "6.0.0"
         }
@@ -1716,12 +1716,12 @@
       "path": "microsoft.entityframeworkcore.relational/6.0.0",
       "hashPath": "microsoft.entityframeworkcore.relational.6.0.0.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/3.1.2": {
+    "Microsoft.EntityFrameworkCore.Tools/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-EEupVMDIHqS2b81nYebaMNDHD9iKU4eKrGtG6j+7D5NF/EsTYLPgypguX1Jv3HwdOesysKD/xYaGrUUCJLHIgQ==",
-      "path": "microsoft.entityframeworkcore.tools/3.1.2",
-      "hashPath": "microsoft.entityframeworkcore.tools.3.1.2.nupkg.sha512"
+      "sha512": "sha512-m9e6nFnkyRdKcrTFO8rl3ZihCIKrYdECw+fHZVbKz6TBMwKhih/N0sjPnNt0k7sZPvI8izKPkh1d+z4OR2qgXQ==",
+      "path": "microsoft.entityframeworkcore.tools/6.0.0",
+      "hashPath": "microsoft.entityframeworkcore.tools.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",

@@ -9,6 +9,6 @@ namespace Aplicacao.Interfaces
 {
     public interface IPrepararDadosParaRelatorioPdf
     {
-        public Task<DadosPreparadosParaRelatorioPdf> PrepararDadosParaRelatorioPdf(AgendamentosObtidosPorPeriodo[] agendamentosObtidosPorPeriodo);
+        public Task<DadosPreparadosParaRelatorioPdf> PrepararDadosParaRelatorioPdf(ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodo);
     }
 }

@@ -344,10 +344,10 @@
           "lib/netstandard2.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.InMemory/7.0.5": {
+      "Microsoft.EntityFrameworkCore.InMemory/6.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.5"
+          "Microsoft.EntityFrameworkCore": "6.0.0"
         },
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
@@ -2655,6 +2655,7 @@
           "Microsoft.AspNetCore.Identity.UI": "3.1.0",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.0",
           "Microsoft.EntityFrameworkCore": "7.0.5",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.14.0",
           "MimeKit": "3.4.2",
           "NETCore.MailKit": "2.1.0",
@@ -3393,17 +3394,17 @@
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.InMemory/7.0.5": {
-      "sha512": "y3S/A/0uJX7KOhppC3xqyta6Z0PRz0qPLngH5GFu4GZ7/+Sw2u/amf7MavvR5GfZjGabGcohMpsRSahMmpF9gA==",
+    "Microsoft.EntityFrameworkCore.InMemory/6.0.0": {
+      "sha512": "WJmphvCn0wue9AX+Wvqj3XZ3ehNi9oyYBFNLtHVNvKqZrcimXBOqLo5RNf1fJWYSLWhOia/vzG4JtkAeZxZ8FQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.inmemory/7.0.5",
+      "path": "microsoft.entityframeworkcore.inmemory/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.InMemory.xml",
-        "microsoft.entityframeworkcore.inmemory.7.0.5.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.6.0.0.nupkg.sha512",
         "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
@@ -8633,7 +8634,7 @@
       "Aplicacao >= 1.0.0",
       "Dominio >= 1.0.0",
       "Infraestrutura >= 1.0.0",
-      "Microsoft.EntityFrameworkCore.InMemory >= 7.0.5",
+      "Microsoft.EntityFrameworkCore.InMemory >= 6.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Mybarber >= 1.0.0",
       "NSubstitute >= 5.0.0",
@@ -8704,7 +8705,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.InMemory": {
             "target": "Package",
-            "version": "[7.0.5, )"
+            "version": "[6.0.0, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
