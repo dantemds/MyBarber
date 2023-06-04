@@ -10,11 +10,13 @@ namespace Aplicacao.Comandos
     {
         public DateTime DataInicio { get; set; }
         public DateTime DataFim { get; set; }
+        public Guid IdBarbearia { get; set; }
 
-        public ComandoGerarRelatorioGeralPdf(DateTime dataInicio, DateTime dataFim)
+        public ComandoGerarRelatorioGeralPdf(DateTime dataInicio, DateTime dataFim, Guid idBarbearia)
         {
             DataInicio = dataInicio;
             DataFim = dataFim;
+            IdBarbearia = idBarbearia;
         }
     }
 }

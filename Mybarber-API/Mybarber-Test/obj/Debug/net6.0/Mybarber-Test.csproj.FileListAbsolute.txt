@@ -52,15 +52,7 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll

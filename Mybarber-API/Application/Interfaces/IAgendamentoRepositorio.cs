@@ -9,6 +9,6 @@ namespace Aplicacao.Interfaces
 {
     public interface IAgendamentoRepositorio
     {
-        public Task<ICollection<AgendamentosObtidosPorPeriodo>> ObterAgendamentosPorPeriodo(DateTime inicio, DateTime fim);
+        public Task<ICollection<AgendamentosObtidosPorPeriodo>> ObterAgendamentosPorPeriodo(DateTime inicio, DateTime fim, Guid idBarbearia);
     }
 }

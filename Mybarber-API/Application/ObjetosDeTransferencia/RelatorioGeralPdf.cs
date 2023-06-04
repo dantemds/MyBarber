@@ -8,13 +8,15 @@ namespace Aplicacao.ObjetosDeTransferencia
 {
     public class RelatorioGeralPdf
     {
+        public Guid BarbeariaId { get; set; }
         public DateTime Inicio { get; set; }
         public DateTime Fim { get; set; }
 
-        public RelatorioGeralPdf(DateTime inicio, DateTime fim)
+        public RelatorioGeralPdf(DateTime inicio, DateTime fim, Guid barbeariaId)
         {
             Inicio = inicio;
             Fim = fim;
+            BarbeariaId = barbeariaId;
         }
     }
 }

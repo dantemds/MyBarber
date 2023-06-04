@@ -26,7 +26,6 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Dapper.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Dapper.Contrib.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Humanizer.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\iTextSharp.LGPLv2.Core.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Konscious.Security.Cryptography.Argon2.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Konscious.Security.Cryptography.Blake2.dll
@@ -40,17 +39,8 @@ C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll

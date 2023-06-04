@@ -18,10 +18,10 @@ namespace Infraestrutura.Controladores
             _gerarRelatorioGeralPdf = gerarRelatorioGeralPdf;
         }
 
-        [HttpPost]
+        [HttpPost("{idBarbearia}")]
         public async Task<IActionResult> ObterRelatorioGeralPdf(RelatorioGeralPdf entrada)
         {
-            ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(entrada.Inicio, entrada.Fim);
+            ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(entrada.Inicio, entrada.Fim, entrada.BarbeariaId);
             await _gerarRelatorioGeralPdf.Executar(comando);
             return Ok();
         }

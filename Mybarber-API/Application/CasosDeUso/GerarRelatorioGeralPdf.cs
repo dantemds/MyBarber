@@ -23,7 +23,7 @@ namespace Aplicacao.CasosDeUso
 
         public async Task Executar(ComandoGerarRelatorioGeralPdf comando)
         {
-            ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodo = await _agendamentoRepositorio.ObterAgendamentosPorPeriodo(comando.DataInicio, comando.DataFim);
+            ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodo = await _agendamentoRepositorio.ObterAgendamentosPorPeriodo(comando.DataInicio, comando.DataFim, comando.IdBarbearia);
 
             DadosPreparadosParaRelatorioPdf dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorioPdf(agendamentosObtidosPorPeriodo);
 

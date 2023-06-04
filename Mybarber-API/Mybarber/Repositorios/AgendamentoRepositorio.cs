@@ -19,12 +19,12 @@ namespace Mybarber.Repositorios
         {
             _contexto = context;
         }
-        public async Task<ICollection<AgendamentosObtidosPorPeriodo>> ObterAgendamentosPorPeriodo(DateTime inicio, DateTime fim)
+        public async Task<ICollection<AgendamentosObtidosPorPeriodo>> ObterAgendamentosPorPeriodo(DateTime inicio, DateTime fim, Guid idBarbearia)
         {
             IQueryable<Agendamentos> query = _contexto.Agendamentos.Include(a => a.Barbeiros).Include(a => a.Servicos);
             query = query.AsNoTracking()
                        .OrderBy(a => a.Horario)
-                       .Where(a => a.Horario > inicio && a.Horario < fim);
+                       .Where(a => a.Horario > inicio && a.Horario < fim && a.BarbeariasId == idBarbearia);
             Agendamentos[]? agendamentos = await query.ToArrayAsync();
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodosList = new List<AgendamentosObtidosPorPeriodo>();
             foreach (Agendamentos agendamento in agendamentos)
