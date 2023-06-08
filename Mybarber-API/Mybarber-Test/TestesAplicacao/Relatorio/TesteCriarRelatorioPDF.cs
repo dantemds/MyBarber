@@ -25,7 +25,7 @@ namespace Mybarber_Test.TestesAplicacao.CasoDeUso
             AgendamentosObtidosPorPeriodo agendamentosObtidosPorPeriodo = new AgendamentosObtidosPorPeriodo(servico, barbeiro);
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodosList = new List<AgendamentosObtidosPorPeriodo>();
             agendamentosObtidosPorPeriodosList.Add(agendamentosObtidosPorPeriodo);
-            DadosPreparadosParaRelatorioPdf dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorioPdf(agendamentosObtidosPorPeriodosList);
+            DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorio(agendamentosObtidosPorPeriodosList);
             gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
         }
     }

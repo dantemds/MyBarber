@@ -10,26 +10,24 @@ using System.Threading.Tasks;
 
 namespace Aplicacao.CasosDeUso
 {
-    public class GerarRelatorioGeralPdf : IGerarRelatorioGeralPdf
+    public class GerarRelatorioGeralJson : IGerarRelatorioGeralJson
     {
         private readonly IAgendamentoRepositorio _agendamentoRepositorio;
-        private readonly IGerarRelatorioPdf _gerarRelatorio;
 
-        public GerarRelatorioGeralPdf(IAgendamentoRepositorio agendamentoRepositorio, IGerarRelatorioPdf gerarRelatorio)
+        public GerarRelatorioGeralJson(IAgendamentoRepositorio agendamentoRepositorio)
         {
             _agendamentoRepositorio = agendamentoRepositorio;
-            _gerarRelatorio = gerarRelatorio;  
         }
 
-        public async Task Executar(ComandoGerarRelatorioGeralPdf comando)
+        public async Task<RelatorioGeralJson> Executar(ComandoGerarRelatorioJson comando)
         {
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodo = await _agendamentoRepositorio.ObterAgendamentosPorPeriodo(comando.DataInicio, comando.DataFim, comando.IdBarbearia);
 
             DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorio(agendamentosObtidosPorPeriodo);
 
-            _gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
+            RelatorioGeralJson relatorioGeralJson = new RelatorioGeralJson(dadosPreparadosParaRelatorioPdf.FaturamentoGeral, dadosPreparadosParaRelatorioPdf.ServicosPrestados, dadosPreparadosParaRelatorioPdf.BarbeiroRelatorioPdf);
 
-
+            return relatorioGeralJson;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Mybarber.Repositorios
         }
         public async Task<ICollection<AgendamentosObtidosPorPeriodo>> ObterAgendamentosPorPeriodo(DateTime inicio, DateTime fim, Guid idBarbearia)
         {
-            IQueryable<Agendamentos> query = _contexto.Agendamentos.Include(a => a.Barbeiros).Include(a => a.Servicos);
+            IQueryable<Agendamentos> query = _contexto.Agendamentos.Include(a => a.Barbeiros).ThenInclude(b=>b.Comissao).Include(a => a.Servicos);
             query = query.AsNoTracking()
                        .OrderBy(a => a.Horario)
                        .Where(a => a.Horario > inicio && a.Horario < fim && a.BarbeariasId == idBarbearia);
@@ -29,7 +29,11 @@ namespace Mybarber.Repositorios
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodosList = new List<AgendamentosObtidosPorPeriodo>();
             foreach (Agendamentos agendamento in agendamentos)
             {
-                BarbeiroRelatorio barbeiro = new BarbeiroRelatorio(agendamento.Barbeiros.NameBarbeiro);
+                if (agendamento.Barbeiros.Comissao == null)
+                {
+                    agendamento.Barbeiros.Comissao = new Comissao(0, 0, agendamento.Barbeiros.IdBarbeiro, agendamento.Barbeiros);
+                }
+                BarbeiroRelatorio barbeiro = new BarbeiroRelatorio(agendamento.Barbeiros.NameBarbeiro, agendamento.Barbeiros.Comissao.Porcentagem);
                 ServicoRelatorio servico = new ServicoRelatorio(agendamento.Servicos.PrecoServico);
                 AgendamentosObtidosPorPeriodo agendamentosObtidosPorPeriodo = new AgendamentosObtidosPorPeriodo(servico, barbeiro);
                 agendamentosObtidosPorPeriodosList.Add(agendamentosObtidosPorPeriodo);

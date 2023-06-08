@@ -69,6 +69,7 @@ namespace Mybarber.Config
             services.AddScoped<IGerarRelatorioGeralPdf, GerarRelatorioGeralPdf>();
             services.AddScoped<IAgendamentoRepositorio, AgendamentoRepositorio>();
             services.AddScoped<IGerarRelatorioPdf, GerarRelatorioPDF>();
+            services.AddScoped<IGerarRelatorioGeralJson, GerarRelatorioGeralJson>();
         }
     }
 }

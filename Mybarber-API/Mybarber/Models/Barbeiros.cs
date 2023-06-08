@@ -31,6 +31,7 @@ namespace Mybarber.Models
         //public Guid BarbeiroImagemId { get; set; }
         public virtual BarbeiroImagens BarbeiroImagem { get; set; }
 
+        public virtual Comissao Comissao { get; set; }  
         public virtual ICollection<EventoAgendado> EventoAgendado { get; set; }
         public virtual Agendas Agendas { get; set; }
 

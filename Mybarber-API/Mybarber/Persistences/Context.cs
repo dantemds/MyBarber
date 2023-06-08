@@ -33,7 +33,7 @@ namespace Mybarber.Persistencia
         public DbSet<Banner> Banner { get; set; }
         public DbSet<LandingPageImages> LandingPageImages { get; set; } 
         public DbSet<EventoAgendado> EventoAgendado { get; set; }
-
+        public DbSet<Comissao> Comissao { get; set; }
         public IConfiguration _config { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

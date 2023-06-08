@@ -22,7 +22,7 @@ namespace Mybarber_Test.TestesAplicacao.Entidade
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodosList = new List<AgendamentosObtidosPorPeriodo>();
             agendamentosObtidosPorPeriodosList.Add(agendamentosObtidosPorPeriodo);
             agendamentosObtidosPorPeriodosList.Add(agendamentosObtidosPorPeriodo2);
-            DadosPreparadosParaRelatorioPdf dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorioPdf(agendamentosObtidosPorPeriodosList);
+            DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorio(agendamentosObtidosPorPeriodosList);
             Assert.AreEqual(60.00f, dadosPreparadosParaRelatorioPdf.FaturamentoGeral);
             Assert.AreEqual(2, dadosPreparadosParaRelatorioPdf.ServicosPrestados);
             Assert.AreEqual(2, dadosPreparadosParaRelatorioPdf.BarbeiroRelatorioPdf.Count);
