@@ -31,6 +31,7 @@ namespace Mybarber.Models
         public ICollection<Barbeiros> Barbeiros { get; set; }
         public  ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
         public  ICollection<Users> Users { get; set; }
+        public ICollection<BarbeariasCondicoes> BarbeariasCondicoes { get; set; }
         public Barbearias() { }
 
 
