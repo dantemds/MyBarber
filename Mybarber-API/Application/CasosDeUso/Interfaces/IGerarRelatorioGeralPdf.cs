@@ -9,6 +9,6 @@ namespace Aplicacao.CasosDeUso.Interfaces
 {
     public interface IGerarRelatorioGeralPdf
     {
-        public Task Executar(ComandoGerarRelatorioGeralPdf comando);
+        public Task<byte[]> Executar(ComandoGerarRelatorioGeralPdf comando);
     }
 }

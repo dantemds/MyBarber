@@ -21,14 +21,15 @@ namespace Aplicacao.CasosDeUso
             _gerarRelatorio = gerarRelatorio;  
         }
 
-        public async Task Executar(ComandoGerarRelatorioGeralPdf comando)
+        public async Task<byte[]> Executar(ComandoGerarRelatorioGeralPdf comando)
         {
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodo = await _agendamentoRepositorio.ObterAgendamentosPorPeriodo(comando.DataInicio, comando.DataFim, comando.IdBarbearia);
 
             DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorio(agendamentosObtidosPorPeriodo);
 
-            _gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
-
+            byte[] bytesPdf = _gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
+            
+            return bytesPdf;
 
         }
     }

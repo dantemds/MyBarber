@@ -9,6 +9,6 @@ namespace Aplicacao.Interfaces
 {
     public interface IGerarRelatorioPdf
     {
-        public void GerarRelatorio(DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf);
+        public byte[] GerarRelatorio(DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf);
     }
 }

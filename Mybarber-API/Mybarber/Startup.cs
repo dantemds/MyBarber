@@ -34,7 +34,6 @@ namespace Mybarber
             
             services.AddMemoryCache();
 
-
             services.AddControllers()
                .AddNewtonsoftJson(opt => opt.SerializerSettings
                .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

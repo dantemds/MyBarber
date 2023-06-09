@@ -3,6 +3,8 @@ using Aplicacao.Comandos;
 using Aplicacao.ObjetosDeTransferencia;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
+using System.Net.Mime;
 
 namespace Infraestrutura.Controladores
 {
@@ -24,8 +26,15 @@ namespace Infraestrutura.Controladores
         public async Task<IActionResult> ObterRelatorioGeralPdf(RelatorioGeralPdf entrada)
         {
             ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(entrada.Inicio, entrada.Fim, entrada.BarbeariaId);
-            await _gerarRelatorioGeralPdf.Executar(comando);
-            return Ok();
+            byte[] relatorioBytes = await _gerarRelatorioGeralPdf.Executar(comando);
+            var tipoConteudo = MediaTypeNames.Application.Pdf;
+
+            var stream = new MemoryStream(relatorioBytes);
+
+            var resultado = new FileStreamResult(stream, new MediaTypeHeaderValue("application/pdf").ToString());
+            Response.ContentType = new MediaTypeHeaderValue("application/pdf").ToString();
+            resultado.FileDownloadName = "relatorio.pdf";
+            return Ok(resultado);
         }
 
         [HttpPost("{idBarbearia}")]
