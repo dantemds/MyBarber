@@ -35,6 +35,8 @@ namespace Mybarber.Persistencia
         public DbSet<EventoAgendado> EventoAgendado { get; set; }
         public DbSet<Comissao> Comissao { get; set; }
         public IConfiguration _config { get; }
+        public DbSet<Condicao> Condicao { get; set; }
+        public DbSet<BarbeariasCondicoes> BarbeariasCondicoes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
