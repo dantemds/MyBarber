@@ -3,6 +3,7 @@ using Mybarber.DataTransferObject.Agendamento;
 using Mybarber.DataTransferObject.Aviso;
 using Mybarber.DataTransferObject.Banner;
 using Mybarber.DataTransferObject.Barbeiro;
+using Mybarber.DataTransferObject.Condicao;
 using Mybarber.DataTransferObject.Contatos;
 using Mybarber.DataTransferObject.Enderecos;
 using Mybarber.DataTransferObject.Horario;
@@ -36,7 +37,7 @@ namespace Mybarber.DataTransferObject.Barbearia
         public ICollection<BannerResponseDto> Banner { get; set; }
         public ICollection<LandingPageImagesResponseDto> LandingPageImages { get; set; }
         public AvisoResponseDto Aviso { get; set; }
-
+        public ICollection<BarbeariasCondicoesResponseDto> BarbeariasCondicoes { get; set; }
 
 
     }
