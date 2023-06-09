@@ -1,24 +1,28 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 
 
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
-WORKDIR /src
+# Copia os arquivos do projeto e restaura as dependências
+COPY COPY ["*.sln", "."]
 COPY ["Mybarber/Mybarber.csproj", "Mybarber/"]
-RUN dotnet restore "Mybarber/Mybarber.csproj"
+COPY ["Infraestrutura/Infraestrutura.csproj", "Infraestrutura/"]
+COPY ["Dominio/Dominio.csproj", "Dominio/"]
+COPY ["Application/Aplicacao.csproj", "Application/"]
+COPY ["Application/Aplicacao.csproj", "Application/"]
+RUN dotnet restore
+# Copia todos os arquivos do projeto para o diretório de trabalho
 COPY . .
-WORKDIR "/src/Mybarber"
+# Publica os projetos em um diretório de saída
 RUN dotnet build "Mybarber.csproj" -c Release -o /app/build
 
+# Define a imagem base para executar o aplicativo publicado
 FROM build AS publish
-RUN dotnet publish "Mybarber.csproj" -c Release -o /app/publish
+RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-
 
 CMD ASPNETCORE_URLS=http://*:3000 dotnet Mybarber.dll
 

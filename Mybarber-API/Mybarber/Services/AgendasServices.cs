@@ -21,13 +21,13 @@ namespace Mybarber.Services
         private readonly IServicosRepository _servicoRepo;
         private readonly IAgendamentosRepository _agendamentosRepo;
 
-        public AgendasServices( IGenerallyRepository generally, IBarbeirosRepository repo, IServicosRepository servicoRepo, IAgendamentosRepository agendamentosRepo)
+        public AgendasServices(IGenerallyRepository generally, IBarbeirosRepository repo, IServicosRepository servicoRepo, IAgendamentosRepository agendamentosRepo)
         {
             this._agendamentosRepo = agendamentosRepo;
             this._generally = generally;
             this._repo = repo;
             this._servicoRepo = servicoRepo;
-            
+
 
         }
 
@@ -58,12 +58,12 @@ namespace Mybarber.Services
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             List<float> agenda = new List<float>();
-            var HorarioMin=0.0f;
-            var HorarioMax=0.0f;
+            var HorarioMin = 0.0f;
+            var HorarioMax = 0.0f;
             var barbeiro = await _repo.GetBarbeirosAsyncById(idBarbeiro);
             var eventosAgendados = barbeiro.EventoAgendado;
-            //var horaBrasilia = Date.GetNow();
-            var horaBrasilia = DateTime.Now;
+            var horaBrasilia = Date.GetNow();
+            //var horaBrasilia = DateTime.Now;
             var horaAtual = (horaBrasilia.Hour.ToString() + '.' + horaBrasilia.Minute.ToString());
             Console.WriteLine("--------------hora atual string---------------");
             Console.WriteLine(horaAtual);
@@ -73,7 +73,7 @@ namespace Mybarber.Services
             }
             if (horaBrasilia.Day == data.Day)
             {
-                
+
 
                 if (horaAtual[3] == '3' || horaAtual[3] == '4' || horaAtual[3] == '5')
                 {
@@ -85,11 +85,11 @@ namespace Mybarber.Services
 
 
             var eventosAgendadosNaDataList = new List<EventoAgendado>();
-            
-            foreach(var evento in eventosAgendados)
+
+            foreach (var evento in eventosAgendados)
             {
-                
-                if(evento.DiaSemana == dia)
+
+                if (evento.DiaSemana == dia)
                 {
                     if (!evento.Temporario)
                     {
@@ -105,7 +105,7 @@ namespace Mybarber.Services
                             eventosAgendadosNaDataList.Add(evento);
                         }
                     }
-                   
+
                 }
             }
             var horaAtualFloat = Convert.ToSingle(horaAtual);
@@ -116,42 +116,42 @@ namespace Mybarber.Services
                 case "domingo":
                     HorarioMin = barbeiro.Agendas.Domingo[0];
                     HorarioMax = barbeiro.Agendas.Domingo[1];
-                    
+
                     break;
                 case "segunda":
                     HorarioMin = barbeiro.Agendas.Segunda[0];
                     HorarioMax = barbeiro.Agendas.Segunda[1];
-                    
+
                     break;
                 case "terca":
                     HorarioMin = barbeiro.Agendas.Terca[0];
                     HorarioMax = barbeiro.Agendas.Terca[1];
-                   
+
                     break;
                 case "quarta":
                     HorarioMin = barbeiro.Agendas.Quarta[0];
                     HorarioMax = barbeiro.Agendas.Quarta[1];
-                    
+
                     break;
                 case "quinta":
                     HorarioMin = barbeiro.Agendas.Quinta[0];
                     HorarioMax = barbeiro.Agendas.Quinta[1];
-                    
+
                     break;
                 case "sexta":
                     HorarioMin = barbeiro.Agendas.Sexta[0];
                     HorarioMax = barbeiro.Agendas.Sexta[1];
-                    
+
                     break;
                 case "sabado":
                     HorarioMin = barbeiro.Agendas.Sabado[0];
                     HorarioMax = barbeiro.Agendas.Sabado[1];
-                   
+
                     break;
             }
 
 
-           for (float i = HorarioMin; i < HorarioMax; i += 0.5f)
+            for (float i = HorarioMin; i < HorarioMax; i += 0.5f)
             {
                 if (horaBrasilia.Day == data.Day)
                 {
@@ -165,7 +165,7 @@ namespace Mybarber.Services
                 {
                     agenda.Add(i);
                 }
-                
+
             }
             var result = await ExcluirHorariosAgendados(agenda, data, idServico, tenant, barbeiro.IdBarbeiro, eventosAgendadosNaDataList);
             return result;
@@ -173,9 +173,9 @@ namespace Mybarber.Services
         }
 
 
-       
 
-        private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, Guid idServico, Guid tenant,Guid idBarbeiro, List<EventoAgendado> eventoAgendados)
+
+        private async Task<List<float>> ExcluirHorariosAgendados(List<float> agenda, DateTime data, Guid idServico, Guid tenant, Guid idBarbeiro, List<EventoAgendado> eventoAgendados)
         {
             Console.WriteLine("--------------Agenda---------------");
             Console.WriteLine(agenda.Count());
@@ -191,8 +191,8 @@ namespace Mybarber.Services
             var duracaoServicoFloat = Convert.ToSingle(durancaoServico);
             Console.WriteLine(duracaoServicoFloat);
             var agendamentos = await _agendamentosRepo.GetAgendamentosAsyncByTenant(tenant, pageParams);
-           
-           
+
+
 
             foreach (var item in agenda.ToArray())
             {
@@ -201,7 +201,7 @@ namespace Mybarber.Services
                     var horaInicio = evento.HoraInicio;
                     horaInicio = horaInicio.Replace("30", "5").Replace(":", ".");
                     var horaFloat = Convert.ToSingle(horaInicio);
-                    if(horaFloat == item)
+                    if (horaFloat == item)
                     {
                         var durancaoEventoAgendado = evento.Duracao.TotalHours.ToString();
                         durancaoEventoAgendado = durancaoEventoAgendado.Replace("30", "5");
@@ -213,7 +213,8 @@ namespace Mybarber.Services
                             agenda.RemoveRange(index, itensExcluidos);
                             break;
                         }
-                    } else
+                    }
+                    else
                     {
                         var horaFinal = evento.HoraFim;
                         horaFinal = horaFinal.Replace("30", "5").Replace(":", ".");
@@ -265,11 +266,38 @@ namespace Mybarber.Services
                             var index = agenda.IndexOf(item);
                             agenda.RemoveRange(index, itensExcluidos);
                         }
+                        else
+                        {
+                            //var horaFinal = evento.HoraFim;
+                            //horaFinal = horaFinal.Replace("30", "5").Replace(":", ".");
+                            //var horaFinalFloat = Convert.ToSingle(horaFinal);
+                            //var diferenca = horaFinalFloat - horaFloat;
+                            var diferenca = agendamento.Servicos.TempoServico.ToString("HH:mm");
+                            diferenca = diferenca.Replace("30", "5").Replace(":", ".");
+                            var diferencaFloat = Convert.ToSingle(diferenca);
+                            var proporcao = Convert.ToInt32(diferencaFloat / 0.5);
+                            for (var i = proporcao; i >= 0; i--)
+                            {
+                                if (horaFloat == item)
+                                {
+                                    //var durancaoEventoAgendado = diferenca;
+                                    //durancaoEventoAgendado = durancaoEventoAgendado.Replace("30", "5");
+                                    //var durancaoEventoAgendadoFloat = Convert.ToSingle(durancaoEventoAgendado);
+                                    var index = agenda.IndexOf(item);
+                                    if (index != -1)
+                                    {
+                                        agenda.RemoveRange(index, i);
+                                        break;
+                                    }
+                                }
+                                horaFloat += 0.5f;
+                            }
+                        }
                     }
                 }
             }
 
-           var agendaFinal= ExcluirHorariosDuracaoServico(agenda, duracaoServicoFloat);
+            var agendaFinal = ExcluirHorariosDuracaoServico(agenda, duracaoServicoFloat);
 
 
 
@@ -277,13 +305,13 @@ namespace Mybarber.Services
         }
 
 
-        private  List<float> ExcluirHorariosDuracaoServico(List<float> agenda, float  duracaoServico)
+        private List<float> ExcluirHorariosDuracaoServico(List<float> agenda, float duracaoServico)
         {
             var result = new List<float>();
             var valoresDaAgenda = agenda.Count();
             var duracaoServicoCalculado = (int)(duracaoServico / 0.5f);
             var indexMax = valoresDaAgenda - duracaoServicoCalculado;
-            foreach(var item in agenda.ToArray())
+            foreach (var item in agenda.ToArray())
             {
                 if (agenda.IndexOf(item) <= indexMax)
                 {
@@ -298,15 +326,15 @@ namespace Mybarber.Services
                         //agenda.RemoveRange(agenda.IndexOf(item), (int)((duracaoServico / 0.5f) - 1.0f));
                         result.Add(item);
                     }
-                    
+
                 }
             }
-            
+
 
 
             return result;
         }
-       
+
 
     }
 }
