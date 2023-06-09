@@ -47,7 +47,7 @@ namespace Mybarber.Persistencia
             modelBuilder.ApplyConfiguration(new ServicosBarbeirosConfiguration());
             modelBuilder.ApplyConfiguration(new BarbeirosConfiguration());
             modelBuilder.ApplyConfiguration(new RolesUsersConfiguration());
-         
+            modelBuilder.ApplyConfiguration(new BarbeariasCondicoesConfiguration());
 
 
 
