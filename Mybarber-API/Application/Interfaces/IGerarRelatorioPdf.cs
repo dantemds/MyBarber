@@ -9,6 +9,6 @@ namespace Aplicacao.Interfaces
 {
     public interface IGerarRelatorioPdf
     {
-        public byte[] GerarRelatorio(DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf);
+        public byte[] GerarRelatorio(DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf, DateTime dataInicio, DateTime dataFim);
     }
 }

@@ -27,7 +27,7 @@ namespace Aplicacao.CasosDeUso
 
             DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorio(agendamentosObtidosPorPeriodo);
 
-            byte[] bytesPdf = _gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
+            byte[] bytesPdf = _gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf, comando.DataInicio, comando.DataFim);
             
             return bytesPdf;
 

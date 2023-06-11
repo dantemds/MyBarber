@@ -11,22 +11,26 @@ namespace Infraestrutura.Relatorio
     public class GerarRelatorioPDF : IGerarRelatorioPdf
     {
 
-        public byte[] GerarRelatorio(DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf) 
+        public byte[] GerarRelatorio(DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf, DateTime dataInicio, DateTime dataFim) 
         {
             int totalPaginas = 1;
+            int pessoasSelecionadas = dadosPreparadosParaRelatorioPdf.BarbeiroRelatorioPdf.Count();
+            if (pessoasSelecionadas > 24)
+                totalPaginas += (int)Math.Ceiling(
+                    (pessoasSelecionadas - 24) / 29F);
             //configurar dados do PDF
             var pxPorMm = 72 / 25.2F;
             var pdf = new Document(PageSize.A4, 15 * pxPorMm, 15 * pxPorMm,
                     15 * pxPorMm, 20 * pxPorMm);
             //Nome do arquivo
             var nomeArquivo = $"relatorio.pdf";
-
+            var arquivo = new FileStream(nomeArquivo, FileMode.Create);
             //Criando arquivo
-            using(var arquivo = new MemoryStream())
-            {
+            //using (var arquivo = new MemoryStream())
+            //{
                 //Unindo arquivo a pdf
                 var writer = PdfWriter.GetInstance(pdf, arquivo);
-
+                writer.PageEvent = new EventosDePagina(totalPaginas);
                 pdf.Open();
 
                 //Definindo a fonte
@@ -57,6 +61,14 @@ namespace Infraestrutura.Relatorio
                     logo.SetAbsolutePosition(margemEsquerda, margemTopo);
                     writer.DirectContent.AddImage(logo, false);
                 }
+
+                //Data do relatório
+                var fonteData = new iTextSharp.text.Font(fonteBase, 10f,
+                    iTextSharp.text.Font.NORMAL, BaseColor.Black);
+                var data = new Paragraph($"{dataInicio.ToString("dd/MM/yyyy")} - {dataFim.ToString("dd/MM/yyyy")}", fonteData);
+                data.Alignment = Element.ALIGN_CENTER;
+                pdf.Add(data);
+                pdf.Add(new Paragraph("\n"));
 
                 //Resumo Relatorio
                 var fonteTitulo = new iTextSharp.text.Font(fonteBase, 18,
@@ -101,7 +113,7 @@ namespace Infraestrutura.Relatorio
                 {
                     barbeiro.ObterComissao();
                     CriarCelulaTexto(tabela, barbeiro.NomeBarbeiro, PdfPCell.ALIGN_CENTER, true);
-                    CriarCelulaTexto(tabela, barbeiro.NumeroServicos.ToString(), PdfPCell.ALIGN_LEFT, true);
+                    CriarCelulaTexto(tabela, barbeiro.NumeroServicos.ToString(), PdfPCell.ALIGN_CENTER, true);
                     CriarCelulaTexto(tabela, "R$ " + barbeiro.Faturamento.ToString(), PdfPCell.ALIGN_CENTER, true); ;
                     CriarCelulaTexto(tabela, (barbeiro.Porcentagem * 100) + " %", PdfPCell.ALIGN_CENTER, true);
                     CriarCelulaTexto(tabela, "R$ " + barbeiro.Comissao, PdfPCell.ALIGN_CENTER, true);
@@ -109,31 +121,33 @@ namespace Infraestrutura.Relatorio
 
                 //Adiciona Tabela
                 pdf.Add(tabela);
-                byte[] data;
+                byte[] dados;
 
 
-                data = arquivo.ToArray();
+                //dados = arquivo.ToArray();
 
                 //Fecha a edição
-                pdf.Close();
-                arquivo.Close();
+                
 
 
                 //Salvando pdf
-                //var caminhoPDF = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);
-                //if (File.Exists(caminhoPDF))
-                //{
-                //    Process.Start(new ProcessStartInfo()
-                //    {
-                //        //Arguments = $"/c start firefox {caminhoPDF}",
-                //        Arguments = $"/c start {caminhoPDF}",
-                //        CreateNoWindow = true,
-                //        FileName = "cmd.exe"
-                //    });
-                //}
+                var caminhoPDF = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, nomeArquivo);
+                if (File.Exists(caminhoPDF))
+                {
+                    Process.Start(new ProcessStartInfo()
+                    {
+                        //Arguments = $"/c start firefox {caminhoPDF}",
+                        Arguments = $"/c start {caminhoPDF}",
+                        CreateNoWindow = true,
+                        FileName = "cmd.exe"
+                    });
+                }
+                pdf.Close();
+                arquivo.Close();
 
-                return data;
-            }
+                //return dados;
+                return new byte[0];
+            //}
         }
 
         static void CriarCelulaTexto(PdfPTable tabela, string texto,

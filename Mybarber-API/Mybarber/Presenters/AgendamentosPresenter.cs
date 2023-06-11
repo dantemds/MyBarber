@@ -56,8 +56,8 @@ namespace Mybarber.Presenter
             try
             {
 
-                //var horaBrasilia = Date.GetNow();
-                var horaBrasilia = DateTime.Now;
+                var horaBrasilia = Date.GetNow();
+                //var horaBrasilia = DateTime.Now;
                 if (agendamentoDto == null)
                     throw new ViewException("Agendamento.Missing.Info");
                 if (string.IsNullOrEmpty(agendamentoDto.Email))

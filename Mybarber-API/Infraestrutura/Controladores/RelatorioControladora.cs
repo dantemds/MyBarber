@@ -34,7 +34,7 @@ namespace Infraestrutura.Controladores
             var resultado = new FileStreamResult(stream, new MediaTypeHeaderValue("application/pdf").ToString());
             Response.ContentType = new MediaTypeHeaderValue("application/pdf").ToString();
             resultado.FileDownloadName = "relatorio.pdf";
-            return Ok(resultado);
+            return Ok();
         }
 
         [HttpPost("{idBarbearia}")]

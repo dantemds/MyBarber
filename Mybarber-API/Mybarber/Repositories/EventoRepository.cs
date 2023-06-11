@@ -53,8 +53,8 @@ namespace Mybarber.Repositories
                 else
                 {
                     var dataFimConvert = Convert.ToDateTime(item.DataFim);
-                    //var data = Date.GetNow();
-                    var data = DateTime.Now;
+                    var data = Date.GetNow();
+                    //var data = DateTime.Now;
                     if (dataFimConvert >= data)
                     {
                         retorno.Add(item);

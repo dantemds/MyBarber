@@ -40,6 +40,7 @@ namespace Aplicacao.ObjetosDeTransferencia
                     BarbeiroRelatorioPdf[index] = barbeiro;
                 }
             }
+            BarbeiroRelatorioPdf = BarbeiroRelatorioPdf.OrderByDescending(objeto => objeto.Faturamento).ToList();
             this.BarbeiroRelatorioPdf = BarbeiroRelatorioPdf;
         }
     }
