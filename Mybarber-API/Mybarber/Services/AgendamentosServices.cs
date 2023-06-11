@@ -67,7 +67,7 @@ namespace Mybarber.Services
         {
             try
             {
-                
+
 
                 if (ValidaEmail.IsEmail(agendamentos.Email) == false)
                     throw new EmailException(TraslateExceptions.EmailInvalido);
@@ -78,30 +78,48 @@ namespace Mybarber.Services
                 //    throw new AgendamentoException(TraslateExceptions.AgendamentoImpossivel);
 
                 var barbeiro = await _barbeirosRepository.GetBarbeirosAsyncById(agendamentos.BarbeirosId);
-                
+
 
                 _generally.Add(agendamentos);
 
-               
-                
+
+
 
                 if (await _generally.SaveChangesAsync())
 
                 {
                     try
                     {
-                        //_email.SendEmail(agendamentos, "EmailAgendamento");
-                        _email.SendSESEMail(agendamentos, "EmailAgendamento");
-                        _sms.SendSMS(agendamentos.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoCliente, agendamentos));
-                        if (barbeiro.BarbeiroContato != null)
+                        try
                         {
-                            _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
+                            _email.SendSESEMail(agendamentos, "EmailAgendamento");
                         }
-                    }
-                    catch(Exception ex)
-                    { return agendamentos; }
-                    return agendamentos;
+                        catch (Exception ex)
+                        {
+                            if (agendamentos.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamentos.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
+                            {
+                                _sms.SendSMS(agendamentos.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoCliente, agendamentos));
+                                if (barbeiro.BarbeiroContato != null)
+                                {
+                                    _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
+                                }
+                            }
+                            return agendamentos;
+                        }
+                        if (agendamentos.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamentos.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
+                        {
+                            if (barbeiro.BarbeiroContato != null)
+                            {
+                                _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
+                            }
+                        }
 
+                    }
+                    catch (Exception ex)
+                    {
+                        return agendamentos;
+                    }
+                    return agendamentos;
                 }
                 else
                 {
@@ -113,7 +131,7 @@ namespace Mybarber.Services
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteAgendamentoAsync(int idAgendamento) 
+        public async Task<bool> DeleteAgendamentoAsync(int idAgendamento)
         {
             var agendamento = await _repo.GetAgendamentosAsyncById(idAgendamento);
             if (agendamento.Equals(null))
@@ -121,14 +139,28 @@ namespace Mybarber.Services
 
             _generally.Delete(agendamento);
 
-            if (await _generally.SaveChangesAsync()) 
+            if (await _generally.SaveChangesAsync())
             {
                 //_email.SendEmail(agendamento, "EmailCancelamento");
-                _email.SendSESEMail(agendamento, "EmailCancelamento");
-                _sms.SendSMS(agendamento.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.CancelarAgendamento, agendamento));
-                Log.Information("Agendamento cancelado ", idAgendamento);
+                try
+                {
+                    _email.SendSESEMail(agendamento, "EmailCancelamento");
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+                    if (agendamento.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamento.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
+                    {
+                        _sms.SendSMS(agendamento.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.CancelarAgendamento, agendamento));
+                    }
+                    Log.Information("Agendamento cancelado ", idAgendamento);
+                }
+
                 return true;
-            
+
             }
             else
             {
