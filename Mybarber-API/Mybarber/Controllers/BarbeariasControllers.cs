@@ -78,8 +78,8 @@ namespace Mybarber.Controllers
 
             var memoryCacheEntryOptions = new MemoryCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(1200),
-                SlidingExpiration = TimeSpan.FromSeconds(1200)
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(172800),
+                SlidingExpiration = TimeSpan.FromSeconds(172800)
             };
 
             _memoryCache.Set(key, result, memoryCacheEntryOptions);

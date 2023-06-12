@@ -77,7 +77,10 @@ namespace Mybarber.Controllers
                 return Created($"/api/v1/agendamentos/{result.IdAgendamento}", result);
             }
             catch (Exception ex)
-            { throw new Exception(ex.Message); }
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception(ex.Message); 
+            }
 
         }
 

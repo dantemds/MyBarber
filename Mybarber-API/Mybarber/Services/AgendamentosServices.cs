@@ -117,6 +117,7 @@ namespace Mybarber.Services
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
                         return agendamentos;
                     }
                     return agendamentos;
@@ -128,6 +129,7 @@ namespace Mybarber.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw new Exception(ex.Message);
             }
         }
