@@ -13,7 +13,7 @@ namespace Mybarber_Test.TestesAplicacao.Entidade
         [Test]
         public void Deve_Criar_Barbeiro_Relatorio()
         {
-            BarbeiroRelatorio barbeiroRelatorio = new BarbeiroRelatorio("João");
+            BarbeiroRelatorio barbeiroRelatorio = new BarbeiroRelatorio("João", 0.5);
             Assert.AreNotEqual(barbeiroRelatorio, null);
         }
     }

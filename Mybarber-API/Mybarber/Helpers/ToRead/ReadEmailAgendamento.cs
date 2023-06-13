@@ -134,7 +134,7 @@ namespace Mybarber.Helpers.ToRead
                    "font-size: 1rem;" +
                    "text-align: center;" +
                    "border-bottom: 1px solid #B78865'>" +
-                   "Agendamento Realizado com Sucesso</h1>" +
+                   "Novo Agendamento Realizado com Sucesso</h1>" +
                    "</div>" +
                    "<div class='content' style='" +
                    "width: 15.4rem;" +

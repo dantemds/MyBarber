@@ -14,7 +14,7 @@ namespace Mybarber_Test.TestesAplicacao.ObjetoDeTransferencia
         [Test]
         public void Deve_Criar_Agendamentos_Obtidos_Por_Periodo()
         {
-            BarbeiroRelatorio barbeiro = new BarbeiroRelatorio("João");
+            BarbeiroRelatorio barbeiro = new BarbeiroRelatorio("João", 0.5);
             ServicoRelatorio servico = new ServicoRelatorio(30.00f);
             AgendamentosObtidosPorPeriodo agendamentosObtidosPorPeriodo = new AgendamentosObtidosPorPeriodo(servico, barbeiro);
             Assert.IsNotNull(agendamentosObtidosPorPeriodo);
