@@ -46,7 +46,7 @@ namespace Mybarber.Helpers.ToRead
                    " {nameBarbeiro} </span>" +
                    " às <span style='font-weight: 700'>" +
                    "{horas}h </span>" +
-                   " do dia <span style='font-weight: 700'> {dia} </span> de <span style='font-weight: 700'> {mes} </span>" +
+                   " do dia <span style='font-weight: 700'> {dia} </span> de <span style='font-weight: 700'> {mes}. </span>" +
                    "foi realizado com sucesso.</p>" +
                    "</div>" +
 
@@ -148,7 +148,7 @@ namespace Mybarber.Helpers.ToRead
                    " {name} </span>" +
                    " às <span style='font-weight: 700'>" +
                    "{horas}h </span>" +
-                   " do dia <span style='font-weight: 700'> {dia} </span> de <span style='font-weight: 700'> {mes} </span>" +
+                   " do dia <span style='font-weight: 700'> {dia} </span> de <span style='font-weight: 700'> {mes}. </span>" +
                   "</p>" +
                    "</div>" +
 
