@@ -73,7 +73,10 @@ namespace Mybarber.Services
                     throw new EmailException(TraslateExceptions.EmailInvalido);
                 var horario = await _repo.GetAgendamentosAsyncByHorario(agendamentos);
                 if (horario != null)
+                {
+                    Console.WriteLine(TraslateExceptions.AgendamentoConflituoso);
                     throw new AgendamentoException(TraslateExceptions.AgendamentoConflituoso);
+                }
                 //if ((DateTime.Compare(agendamentos.Horario, DateTime.Now)<0))
                 //    throw new AgendamentoException(TraslateExceptions.AgendamentoImpossivel);
 
@@ -92,7 +95,17 @@ namespace Mybarber.Services
                     {
                         try
                         {
-                            _email.SendSESEMail(agendamentos, "EmailAgendamento");
+
+                            try
+                            {
+                                _email.SendSESEMail(agendamentos, "EmailAgendamentoBarbeiro", barbeiro.Users.Email);
+                                _email.SendSESEMail(agendamentos, "EmailAgendamento");
+
+                            }
+                            catch (Exception ex)
+                            {
+                                _email.SendSESEMail(agendamentos, "EmailAgendamento");
+                            }
                         }
                         catch (Exception ex)
                         {

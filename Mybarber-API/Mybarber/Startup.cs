@@ -38,9 +38,9 @@ namespace Mybarber
                .AddNewtonsoftJson(opt => opt.SerializerSettings
                .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            
-            //Authentication.AddAuthentication(services);
 
+            //Authentication.AddAuthentication(services);
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             

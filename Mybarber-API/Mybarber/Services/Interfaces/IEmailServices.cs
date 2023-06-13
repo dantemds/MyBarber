@@ -11,7 +11,7 @@ namespace Mybarber.Services.Interfaces
         Task<Barbeiros> GetBarbeiroForEmail(Guid idBarbeiro);
         Task<Servicos> GetServicoForEmail(Guid idServico);
         //void SendSESEMail(string to, string subject);
-        void SendSESEMail(Agendamentos agendamento, string tipoHtml);
+        void SendSESEMail(Agendamentos agendamento, string tipoHtml, string destino = null);
 
 
     }

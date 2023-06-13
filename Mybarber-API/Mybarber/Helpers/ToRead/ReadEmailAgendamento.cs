@@ -115,6 +115,61 @@ namespace Mybarber.Helpers.ToRead
 
                
                     
+            } else if (tipoHtml == "EmailAgendamentoBarbeiro")
+            {
+                string html = "<div class='header' style='" +
+                   "background-color: #202020;" +
+                   "background-image: linear-gradient(to top left, rgb(0, 0, 0), #444444);" +
+                   "border-radius: 10px 10px 0 0;" +
+                   "padding: .5rem;" +
+                   "display: flex;" +
+                   "justify-content: center;" +
+                   "text-align: center;" +
+                   "width: 15.4rem'>" +
+                   "<h1 style='" +
+                   "width: 15.4rem;" +
+                   "color: #fff;" +
+
+                   "font-weight: 400;" +
+                   "font-size: 1rem;" +
+                   "text-align: center;" +
+                   "border-bottom: 1px solid #B78865'>" +
+                   "Agendamento Realizado com Sucesso</h1>" +
+                   "</div>" +
+                   "<div class='content' style='" +
+                   "width: 15.4rem;" +
+
+                   "font-weight: 400;" +
+                   "font-size: .7rem;" +
+                   "padding: .5rem;" +
+                   "text-align: center'>" +
+                   "<p>Olá, <span style='font-weight: 700'>{nameBarbeiro}!</span></p>" +
+                   "<p>Um agendamento foi realizado no nome de <span style='font-weight: 700'>" +
+                   " {name} </span>" +
+                   " às <span style='font-weight: 700'>" +
+                   "{horas}h </span>" +
+                   " do dia <span style='font-weight: 700'> {dia} </span> de <span style='font-weight: 700'> {mes} </span>" +
+                  "</p>" +
+                   "</div>" +
+
+                   "<div class= 'footer' style='" +
+                   "background-color: #B78865;" +
+                   "background-image: linear-gradient(to top left, #d1996e, #B78865);" +
+                   "font-size: .6rem;" +
+                   "text-align: center;" +
+                   "padding: .5rem;" +
+                   "width: 15.4rem;" +
+                   "border-radius: 0 0 10px 10px'>" +
+                   " <p> <span style='font-weight: 700'> {nomeBarbearia}. </span>" +
+                   "</p>" +
+                   "</div>";
+
+                return html.Replace("{name}", name)
+                                .Replace("{nameBarbeiro}", barbeiro)
+                                .Replace("{horas}", horario.ToString("t"))
+                                .Replace("{dia}", horario.ToString("dd"))
+                                .Replace("{nomeBarbearia}", nomeBarbearia)
+                                .Replace("{mes}", horario.ToString("Y"));
             }
             else if (tipoHtml == "EmailCancelamento")
             {

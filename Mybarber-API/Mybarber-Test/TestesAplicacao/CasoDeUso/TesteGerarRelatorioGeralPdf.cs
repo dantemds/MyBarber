@@ -28,7 +28,7 @@ namespace Mybarber_Test.TestesAplicacao.CasoDeUso
         {
             DateTime inicio = new DateTime(2023, 1, 1);
             DateTime fim = new DateTime(2023, 5, 1);
-            ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(inicio, fim);
+            ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(inicio, fim, new Guid("f6df7a5a - 56eb - 499d - be20 - fa1ae344b2d7"));
             await _gerarRelatorioGeralPdf.Executar(comando);
         }
 

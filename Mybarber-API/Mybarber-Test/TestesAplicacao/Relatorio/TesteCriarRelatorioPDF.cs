@@ -20,13 +20,13 @@ namespace Mybarber_Test.TestesAplicacao.CasoDeUso
         public void Deve_Criar_Relatorio()
         {
             GerarRelatorioPDF gerarRelatorio = new GerarRelatorioPDF();
-            BarbeiroRelatorio barbeiro = new BarbeiroRelatorio("João");
+            BarbeiroRelatorio barbeiro = new BarbeiroRelatorio("João", 0.5);
             ServicoRelatorio servico = new ServicoRelatorio(30.00f);
             AgendamentosObtidosPorPeriodo agendamentosObtidosPorPeriodo = new AgendamentosObtidosPorPeriodo(servico, barbeiro);
             ICollection<AgendamentosObtidosPorPeriodo> agendamentosObtidosPorPeriodosList = new List<AgendamentosObtidosPorPeriodo>();
             agendamentosObtidosPorPeriodosList.Add(agendamentosObtidosPorPeriodo);
             DadosPreparadosParaRelatorio dadosPreparadosParaRelatorioPdf = new DadosPreparadosParaRelatorio(agendamentosObtidosPorPeriodosList);
-            gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf);
+            gerarRelatorio.GerarRelatorio(dadosPreparadosParaRelatorioPdf, new DateTime(), new DateTime());
         }
     }
 }

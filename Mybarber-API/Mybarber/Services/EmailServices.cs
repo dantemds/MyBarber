@@ -77,10 +77,15 @@ namespace Mybarber.Services
 
 
         }
-        public void SendSESEMail(Agendamentos agendamento, string tipoHtml)
+        public void SendSESEMail(Agendamentos agendamento, string tipoHtml, string destino = null)
         {
             // create message
             string to = agendamento.Email;
+
+            if (destino != null)
+            {
+                to = destino.ToString();
+            }
 
             var nomeBarbeiro = GetBarbeiroForEmail(agendamento.BarbeirosId).Result.NameBarbeiro;
 

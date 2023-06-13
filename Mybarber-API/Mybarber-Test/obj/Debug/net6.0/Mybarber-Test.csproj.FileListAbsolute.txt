@@ -1,0 +1,6 @@
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\bin\Debug\net6.0\CoverletSourceRootsMapping
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.csproj.AssemblyReference.cache
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.AssemblyInfoInputs.cache
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.AssemblyInfo.cs
+C:\Users\soumu\Documents\mybarberAPI\mybarberAPI\Mybarber-API\Mybarber-Test\obj\Debug\net6.0\Mybarber-Test.csproj.CoreCompileInputs.cache

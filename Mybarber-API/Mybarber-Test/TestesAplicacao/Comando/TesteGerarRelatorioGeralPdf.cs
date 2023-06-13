@@ -13,7 +13,7 @@ namespace Mybarber_Test.TestesAplicacao.Comando
         [Test]
         public void Deve_Criar_Comando()
         {
-            ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(new DateTime(), new DateTime());
+            ComandoGerarRelatorioGeralPdf comando = new ComandoGerarRelatorioGeralPdf(new DateTime(), new DateTime(), new Guid());
             Assert.AreNotEqual(comando, null);
         }
     }

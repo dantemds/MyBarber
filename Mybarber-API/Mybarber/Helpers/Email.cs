@@ -97,17 +97,12 @@ namespace Mybarber.Helpers
         {
 
             
-        switch (tipoHtml)
-
-            {
-                
+        switch (tipoHtml) {
                 case  "EmailAgendamento":
 
                 string subtitle = "Agendamento Realizado";
 
                     return subtitle;
-
-
 
                 case "EmailCancelamento":
 
@@ -115,11 +110,11 @@ namespace Mybarber.Helpers
 
                     return subtitle;
 
+                case "EmailAgendamentoBarbeiro":
 
-
-
-
-
+                subtitle = "Novo Agendamento Realizado";
+                    
+                    return subtitle;
             }
             throw new ViewException("Impossible.Get.Subtitle");
         

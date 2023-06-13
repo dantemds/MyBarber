@@ -14,8 +14,8 @@ namespace Mybarber_Test.TestesAplicacao.Entidade
         [Test]
         public void Deve_Criar_Dados_Preparados_Para_Relatorio_PDF()
         {
-            BarbeiroRelatorio barbeiro = new BarbeiroRelatorio("João");
-            BarbeiroRelatorio barbeiro2 = new BarbeiroRelatorio("José");
+            BarbeiroRelatorio barbeiro = new BarbeiroRelatorio("João", 0.5);
+            BarbeiroRelatorio barbeiro2 = new BarbeiroRelatorio("José", 0.5);
             ServicoRelatorio servico = new ServicoRelatorio(30.00f);
             AgendamentosObtidosPorPeriodo agendamentosObtidosPorPeriodo = new AgendamentosObtidosPorPeriodo(servico, barbeiro);
             AgendamentosObtidosPorPeriodo agendamentosObtidosPorPeriodo2 = new AgendamentosObtidosPorPeriodo(servico, barbeiro2);
