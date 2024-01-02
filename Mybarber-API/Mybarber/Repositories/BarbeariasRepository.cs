@@ -77,15 +77,13 @@ namespace Mybarber.Repositories
         {
             try
             {
-
                 IQueryable<Barbearias> query = _context.Barbearias./*Include(p=>p.Tema).Include(p=>p.Contatos).Include(p=>p.Endereco).*/Include(p => p.Barbeiros).ThenInclude(it => it.BarbeiroImagem).Include(it => it.Barbeiros).ThenInclude(it => it.Agendas)
-                    .Include(p => p.Servicos).ThenInclude(it => it.ServicoImagem)
-                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
-                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
-                .Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
-                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros).Include(it=> it.Temas).Include(it=> it.Contatos).Include(it=> it.Enderecos).Include(it=>it.HorarioFuncionamento).Include(it=>it.Banner).Include(it=>it.LandingPageImages)
-                .Include(it=>it.Aviso).Include(it => it.BarbeariasCondicoes).ThenInclude(it => it.Condicao);
-
+                  .Include(p => p.Servicos).ThenInclude(it => it.ServicoImagem)
+                  .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
+                  .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
+              //.Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
+              /*.Include(it => it.Agendamentos).*/.Include(it => it.Barbeiros).Include(it => it.Temas).Include(it => it.Contatos).Include(it => it.Enderecos).Include(it => it.HorarioFuncionamento).Include(it => it.Banner).Include(it => it.LandingPageImages)
+              .Include(it => it.Aviso).Include(it => it.BarbeariasCondicoes).ThenInclude(it => it.Condicao);
 
                 query = query.AsNoTracking()
 

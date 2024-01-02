@@ -103,7 +103,7 @@ namespace Mybarber
             {
                 app.UseDeveloperExceptionPage();
             }
-          
+            app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseAuthentication();
 

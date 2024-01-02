@@ -109,23 +109,23 @@ namespace Mybarber.Services
                         }
                         catch (Exception ex)
                         {
-                            if (agendamentos.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamentos.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
-                            {
-                                _sms.SendSMS(agendamentos.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoCliente, agendamentos));
-                                if (barbeiro.BarbeiroContato != null)
-                                {
-                                    _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
-                                }
-                            }
+                            //if (agendamentos.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamentos.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
+                            //{
+                            //    _sms.SendSMS(agendamentos.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoCliente, agendamentos));
+                            //    if (barbeiro.BarbeiroContato != null)
+                            //    {
+                            //        _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
+                            //    }
+                            //}
                             return agendamentos;
                         }
-                        if (agendamentos.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamentos.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
-                        {
-                            if (barbeiro.BarbeiroContato != null)
-                            {
-                                _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
-                            }
-                        }
+                        //if (agendamentos.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamentos.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
+                        //{
+                        //    if (barbeiro.BarbeiroContato != null)
+                        //    {
+                        //        _sms.SendSMS(barbeiro.BarbeiroContato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.AgendamentoBarbeiro, agendamentos));
+                        //    }
+                        //}
 
                     }
                     catch (Exception ex)
@@ -167,10 +167,10 @@ namespace Mybarber.Services
                 }
                 finally
                 {
-                    if (agendamento.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamento.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
-                    {
-                        _sms.SendSMS(agendamento.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.CancelarAgendamento, agendamento));
-                    }
+                    //if (agendamento.BarbeariasId.ToString() == "1956aa91-5157-48a8-a505-7fc40129c5b1" || agendamento.BarbeariasId.ToString() == "22bb9a51-bd65-4556-8681-ecd5093e9042")
+                    //{
+                    //    _sms.SendSMS(agendamento.Contato, MensagemSMS.BuscaMensagem(MensagemSMS.TipoMensagem.CancelarAgendamento, agendamento));
+                    //}
                     Log.Information("Agendamento cancelado ", idAgendamento);
                 }
 
